@@ -3,869 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>6-H'den İngilizce | İngilizceni Geliştir</title
-.brandIcon.logo6h {
-  width: 52px;
-  height: 46px;
-  border-radius: 13px;
-  background: linear-gradient(135deg, #61e3db, #70a5ff 55%, #ad91ff);
-  color: #0b1020;
-  font-size: 19px;
-  font-weight: 1000;
-  letter-spacing: -1px;
-  border: 2px solid #d8faff;
-  box-shadow: 0 0 18px #61e3db55;
-}
+<title>6-H'den İngilizce | İngilizceni Geliştir</title>
 <style>
-:root{
- --bg:#0b1020;--panel:#141c31;--panel2:#1a2540;--text:#edf3ff;
- --muted:#a7b5d1;--line:#293653;--blue:#70a5ff;--cyan:#61e3db;
- --purple:#ad91ff;--green:#7ce6a3;--orange:#ffbf75;--red:#ff8293;
-}
+:root{--bg:#0b1020;--panel:#141c31;--panel2:#1b2742;--line:#2c3a5b;--text:#f4f7ff;--muted:#aab7d3;--blue:#6ea8fe;--cyan:#5ce1e6;--yellow:#ffd166;--pink:#ff7eb6;--green:#66e3a4;--red:#ff7885}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at top,#17274a 0,#0b1020 58%);
- color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;min-height:100vh}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at top,#172647 0,#0b1020 58%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;min-height:100vh}
 button,input,select{font:inherit}
-button{cursor:pointer}
+button{cursor:pointer;border:0}
 button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
-header{position:sticky;top:0;z-index:10;background:#0b1020eF;border-bottom:1px solid var(--line);backdrop-filter:blur(15px)}
-.topbar{max-width:1250px;margin:auto;padding:13px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px;letter-spacing:-.5px}
-.brandIcon{background:linear-gradient(135deg,var(--blue),var(--purple));width:42px;height:42px;display:grid;place-items:center;border-radius:14px;color:#10182a;font-size:23px;box-shadow:0 5px 24px #719eff35}
-.brand small{display:block;color:var(--muted);font-size:11px;font-weight:600;letter-spacing:1px}
-.stats{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-.pill{background:var(--panel);border:1px solid var(--line);border-radius:30px;padding:8px 12px;font-size:13px;font-weight:800}
-.pill b{color:var(--cyan)}
-main{max-width:1250px;margin:auto;padding:24px 20px 70px}
-.hero{border:1px solid #354b72;border-radius:25px;padding:28px;background:linear-gradient(115deg,#182b4c,#1c2140 62%,#29214a);position:relative;overflow:hidden}
-.hero:after{content:"A B C";position:absolute;right:15px;bottom:-35px;font-size:100px;font-weight:1000;color:#ffffff08;letter-spacing:-7px;pointer-events:none}
-.eyebrow{color:var(--cyan);font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
-h1{font-size:clamp(27px,5vw,46px);margin:12px 0;line-height:1.12;letter-spacing:-1.5px}
-.hero p{color:#c4d0e7;line-height:1.7;max-width:680px}
-.heroActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
-.btn{border:1px solid var(--line);border-radius:12px;padding:11px 16px;background:var(--panel2);color:var(--text);font-weight:800;transition:.2s}
-.btn:hover{transform:translateY(-2px);filter:brightness(1.15)}
-.btn.primary{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#10172a;border:0}
-.btn.purple{background:linear-gradient(135deg,#a991ff,#d2a3ff);color:#1b1730;border:0}
-.btn.green{background:linear-gradient(135deg,#79e5a1,#b0f1bd);color:#102619;border:0}
-.btn.small{padding:7px 10px;font-size:12px}
-.sectionHead{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:28px 0 14px}
-.sectionHead h2{font-size:22px;margin:0;letter-spacing:-.5px}
-.sectionHead p{margin:5px 0 0;color:var(--muted);font-size:13px}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}
-.tab{padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:#111a2e;color:var(--muted);font-weight:800}
-.tab.active{color:#10172a;background:var(--cyan);border-color:var(--cyan)}
-.panel{background:linear-gradient(145deg,#141e34,#11192b);border:1px solid var(--line);border-radius:20px;padding:20px;margin-top:16px}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
-.twoGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:17px;min-width:0}
-.card h3{margin:0 0 8px;font-size:17px}
-.card p{color:var(--muted);line-height:1.6;font-size:14px}
-.cardIcon{font-size:25px;margin-bottom:10px}
-.cardTop{display:flex;justify-content:space-between;gap:8px;align-items:center}
-.tag{font-size:11px;padding:5px 8px;border-radius:8px;background:#253654;color:#c5d8ff;font-weight:900}
+.wrap{max-width:1220px;margin:auto;padding:20px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 0 22px}
+.brand{display:flex;align-items:center;gap:12px;font-size:1.15rem;font-weight:900;letter-spacing:.2px}
+.logo{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#0b1020;font-size:23px;box-shadow:0 8px 30px #5ce1e633}
+.stats{display:flex;gap:9px;flex-wrap:wrap}
+.stat{background:#141c31;border:1px solid var(--line);padding:9px 13px;border-radius:13px;color:var(--muted);font-size:.9rem}
+.stat strong{color:white}
+.hero{display:grid;grid-template-columns:1.5fr .8fr;gap:18px;align-items:stretch;margin-bottom:18px}
+.hero-main,.hero-side,.panel{background:linear-gradient(145deg,#182542,#11192c);border:1px solid var(--line);border-radius:23px;padding:24px;box-shadow:0 16px 45px #0002}
+.eyebrow{color:var(--cyan);font-weight:800;text-transform:uppercase;letter-spacing:1.6px;font-size:.75rem}
+.hero h1{font-size:clamp(2rem,5vw,3.7rem);line-height:1.03;margin:12px 0}
+.hero p{color:var(--muted);line-height:1.7;max-width:700px}
+.hero-side{display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(145deg,#22395c,#182542)}
+.hero-art{font-size:4.4rem;letter-spacing:4px;text-align:center;margin:6px 0}
+.progressbar{height:9px;border-radius:20px;background:#0c1323;overflow:hidden;margin:12px 0}
+.progressbar span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));width:0;transition:width .3s}
+.btn{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#081020;padding:11px 16px;border-radius:12px;font-weight:850;box-shadow:0 6px 18px #5ce1e61c}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn.secondary{background:#243452;color:var(--text);border:1px solid #3a4b70;box-shadow:none}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);box-shadow:none}
+.btn.small{padding:8px 11px;font-size:.86rem}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.nav button{background:#141c31;border:1px solid var(--line);color:var(--muted);padding:11px 14px;border-radius:12px;font-weight:800}
+.nav button.active,.nav button:hover{background:#263b60;color:white;border-color:#597bb7}
+.section{display:none}
+.section.active{display:block}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;margin:22px 0 16px}
+.section-head h2{margin:4px 0;font-size:1.8rem}
 .muted{color:var(--muted)}
-.smallText{font-size:12px;color:var(--muted);line-height:1.6}
-select,input[type=text]{width:100%;padding:12px;border-radius:11px;border:1px solid var(--line);background:#0d1527;color:var(--text)}
-label{display:block;font-size:13px;color:var(--muted);font-weight:800;margin:12px 0 6px}
-select option{background:#11192b}
-.progress{height:8px;background:#283550;border-radius:20px;overflow:hidden;margin:12px 0}
-.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));width:0;transition:width .4s}
-.wordList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.word{border:1px solid var(--line);background:#10192b;border-radius:12px;padding:11px;display:flex;justify-content:space-between;align-items:center;gap:8px}
-.word strong{display:block;font-size:14px}
-.word span{display:block;color:var(--muted);font-size:12px;margin-top:4px}
-.word button{border:0;background:#263756;color:var(--cyan);border-radius:8px;padding:7px;font-weight:900}
-.lesson{border-left:3px solid var(--cyan);padding:12px 15px;background:#17253b;border-radius:0 12px 12px 0;margin:12px 0;line-height:1.7}
-.example{background:#0e1729;border:1px solid var(--line);border-radius:12px;padding:13px;margin:9px 0;line-height:1.65}
-.example b{color:var(--cyan)}
-.good{color:var(--green)}.bad{color:var(--red)}.warn{color:var(--orange)}
-.choiceList{display:grid;gap:9px;margin:15px 0}
-.choice{background:#111b2f;border:1px solid var(--line);border-radius:12px;padding:12px;text-align:left;color:var(--text);width:100%}
-.choice:hover{border-color:var(--blue)}
-.choice.correct{border-color:var(--green);background:#173427}
-.choice.wrong{border-color:var(--red);background:#3a202d}
-.answerFeedback{padding:12px;border-radius:12px;margin:12px 0;line-height:1.6}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:28px 10px}
-.hidden{display:none!important}
-.unitRow{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.unitRow button{flex-shrink:0}
-.miniStat{background:#0e1729;border:1px solid var(--line);padding:12px;border-radius:13px}
-.miniStat strong{font-size:22px;display:block;color:var(--cyan)}
-.miniStat span{font-size:12px;color:var(--muted)}
-.timer{font-size:26px;font-weight:900;color:var(--orange)}
-#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:30;background:#e6f8ff;color:#122039;padding:12px 18px;border-radius:12px;font-weight:900;box-shadow:0 10px 35px #0007;display:none;max-width:90%;text-align:center}
-@media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar{align-items:flex-start}.brand{font-size:17px}.stats .pill{padding:7px 9px;font-size:11px}}
-@media(max-width:560px){main{padding:15px 12px 45px}.topbar{padding:10px 12px;flex-direction:column}.stats{justify-content:flex-start}.hero{padding:20px;border-radius:19px}.grid,.twoGrid{grid-template-columns:1fr}.wordList{grid-template-columns:1fr}.panel{padding:14px}.sectionHead{align-items:flex-start;flex-direction:column}.unitRow{align-items:flex-start;flex-direction:column}}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{background:linear-gradient(150deg,#17223a,#11192b);border:1px solid var(--line);border-radius:18px;padding:18px;min-width:0}
+.card h3{margin:8px 0}
+.card p{color:var(--muted);line-height:1.6}
+.card-icon{font-size:2rem}
+.pill{display:inline-flex;align-items:center;gap:5px;background:#263654;color:#cbd9f3;border:1px solid #344768;border-radius:100px;padding:5px 9px;font-size:.78rem;font-weight:750}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.row.spread{justify-content:space-between}
+.field{background:#0e1628;border:1px solid var(--line);color:white;padding:11px 12px;border-radius:11px;min-width:0}
+.field option{background:#101a2d}
+.grade-btn{min-height:130px;text-align:left;transition:.2s}
+.grade-btn:hover{transform:translateY(-3px);border-color:var(--cyan)}
+.grade-btn strong{font-size:1.3rem;display:block;margin:8px 0}
+.grade-btn .emoji{font-size:2rem}
+.unit-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.unit-btn{text-align:left;display:flex;gap:12px;align-items:center;background:#10192b;color:white;border:1px solid var(--line);padding:14px;border-radius:15px}
+.unit-btn:hover{border-color:var(--cyan);background:#1a2944}
+.unit-num{display:grid;place-items:center;min-width:40px;height:40px;border-radius:12px;background:#273d61;color:var(--cyan);font-weight:900}
+.unit-btn small{display:block;color:var(--muted);margin-top:4px}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:16px 0}
+.tab{background:#111a2d;color:var(--muted);border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-weight:750}
+.tab.active{background:#294368;color:white;border-color:#6288c9}
+.lesson h3{margin-top:22px}
+.lesson p,.lesson li{line-height:1.75;color:#d7e0f4}
+.lesson .rule{padding:14px 16px;background:#0e1729;border:1px solid #314464;border-left:4px solid var(--cyan);border-radius:12px;margin:12px 0;line-height:1.7}
+.example{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.example div{background:#0e1729;border:1px solid var(--line);padding:12px;border-radius:12px}
+.example strong{display:block;margin-bottom:4px}
+.word-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.word{padding:12px;background:#0e1729;border:1px solid var(--line);border-radius:13px}
+.word strong{display:block;font-size:1.02rem}
+.word .tr{color:var(--cyan);margin-top:4px}
+.word .ex{color:var(--muted);font-size:.83rem;margin-top:7px;line-height:1.45}
+.word button{float:right;background:transparent;color:var(--yellow);padding:0 0 4px 8px}
+.question{background:#10192b;border:1px solid var(--line);border-radius:17px;padding:18px;margin:12px 0}
+.question h3{margin:0 0 14px;font-size:1.08rem}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.answer{padding:12px;border:1px solid #354665;background:#182541;color:white;border-radius:11px;text-align:left}
+.answer:hover{border-color:var(--cyan)}
+.answer.correct{background:#164b3b;border-color:var(--green)}
+.answer.wrong{background:#572b3a;border-color:var(--red)}
+.feedback{margin-top:10px;color:var(--muted);line-height:1.5}
+.result{text-align:center;padding:25px}
+.result .big{font-size:3rem}
+.game-card{min-height:215px;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between}
+.game-card .game-icon{font-size:2.7rem}
+.game-card h3{margin:12px 0 5px}
+.game-card p{margin:0 0 18px}
+.badge{font-size:.74rem;color:var(--yellow);font-weight:800}
+.game-arena{background:#0e1729;border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:15px}
+.game-big{font-size:clamp(1.8rem,5vw,3rem);font-weight:900;text-align:center;padding:22px 0}
+.game-progress{height:8px;background:#26334d;border-radius:20px;overflow:hidden}
+.game-progress span{display:block;height:100%;background:linear-gradient(90deg,var(--pink),var(--yellow));width:100%}
+.lgs-note{border:1px solid #795c36;background:#30271b;padding:13px;border-radius:12px;color:#f6dba6;line-height:1.6}
+.footer{color:#7786a5;text-align:center;padding:35px 10px 20px;font-size:.85rem}
+.hide{display:none!important}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#eff7ff;color:#0b1020;font-weight:800;padding:12px 17px;border-radius:12px;box-shadow:0 8px 40px #0006;z-index:99;max-width:90%;text-align:center}
+@media(max-width:850px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.word-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.wrap{padding:12px}.hero-main,.hero-side,.panel{padding:17px}.grid,.grid.two,.unit-list,.word-grid{grid-template-columns:1fr}.example{grid-template-columns:1fr}.answers{grid-template-columns:1fr}.stats{width:100%}.stat{flex:1;text-align:center}.nav button{flex:1}.section-head h2{font-size:1.5rem}}
+.logo.logo6h{width:52px;height:46px;border-radius:13px;background:linear-gradient(135deg,#61e3db,#70a5ff 55%,#ad91ff);color:#0b1020;font-size:19px;font-weight:1000;letter-spacing:-1px;border:2px solid #d8faff;box-shadow:0 0 18px #61e3db55;flex-shrink:0}
 </style>
 </head>
 <body>
-<header>
- <div class="topbar">
-  <div class="brand">
-  <div class="brandIcon logo6h">6-H</div>
-  <div>6-H'DEN İNGİLİZCE<small>ÖĞREN • PRATİK YAP • GELİŞ</small></div>
-</div>
-  <div class="stats">
-   <div class="pill">⚡ XP <b id="xp">0</b></div>
-   <div class="pill">🏆 Seviye <b id="level">1</b></div>
-   <div class="pill">🔥 Seri <b id="streak">0</b></div>
-  </div>
- </div>
+<div class="wrap">
+<header class="topbar">
+  <div class="brand"><div class="logo logo6h">6-H</div><div>6-H’DEN İNGİLİZCE <div class="muted" style="font-size:.72rem;font-weight:600">ÖĞREN • PRATİK YAP • GELİŞ</div></div></div>
+  <div class="stats"><div class="stat">⚡ XP <strong id="xp">0</strong></div><div class="stat">🏅 Seviye <strong id="level">1</strong></div><div class="stat">🔥 Seri <strong id="streak">0</strong></div></div>
 </header>
-<main>
- <section class="hero">
-  <div class="eyebrow">İngilizce çalışma üssün</div>
-  <h1>Ezberlemekle kalma.<br><span style="color:var(--cyan)">Gerçekten öğren.</span></h1>
-  <p>5, 6, 7 ve 8. sınıf ünitelerini çalış; kelimeleri örnek cümlelerle öğren, grameri adım adım kavra, testlerle kendini ölç ve oyunlarla öğrendiklerini pekiştir.</p>
-  <div class="heroActions">
-   <button class="btn primary" onclick="goTo('study')">Derse Başla →</button>
-   <button class="btn" onclick="goTo('games')">🎮 Oyun merkezine git</button>
-   <button class="btn" onclick="goTo('grammar')">📘 Gramer merkezi</button>
-  </div>
- </section>
-
- <div class="tabs" id="mainTabs">
-  <button class="tab active" data-page="study" onclick="showPage('study',this)">📚 Dersler</button>
-  <button class="tab" data-page="grammar" onclick="showPage('grammar',this)">📘 Gramer</button>
-  <button class="tab" data-page="games" onclick="showPage('games',this)">🎮 Oyunlar</button>
-  <button class="tab" data-page="exam" onclick="showPage('exam',this)">📝 Test merkezi</button>
-  <button class="tab" data-page="lgs" onclick="showPage('lgs',this)">🎯 LGS hazırlık</button>
-  <button class="tab" data-page="progress" onclick="showPage('progress',this)">📈 İlerlemem</button>
- </div>
-
- <section id="page-study" class="page">
-  <div class="sectionHead"><div><h2>Ünite çalışma alanı</h2><p>Önce sınıfını, sonra üniteni seç. Yalnızca seçtiğin ünitenin dersi açılır.</p></div></div>
-  <div class="panel">
-   <div class="twoGrid">
-    <div><label for="gradeSelect">1. Sınıfını seç</label>
-     <select id="gradeSelect" onchange="loadUnits()">
-      <option value="5">5. sınıf</option><option value="6">6. sınıf</option>
-      <option value="7">7. sınıf</option><option value="8">8. sınıf</option>
-     </select>
-    </div>
-    <div><label for="unitSelect">2. Üniteni seç</label><select id="unitSelect" onchange="openUnit()"></select></div>
-   </div>
-   <div class="smallText" style="margin-top:12px">💡 Öneri: Önce kelimeleri çalış, sonra konu anlatımını oku. Ardından örnekleri inceleyip testi çöz.</div>
-  </div>
-  <div id="unitContent"></div>
- </section>
-
- <section id="page-grammar" class="page hidden">
-  <div class="sectionHead"><div><h2>Gramer merkezi</h2><p>Kurallar, örnekler, sık yapılan hatalar ve alıştırmalar.</p></div></div>
-  <div class="panel">
-   <label for="grammarTopic">Konu seç</label>
-   <select id="grammarTopic" onchange="renderGrammar()">
-    <option value="be">Am / Is / Are</option><option value="pronouns">Subject pronouns & possessives</option>
-    <option value="articles">A / An / The</option><option value="present">Simple Present Tense</option>
-    <option value="presentcont">Present Continuous</option><option value="there">There is / There are</option>
-    <option value="can">Can / Can't</option><option value="some">Some / Any</option>
-    <option value="past">Simple Past Tense</option><option value="future">Future: Will / Be going to</option>
-    <option value="comparative">Comparatives & Superlatives</option><option value="must">Must / Mustn't / Should</option>
-    <option value="count">Countable & Uncountable nouns</option><option value="question">Question words</option>
-    <option value="prepositions">Prepositions of place and time</option><option value="writing">İngilizce yazım kuralları</option>
-   </select>
-   <div id="grammarContent"></div>
-  </div>
- </section>
-
- <section id="page-games" class="page hidden">
-  <div class="sectionHead"><div><h2>Oyun merkezi</h2><p>Oyun oynarken kelime öğren. Her oyun doğru cevaplarla XP kazandırır.</p></div></div>
-  <div class="grid">
-   <div class="card"><div class="cardIcon">🧱</div><h3>Word Blocks</h3><p>Blok görevleri tamamla: İngilizce kelimeyi doğru Türkçe anlamıyla eşleştir. Her doğru cevap yeni bir görev demek.</p><button class="btn primary" onclick="startGame('blocks')">Göreve başla</button></div>
-   <div class="card"><div class="cardIcon">⭐</div><h3>Kelime Arenası</h3><p>Seri doğru cevaplarla puanını yükselt. Yanlış cevapta açıklamayı oku ve tekrar dene.</p><button class="btn purple" onclick="startGame('arena')">Arenaya gir</button></div>
-   <div class="card"><div class="cardIcon">⚡</div><h3>60 Saniye</h3><p>Süre dolmadan olabildiğince çok kelime sorusu çöz. Hız kadar doğruluk da önemli.</p><button class="btn green" onclick="startGame('speed')">Zamanı başlat</button></div>
-   <div class="card"><div class="cardIcon">🔎</div><h3>Hata Avcısı</h3><p>İngilizce cümledeki hatayı bul. Gramer kurallarını kullanarak cümleyi düzelt.</p><button class="btn" onclick="startGame('error')">Hataları yakala</button></div>
-   <div class="card"><div class="cardIcon">🧠</div><h3>Hafıza Kartları</h3><p>İngilizce kelimeyi gör, anlamını tahmin et ve kartı çevir. Hatırladıklarını işaretle.</p><button class="btn" onclick="startGame('memory')">Kartları aç</button></div>
-   <div class="card"><div class="cardIcon">🎯</div><h3>Boss Challenge</h3><p>Karışık sorulardan oluşan zor tur. Her doğru cevap seni final puanına yaklaştırır.</p><button class="btn purple" onclick="startGame('boss')">Meydan okumayı başlat</button></div>
-  </div>
-  <div id="gameArea"></div>
- </section>
-
- <section id="page-exam" class="page hidden">
-  <div class="sectionHead"><div><h2>Test merkezi</h2><p>Ünite testleriyle öğrenip öğrenmediğini kontrol et.</p></div></div>
-  <div class="panel">
-   <div class="twoGrid">
-    <div><label for="testGrade">Sınıf</label><select id="testGrade" onchange="loadTestUnits()"><option value="5">5. sınıf</option><option value="6">6. sınıf</option><option value="7">7. sınıf</option><option value="8">8. sınıf</option></select></div>
-    <div><label for="testUnit">Ünite</label><select id="testUnit"></select></div>
-   </div>
-   <label for="testCount">Soru sayısı</label><select id="testCount"><option value="5">5 soru — kısa tekrar</option><option value="10" selected>10 soru — normal test</option><option value="15">15 soru — meydan okuma</option></select>
-   <button class="btn primary" style="margin-top:15px" onclick="startTest()">Testi başlat →</button>
-   <div id="testArea"></div>
-  </div>
- </section>
-
- <section id="page-lgs" class="page hidden">
-  <div class="sectionHead"><div><h2>8. sınıf LGS hazırlık</h2><p>Sınav odaklı çalışma: süre, soru analizi ve yanlışların üzerinden geçme. Bu bölümde oyun yok.</p></div></div>
-  <div class="grid">
-   <div class="card"><div class="cardIcon">⏱️</div><h3>Süreli mini deneme</h3><p>Karışık İngilizce sorularını sınav ciddiyetiyle çöz. Süre bitince sonuçların gösterilir.</p><button class="btn primary" onclick="startLGS()">Mini denemeyi başlat</button></div>
-   <div class="card"><div class="cardIcon">📊</div><h3>Yanlış analizi</h3><p>En son denemendeki yanlışları, doğru cevapları ve açıklamalarını tekrar incele.</p><button class="btn" onclick="showLGSReview()">Yanlışlarımı incele</button></div>
-   <div class="card"><div class="cardIcon">📌</div><h3>Sınav stratejisi</h3><p>Soru kökünü dikkatli oku, metindeki kanıtı bul, seçenekleri ele ve süreyi dengeli kullan.</p><button class="btn" onclick="showLGSAdvice()">Stratejileri göster</button></div>
-  </div>
-  <div id="lgsArea"></div>
- </section>
-
- <section id="page-progress" class="page hidden">
-  <div class="sectionHead"><div><h2>İlerleme paneli</h2><p>Bu cihazdaki tarayıcıya kaydedilen çalışma istatistiklerin.</p></div></div>
-  <div class="grid">
-   <div class="miniStat"><strong id="statXP">0</strong><span>Toplam XP</span></div>
-   <div class="miniStat"><strong id="statTests">0</strong><span>Tamamlanan test</span></div>
-   <div class="miniStat"><strong id="statCorrect">0%</strong><span>Genel doğruluk</span></div>
-  </div>
-  <div class="panel"><h3>Günlük görevler</h3><div id="dailyTasks"></div><div class="progress"><span id="dailyProgress"></span></div><p class="smallText">Görevler tamamlandıkça ilerlemen burada görünür.</p><button class="btn" onclick="resetProgress()">İlerlemeyi sıfırla</button></div>
-  <div class="panel"><h3>Rozetlerin</h3><div id="badges" class="grid"></div></div>
- </section>
-</main>
-<footer>LEVEL ENGLISH · Öğren, dene, hatalarından öğren ve gelişmeye devam et.</footer>
-<div id="toast" role="status" aria-live="polite"></div>
-
-<script>
-const curriculum = {
-5:[
-["Hello!","Selamlaşma, tanışma ve kişisel bilgiler","be",[
-["hello","merhaba"],["hi","selam"],["good morning","günaydın"],["good afternoon","tünaydın"],["good evening","iyi akşamlar"],["goodbye","hoşça kal"],["see you","görüşürüz"],["name","isim"],["surname","soyadı"],["age","yaş"],["country","ülke"],["nationality","milliyet"],["student","öğrenci"],["teacher","öğretmen"],["friend","arkadaş"],["classroom","sınıf"],["nice to meet you","tanıştığıma memnun oldum"],["How are you?","Nasılsın?"],["Where are you from?","Nerelisin?"],["I am eleven.","On bir yaşındayım."]]],
-["My Town","Şehirdeki yerler ve yer-yön tarifi","there",[
-["town","kasaba/şehir"],["city","şehir"],["street","sokak"],["road","yol"],["park","park"],["school","okul"],["hospital","hastane"],["library","kütüphane"],["museum","müze"],["cinema","sinema"],["bank","banka"],["post office","postane"],["bakery","fırın"],["pharmacy","eczane"],["supermarket","süpermarket"],["behind","arkasında"],["in front of","önünde"],["next to","yanında"],["between","arasında"],["opposite","karşısında"],["turn left","sola dön"],["turn right","sağa dön"],["go straight","dümdüz git"]]],
-["Games and Hobbies","Oyunlar, hobiler ve yetenekler","can",[
-["play chess","satranç oynamak"],["play football","futbol oynamak"],["play computer games","bilgisayar oyunu oynamak"],["ride a bike","bisiklet sürmek"],["draw","resim çizmek"],["paint","boya yapmak"],["sing","şarkı söylemek"],["dance","dans etmek"],["swim","yüzmek"],["read books","kitap okumak"],["collect stamps","pul biriktirmek"],["take photos","fotoğraf çekmek"],["go fishing","balığa gitmek"],["go camping","kampa gitmek"],["hobby","hobi"],["free time","boş zaman"],["fun","eğlence"],["interesting","ilginç"],["boring","sıkıcı"],["good at","bir konuda iyi"],["be interested in","ilgilenmek"],["What are your hobbies?","Hobilerin nelerdir?"]]],
-["My Daily Routine","Günlük rutin ve saatler","present",[
-["wake up","uyanmak"],["get up","yataktan kalkmak"],["wash my face","yüzümü yıkamak"],["brush my teeth","dişlerimi fırçalamak"],["get dressed","giyinmek"],["have breakfast","kahvaltı yapmak"],["go to school","okula gitmek"],["have lessons","ders görmek"],["have lunch","öğle yemeği yemek"],["come home","eve gelmek"],["do homework","ödev yapmak"],["help my family","aileme yardım etmek"],["have dinner","akşam yemeği yemek"],["watch TV","televizyon izlemek"],["take a shower","duş almak"],["go to bed","yatağa gitmek"],["always","her zaman"],["usually","genellikle"],["often","sık sık"],["sometimes","bazen"],["never","asla"],["at seven o'clock","saat yedide"]]],
-["Health","Sağlık ve sağlıklı alışkanlıklar","must",[
-["healthy","sağlıklı"],["unhealthy","sağlıksız"],["headache","baş ağrısı"],["stomachache","karın ağrısı"],["toothache","diş ağrısı"],["sore throat","boğaz ağrısı"],["fever","ateş"],["cough","öksürük"],["cold","nezle/soğuk algınlığı"],["medicine","ilaç"],["doctor","doktor"],["dentist","diş hekimi"],["rest","dinlenmek"],["drink water","su içmek"],["eat vegetables","sebze yemek"],["exercise","egzersiz yapmak"],["sleep well","iyi uyumak"],["should","-meli/-malı"],["shouldn't","-memeli/-mamalı"],["You should rest.","Dinlenmelisin."]]],
-["Movies","Film türleri ve tercihler","present",[
-["movie","film"],["film","film"],["cartoon","çizgi film"],["comedy","komedi"],["animation","animasyon"],["action","aksiyon"],["adventure","macera"],["horror","korku"],["science fiction","bilim kurgu"],["documentary","belgesel"],["romance","romantik film"],["western","kovboy filmi"],["funny","komik"],["scary","korkutucu"],["exciting","heyecan verici"],["boring","sıkıcı"],["favourite","favori"],["actor","erkek oyuncu"],["actress","kadın oyuncu"],["director","yönetmen"],["ticket","bilet"],["watch a movie","film izlemek"]]],
-["Party Time","Parti hazırlıkları ve davetler","future",[
-["party","parti"],["birthday","doğum günü"],["invitation","davet"],["invite","davet etmek"],["guest","misafir"],["celebrate","kutlamak"],["decorate","süslemek"],["balloon","balon"],["candle","mum"],["birthday cake","doğum günü pastası"],["gift","hediye"],["present","hediye"],["snack","atıştırmalık"],["juice","meyve suyu"],["music","müzik"],["bring","getirmek"],["prepare","hazırlamak"],["join","katılmak"],["Would you like to...?","... ister misin?"],["I'd love to.","Çok isterim."]]],
-["Fitness","Spor ve hareket","present",[
-["fitness","formda olma"],["exercise","egzersiz"],["run","koşmak"],["walk","yürümek"],["jump","zıplamak"],["stretch","esnemek"],["skip rope","ip atlamak"],["do yoga","yoga yapmak"],["lift weights","ağırlık kaldırmak"],["go cycling","bisiklete binmek"],["go swimming","yüzmeye gitmek"],["team","takım"],["player","oyuncu"],["strong","güçlü"],["fit","formda"],["tired","yorgun"],["energy","enerji"],["every day","her gün"],["three times a week","haftada üç kez"],["How often...?","Ne sıklıkla...?"]]],
-["Animal Shelter","Hayvanlar ve bakım","present",[
-["animal","hayvan"],["shelter","barınak"],["pet","evcil hayvan"],["stray","sokak hayvanı"],["adopt","sahiplenmek"],["feed","beslemek"],["take care of","bakımını yapmak"],["vet","veteriner"],["paw","pati"],["fur","kürk/tüy"],["wing","kanat"],["tail","kuyruk"],["rabbit","tavşan"],["turtle","kaplumbağa"],["parrot","papağan"],["puppy","yavru köpek"],["kitten","yavru kedi"],["cage","kafes"],["kind","nazik"],["protect","korumak"],["animal rights","hayvan hakları"]]],
-["Festivals","Festivaller ve gelenekler","past",[
-["festival","festival"],["celebration","kutlama"],["traditional","geleneksel"],["costume","kostüm"],["parade","geçit töreni"],["fireworks","havai fişekler"],["national holiday","millî bayram"],["flag","bayrak"],["custom","gelenek/adet"],["culture","kültür"],["folk dance","halk dansı"],["music festival","müzik festivali"],["special day","özel gün"],["celebrate","kutlamak"],["visit relatives","akrabaları ziyaret etmek"],["decorate","süslemek"],["last year","geçen yıl"],["yesterday","dün"],["enjoy","keyif almak"],["take place","gerçekleşmek"]]]
-],
-6:[
-["Life","Günlük yaşam ve alışkanlıklar","present",[
-["get up","kalkmak"],["have a shower","duş almak"],["get dressed","giyinmek"],["have breakfast","kahvaltı yapmak"],["leave home","evden ayrılmak"],["take the bus","otobüse binmek"],["arrive at school","okula varmak"],["attend classes","derslere katılmak"],["have a break","teneffüs yapmak"],["finish school","okulu bitirmek"],["return home","eve dönmek"],["do homework","ödev yapmak"],["set the table","sofrayı kurmak"],["feed the cat","kediyi beslemek"],["go online","internete girmek"],["brush my teeth","dişlerimi fırçalamak"],["early","erken"],["late","geç"],["weekday","hafta içi günü"],["weekend","hafta sonu"],["once a week","haftada bir kez"]]],
-["Yummy Breakfast!","Kahvaltı yiyecekleri ve tercihleri","some",[
-["breakfast","kahvaltı"],["bread","ekmek"],["cheese","peynir"],["butter","tereyağı"],["honey","bal"],["jam","reçel"],["olive","zeytin"],["egg","yumurta"],["pancake","pankek"],["sausage","sosis"],["cereal","kahvaltılık gevrek"],["milk","süt"],["tea","çay"],["orange juice","portakal suyu"],["tomato","domates"],["cucumber","salatalık"],["delicious","lezzetli"],["favourite","favori"],["hungry","aç"],["full","tok"],["Would you like some...?","Biraz ... ister misin?"]]],
-["Downtown","Şehir merkezi ve alışveriş","comparative",[
-["downtown","şehir merkezi"],["shopping mall","alışveriş merkezi"],["department store","büyük mağaza"],["bookshop","kitapçı"],["clothes shop","giyim mağazası"],["shoe shop","ayakkabıcı"],["price","fiyat"],["cheap","ucuz"],["expensive","pahalı"],["crowded","kalabalık"],["quiet","sessiz"],["busy","yoğun"],["traffic","trafik"],["building","bina"],["skyscraper","gökdelen"],["market","pazar"],["buy","satın almak"],["sell","satmak"],["cheaper than","...den daha ucuz"],["the most crowded","en kalabalık"]]],
-["Weather and Emotions","Hava durumu ve duygular","be",[
-["sunny","güneşli"],["cloudy","bulutlu"],["rainy","yağmurlu"],["snowy","karlı"],["windy","rüzgârlı"],["foggy","sisli"],["stormy","fırtınalı"],["hot","sıcak"],["warm","ılık"],["cool","serin"],["cold","soğuk"],["temperature","sıcaklık"],["degrees","derece"],["happy","mutlu"],["sad","üzgün"],["angry","kızgın"],["nervous","gergin"],["excited","heyecanlı"],["worried","endişeli"],["How is the weather?","Hava nasıl?"]]],
-["At the Fair","Lunapark ve eğlence","past",[
-["fair","panayır"],["amusement park","lunapark"],["roller coaster","hız treni"],["Ferris wheel","dönme dolap"],["bumper cars","çarpışan arabalar"],["carousel","atlıkarınca"],["ghost train","korku treni"],["ticket","bilet"],["ride","eğlence aracı/binmek"],["queue","sıra"],["exciting","heyecan verici"],["frightening","korkutucu"],["fun","eğlence"],["boring","sıkıcı"],["fast","hızlı"],["slow","yavaş"],["went","gitti"],["rode","bindi"],["bought","satın aldı"],["had fun","eğlendi"]]],
-["Occupations","Meslekler ve iş yerleri","present",[
-["occupation","meslek"],["doctor","doktor"],["nurse","hemşire"],["engineer","mühendis"],["architect","mimar"],["teacher","öğretmen"],["lawyer","avukat"],["firefighter","itfaiyeci"],["police officer","polis"],["chef","şef/aşçı"],["farmer","çiftçi"],["dentist","diş hekimi"],["vet","veteriner"],["pilot","pilot"],["mechanic","tamirci"],["journalist","gazeteci"],["workplace","iş yeri"],["hospital","hastane"],["office","ofis"],["earn money","para kazanmak"],["help people","insanlara yardım etmek"]]],
-["Holidays","Tatil etkinlikleri ve geçmiş deneyimler","past",[
-["holiday","tatil"],["travel","seyahat etmek"],["trip","gezi"],["journey","yolculuk"],["hotel","otel"],["beach","plaj"],["mountain","dağ"],["countryside","kırsal bölge"],["sightseeing","gezilecek yerleri görme"],["take photos","fotoğraf çekmek"],["swim","yüzmek"],["sunbathe","güneşlenmek"],["camp","kamp yapmak"],["visit a museum","müze ziyaret etmek"],["buy souvenirs","hediyelik eşya almak"],["stay","kalmak"],["went","gitti"],["saw","gördü"],["visited","ziyaret etti"],["had a great time","çok iyi vakit geçirdi"]]],
-["Bookworms","Kitap türleri ve okuma","past",[
-["bookworm","kitap kurdu"],["novel","roman"],["story","hikâye"],["fairy tale","masal"],["poem","şiir"],["poetry","şiir türü"],["comic book","çizgi roman"],["biography","biyografi"],["adventure","macera"],["mystery","gizem"],["author","yazar"],["writer","yazar"],["character","karakter"],["plot","olay örgüsü"],["chapter","bölüm"],["page","sayfa"],["library","kütüphane"],["borrow","ödünç almak"],["return","geri vermek"],["recommend","tavsiye etmek"],["prefer","tercih etmek"]]],
-["Saving the Planet","Çevreyi koruma","must",[
-["environment","çevre"],["planet","gezegen"],["pollution","kirlilik"],["air pollution","hava kirliliği"],["water pollution","su kirliliği"],["recycle","geri dönüştürmek"],["reuse","yeniden kullanmak"],["reduce","azaltmak"],["waste","atık/israf etmek"],["rubbish","çöp"],["litter","yere atılan çöp"],["plastic","plastik"],["paper","kâğıt"],["glass","cam"],["save water","suyu korumak"],["save energy","enerjiyi korumak"],["plant trees","ağaç dikmek"],["turn off","kapatmak"],["renewable energy","yenilenebilir enerji"],["protect nature","doğayı korumak"]]],
-["Democracy","Demokrasi ve sorumluluk","must",[
-["democracy","demokrasi"],["election","seçim"],["vote","oy vermek"],["voter","seçmen"],["candidate","aday"],["president","başkan"],["leader","lider"],["rule","kural"],["right","hak"],["responsibility","sorumluluk"],["freedom","özgürlük"],["equality","eşitlik"],["fair","adil"],["decision","karar"],["choose","seçmek"],["respect","saygı göstermek"],["opinion","fikir"],["agree","aynı fikirde olmak"],["disagree","aynı fikirde olmamak"],["take part","katılmak"]]]
-],
-7:[
-["Appearance and Personality","Dış görünüş ve kişilik","be",[
-["appearance","dış görünüş"],["personality","kişilik"],["tall","uzun boylu"],["short","kısa boylu"],["slim","ince yapılı"],["well-built","yapılı"],["curly hair","kıvırcık saç"],["straight hair","düz saç"],["wavy hair","dalgalı saç"],["blonde","sarışın"],["dark hair","koyu renk saç"],["beard","sakal"],["moustache","bıyık"],["honest","dürüst"],["generous","cömert"],["selfish","bencil"],["reliable","güvenilir"],["punctual","dakik"],["outgoing","dışa dönük"],["shy","utangaç"],["stubborn","inatçı"],["easy-going","uyumlu"],["helpful","yardımsever"]]],
-["Biographies","Biyografiler ve geçmiş","past",[
-["biography","biyografi"],["be born","doğmak"],["birthplace","doğum yeri"],["childhood","çocukluk"],["grow up","büyümek"],["graduate","mezun olmak"],["university","üniversite"],["invent","icat etmek"],["discover","keşfetmek"],["achievement","başarı"],["award","ödül"],["famous","ünlü"],["scientist","bilim insanı"],["artist","sanatçı"],["writer","yazar"],["explorer","kaşif"],["found","kurdu/buldu"],["became","oldu"],["died","öldü"],["in 1990","1990 yılında"],["at the age of","... yaşında"]]],
-["Wild Animals","Vahşi hayvanlar ve özellikleri","comparative",[
-["wild animal","vahşi hayvan"],["mammal","memeli"],["reptile","sürüngen"],["insect","böcek"],["bird","kuş"],["predator","yırtıcı"],["prey","av"],["habitat","yaşam alanı"],["species","tür"],["endangered","nesli tehlikede"],["extinct","nesli tükenmiş"],["lion","aslan"],["tiger","kaplan"],["elephant","fil"],["giraffe","zürafa"],["cheetah","çita"],["eagle","kartal"],["snake","yılan"],["crocodile","timsah"],["dangerous","tehlikeli"],["fierce","yırtıcı/sert"],["protect","korumak"]]],
-["Wild Life / Telecommunication","Yaban hayatı ve iletişim","present",[
-["wildlife","yaban hayatı"],["nature","doğa"],["forest","orman"],["desert","çöl"],["ocean","okyanus"],["endangered species","nesli tehlikedeki türler"],["natural habitat","doğal yaşam alanı"],["conservation","koruma"],["communicate","iletişim kurmak"],["communication","iletişim"],["smartphone","akıllı telefon"],["mobile phone","cep telefonu"],["landline","sabit telefon"],["text message","kısa mesaj"],["make a call","arama yapmak"],["answer the phone","telefona cevap vermek"],["hang up","telefonu kapatmak"],["send a message","mesaj göndermek"],["signal","sinyal"],["network","ağ"],["video call","görüntülü arama"],["keep in touch","iletişimde kalmak"]]],
-["Television","Televizyon programları","present",[
-["television","televizyon"],["TV programme","televizyon programı"],["quiz show","bilgi yarışması"],["reality show","reality şov"],["sitcom","durum komedisi"],["talk show","sohbet programı"],["news","haberler"],["documentary","belgesel"],["series","dizi"],["episode","bölüm"],["commercial","reklam"],["channel","kanal"],["remote control","uzaktan kumanda"],["switch on","açmak"],["switch off","kapatmak"],["change the channel","kanalı değiştirmek"],["broadcast","yayınlamak"],["educational","eğitici"],["entertaining","eğlenceli"],["prefer","tercih etmek"]]],
-["Celebrations","Kutlamalar ve özel günler","past",[
-["celebration","kutlama"],["wedding","düğün"],["anniversary","yıl dönümü"],["graduation","mezuniyet"],["ceremony","tören"],["engagement","nişan"],["invitation card","davet kartı"],["guest","misafir"],["host","ev sahibi"],["decorate","süslemek"],["organize","düzenlemek"],["attend","katılmak"],["congratulations","tebrikler"],["wish","dilemek"],["make a wish","dilek tutmak"],["give a present","hediye vermek"],["have a party","parti vermek"],["last weekend","geçen hafta sonu"],["was/were","idi/idi(ler)"],["celebrated","kutladı"]]],
-["Dreams","Hayaller ve gelecek planları","future",[
-["dream","hayal"],["dream of","hayalini kurmak"],["hope","umut etmek"],["wish","dilemek"],["future","gelecek"],["goal","hedef"],["plan","plan"],["ambition","hırs/hedef"],["succeed","başarmak"],["success","başarı"],["become","olmak"],["travel abroad","yurt dışına seyahat etmek"],["study medicine","tıp okumak"],["learn a language","dil öğrenmek"],["scientist","bilim insanı"],["astronaut","astronot"],["inventor","mucit"],["I hope...","Umarım..."],["I would like to...","... yapmak isterim"],["in the future","gelecekte"]]],
-["Public Buildings","Kamu binaları ve işlevleri","there",[
-["public building","kamu binası"],["municipality","belediye"],["courthouse","adliye"],["police station","polis merkezi"],["fire station","itfaiye istasyonu"],["post office","postane"],["city hall","belediye binası"],["library","kütüphane"],["museum","müze"],["health centre","sağlık merkezi"],["train station","tren istasyonu"],["bus station","otobüs terminali"],["art gallery","sanat galerisi"],["sports centre","spor merkezi"],["serve the public","halka hizmet etmek"],["borrow books","kitap ödünç almak"],["report a crime","suç bildirmek"],["send a parcel","paket göndermek"],["across from","karşısında"],["on the corner","köşede"]]],
-["Environment","Çevre sorunları ve çözümler","must",[
-["environment","çevre"],["global warming","küresel ısınma"],["climate change","iklim değişikliği"],["deforestation","ormansızlaşma"],["drought","kuraklık"],["flood","sel"],["earthquake","deprem"],["air quality","hava kalitesi"],["carbon dioxide","karbondioksit"],["fossil fuels","fosil yakıtlar"],["renewable","yenilenebilir"],["solar power","güneş enerjisi"],["wind power","rüzgâr enerjisi"],["recycle","geri dönüştürmek"],["reduce waste","atığı azaltmak"],["public transport","toplu taşıma"],["protect wildlife","yaban hayatını korumak"],["cause","neden olmak"],["effect","etki"],["solution","çözüm"],["take action","harekete geçmek"]]],
-["Planets","Gezegenler ve uzay","comparative",[
-["planet","gezegen"],["solar system","Güneş Sistemi"],["space","uzay"],["Earth","Dünya"],["Mars","Mars"],["Jupiter","Jüpiter"],["Saturn","Satürn"],["Mercury","Merkür"],["Venus","Venüs"],["Neptune","Neptün"],["Uranus","Uranüs"],["astronaut","astronot"],["astronomer","gök bilimci"],["telescope","teleskop"],["spacecraft","uzay aracı"],["satellite","uydu"],["orbit","yörünge"],["gravity","yer çekimi"],["surface","yüzey"],["distant","uzak"],["larger than","...den daha büyük"],["the largest","en büyük"]]]
-],
-8:[
-["Friendship","Arkadaşlık ve kişilik","present",[
-["friendship","arkadaşlık"],["buddy","yakın arkadaş"],["trust","güvenmek"],["honest","dürüst"],["reliable","güvenilir"],["support","desteklemek"],["count on","güvenmek"],["get on well","iyi anlaşmak"],["back someone up","birini desteklemek"],["keep a secret","sır saklamak"],["argue","tartışmak"],["apologize","özür dilemek"],["forgive","affetmek"],["share","paylaşmak"],["respect","saygı göstermek"],["understanding","anlayışlı"],["loyal","sadık"],["self-centred","bencil"],["tell the truth","doğruyu söylemek"],["make friends","arkadaş edinmek"]]],
-["Teen Life","Gençlerin günlük yaşamı","present",[
-["teenager","ergen/genç"],["teen life","gençlik yaşamı"],["hang out","takılmak/vakit geçirmek"],["meet friends","arkadaşlarla buluşmak"],["chat online","internette sohbet etmek"],["go shopping","alışverişe gitmek"],["attend a concert","konsere gitmek"],["play an instrument","müzik aleti çalmak"],["social networking","sosyal ağ kullanımı"],["spend time","zaman geçirmek"],["prefer","tercih etmek"],["exciting","heyecan verici"],["relaxing","rahatlatıcı"],["fashion","moda"],["fashionable","modaya uygun"],["follow trends","trendleri takip etmek"],["stay in","evde kalmak"],["go out","dışarı çıkmak"],["on weekdays","hafta içi"],["at weekends","hafta sonları"]]],
-["In the Kitchen","Mutfak, tarifler ve yemek yapımı","imperative",[
-["kitchen","mutfak"],["recipe","tarif"],["ingredient","malzeme"],["flour","un"],["sugar","şeker"],["salt","tuz"],["oil","yağ"],["butter","tereyağı"],["egg","yumurta"],["mix","karıştırmak"],["stir","karıştırmak"],["pour","dökmek"],["chop","doğramak"],["slice","dilimlemek"],["peel","soymak"],["boil","haşlamak"],["fry","kızartmak"],["bake","fırında pişirmek"],["preheat","önceden ısıtmak"],["add","eklemek"],["serve","servis etmek"],["delicious","lezzetli"],["a tablespoon of","bir yemek kaşığı"]]],
-["On the Phone","Telefon görüşmeleri","present",[
-["make a phone call","telefon etmek"],["answer the phone","telefona cevap vermek"],["hold on","hatta beklemek"],["hang on","bekle"],["put through","telefona bağlamak"],["leave a message","mesaj bırakmak"],["call back","geri aramak"],["busy line","meşgul hat"],["wrong number","yanlış numara"],["available","müsait"],["unavailable","müsait değil"],["Could I speak to...?","... ile konuşabilir miyim?"],["Who's calling?","Arayan kim?"],["Speaking.","Benim."],["Just a moment.","Bir dakika."],["I'll call back.","Geri arayacağım."],["mobile phone","cep telefonu"],["landline","sabit telefon"],["signal","sinyal"],["connection","bağlantı"]]],
-["The Internet","İnternet ve dijital güvenlik","must",[
-["internet","internet"],["website","internet sitesi"],["web browser","web tarayıcısı"],["search engine","arama motoru"],["download","indirmek"],["upload","yüklemek"],["log in","giriş yapmak"],["log out","çıkış yapmak"],["sign up","kaydolmak"],["password","şifre"],["username","kullanıcı adı"],["account","hesap"],["attachment","ek dosya"],["link","bağlantı"],["search","aramak"],["share","paylaşmak"],["privacy","gizlilik"],["personal information","kişisel bilgi"],["strong password","güçlü şifre"],["cyberbullying","siber zorbalık"],["reliable source","güvenilir kaynak"],["protect your account","hesabını korumak"]]],
-["Adventures","Macera ve deneyimler","past",[
-["adventure","macera"],["experience","deneyim"],["explore","keşfetmek"],["discover","keşfetmek"],["hiking","doğa yürüyüşü"],["rafting","rafting"],["climbing","tırmanış"],["scuba diving","tüplü dalış"],["paragliding","yamaç paraşütü"],["camping","kamp yapma"],["safari","safari"],["challenging","zorlayıcı"],["dangerous","tehlikeli"],["thrilling","heyecan verici"],["equipment","ekipman"],["helmet","kask"],["safety","güvenlik"],["try","denemek"],["take a risk","risk almak"],["have an experience","deneyim yaşamak"]]],
-["Tourism","Turizm, seyahat ve kültür","present",[
-["tourism","turizm"],["tourist","turist"],["destination","gidilecek yer"],["accommodation","konaklama"],["reservation","rezervasyon"],["sightseeing","gezilecek yerleri görme"],["historical site","tarihî yer"],["ancient","antik/eski"],["landmark","önemli yapı"],["local cuisine","yerel mutfak"],["souvenir","hediyelik eşya"],["guide","rehber"],["guided tour","rehberli tur"],["passport","pasaport"],["luggage","bagaj"],["flight","uçuş"],["departure","kalkış"],["arrival","varış"],["book a room","oda ayırtmak"],["visit a landmark","önemli bir yeri ziyaret etmek"]]],
-["Chores","Ev işleri ve sorumluluklar","present",[
-["chore","ev işi"],["do the laundry","çamaşır yıkamak"],["iron clothes","kıyafet ütülemek"],["vacuum the floor","yeri süpürmek"],["mop the floor","yeri paspaslamak"],["dust the furniture","toz almak"],["wash the dishes","bulaşıkları yıkamak"],["load the dishwasher","bulaşık makinesini doldurmak"],["empty the dishwasher","bulaşık makinesini boşaltmak"],["take out the rubbish","çöpü dışarı çıkarmak"],["make the bed","yatağı toplamak"],["tidy up","toparlamak"],["set the table","sofrayı kurmak"],["clear the table","sofrayı toplamak"],["water the plants","bitkileri sulamak"],["walk the dog","köpeği gezdirmek"],["share chores","ev işlerini paylaşmak"],["responsibility","sorumluluk"],["fairly","adil bir şekilde"],["once a day","günde bir kez"]]],
-["Science","Bilim, icatlar ve keşifler","past",[
-["science","bilim"],["scientist","bilim insanı"],["experiment","deney"],["laboratory","laboratuvar"],["research","araştırma"],["invention","icat"],["inventor","mucit"],["discovery","keşif"],["discover","keşfetmek"],["technology","teknoloji"],["device","cihaz"],["electricity","elektrik"],["microscope","mikroskop"],["telescope","teleskop"],["observe","gözlemlemek"],["test","test etmek"],["result","sonuç"],["evidence","kanıt"],["improve","geliştirmek"],["develop","geliştirmek"],["in the 19th century","19. yüzyılda"]]],
-["Natural Forces","Doğal afetler ve önlemler","must",[
-["natural force","doğal kuvvet"],["natural disaster","doğal afet"],["earthquake","deprem"],["flood","sel"],["avalanche","çığ"],["landslide","heyelan"],["hurricane","kasırga"],["tornado","hortum"],["tsunami","tsunami"],["drought","kuraklık"],["volcanic eruption","volkanik patlama"],["magnitude","büyüklük"],["damage","hasar"],["rescue","kurtarmak"],["emergency","acil durum"],["emergency kit","acil durum çantası"],["shelter","barınak"],["evacuate","tahliye etmek"],["emergency services","acil durum ekipleri"],["stay calm","sakin kalmak"],["follow instructions","talimatları izlemek"],["be prepared","hazırlıklı olmak"]]]
-]
-};
-  const grammarLessons = {
-be:{
- title:"Am / Is / Are — To be",
- explain:"Bir kişinin veya şeyin kim olduğunu, nasıl olduğunu ya da nerede bulunduğunu anlatmak için kullanılır.",
- rules:[
- ["I","am"],["He / She / It","is"],["You / We / They","are"]
- ],
- examples:[
- ["I am a student.","Ben bir öğrenciyim."],
- ["She is happy.","O mutlu."],
- ["They are at school.","Onlar okulda."]
- ],
- negative:"Özne + am/is/are + not. Örnek: He is not tired. / They aren't late.",
- question:"Am/Is/Are cümlenin başına gelir: Are you ready? — Yes, I am. / No, I'm not.",
- mistakes:"Yanlış: She are happy. → Doğru: She is happy. | Yanlış: I is eleven. → Doğru: I am eleven."
-},
-pronouns:{
- title:"Subject Pronouns & Possessives",
- explain:"Subject pronouns öznenin yerine geçer. Possessive adjectives ise bir şeyin kime ait olduğunu söyler ve ardından isim gelir.",
- rules:[["I","my"],["you","your"],["he","his"],["she","her"],["it","its"],["we","our"],["they","their"]],
- examples:[["I am Talha. My bag is blue.","Ben Talha'yım. Çantam mavi."],["She is my friend. Her name is Ada.","O benim arkadaşım. Onun adı Ada."],["They have a dog. Their dog is friendly.","Onların bir köpeği var. Köpekleri cana yakın."]],
- negative:"My, your, his, her, its, our ve their kelimelerinden sonra genellikle isim gelir: my book, their house.",
- question:"Who is he? — He is my brother. / Whose bag is this? — It is my bag.",
- mistakes:"Yanlış: Me am happy. → Doğru: I am happy. | Yanlış: She is my friend. She name is Ada. → She is my friend. Her name is Ada."
-},
-articles:{
- title:"A / An / The",
- explain:"A ve an tekil, sayılabilen bir isimden söz ederken kullanılır. The, hangi şeyden bahsettiğimiz belli olduğunda kullanılabilir.",
- rules:[["a","Sessiz sesle başlayan kelime: a book, a teacher"],["an","Sesli sesle başlayan kelime: an apple, an umbrella"],["the","Belirli/bilinen şey: the door, the Sun"]],
- examples:[["I have a cat.","Bir kedim var."],["She eats an apple.","O bir elma yer."],["Close the window, please.","Lütfen pencereyi kapat."]],
- negative:"A/an genellikle çoğul isimlerle kullanılmaz: books, apples. 'A books' doğru değildir.",
- question:"İlk kez bahsettiğimiz tekil bir şey için a/an, hangi şey olduğunu belirttiğimizde the kullanabiliriz.",
- mistakes:"A/an seçerken yalnızca ilk harfe değil, ilk sese bakılır: an hour ama a university."
-},
-present:{
- title:"Simple Present Tense",
- explain:"Alışkanlıkları, rutinleri, genel gerçekleri ve düzenli yapılan işleri anlatır.",
- rules:[["I / You / We / They","play, go, study"],["He / She / It","plays, goes, studies"],["Olumsuz","don't / doesn't + fiilin yalın hâli"],["Soru","Do / Does + özne + fiilin yalın hâli?"]],
- examples:[["I play football every Saturday.","Her cumartesi futbol oynarım."],["She goes to school by bus.","O okula otobüsle gider."],["He doesn't like coffee.","O kahveyi sevmez."],["Do they live here?","Onlar burada mı yaşıyor?"]],
- negative:"He/she/it olumlu cümlede çoğunlukla -s/-es alır. Olumsuzda doesn't kullanınca fiile tekrar -s eklenmez.",
- question:"Do you read books? — Yes, I do. / Does she read books? — No, she doesn't.",
- mistakes:"Yanlış: He play football. → He plays football. | Yanlış: She doesn't likes tea. → She doesn't like tea."
-},
-presentcont:{
- title:"Present Continuous",
- explain:"Şu anda gerçekleşen veya bu dönem devam eden eylemleri anlatır.",
- rules:[["Olumlu","Özne + am/is/are + fiil-ing"],["Olumsuz","Özne + am/is/are + not + fiil-ing"],["Soru","Am/Is/Are + özne + fiil-ing?"]],
- examples:[["I am studying English now.","Şu anda İngilizce çalışıyorum."],["She is reading a book.","O kitap okuyor."],["They aren't sleeping.","Onlar uyumuyor."],["Are you listening?","Dinliyor musun?"]],
- negative:"Genellikle now, right now ve at the moment ifadeleriyle görülür. Fiile çoğunlukla -ing eklenir.",
- question:"make → making; write → writing; run → running; study → studying.",
- mistakes:"Yanlış: I am play. → I am playing. | Yanlış: He playing. → He is playing."
-},
-there:{
- title:"There is / There are",
- explain:"Bir yerde bir şeyin var olduğunu söylemek için kullanılır.",
- rules:[["There is","Tekil isim: There is a park."],["There are","Çoğul isim: There are two parks."],["Olumsuz","There isn't / There aren't"],["Soru","Is there...? / Are there...?"]],
- examples:[["There is a library next to the school.","Okulun yanında bir kütüphane var."],["There are three books on the desk.","Masanın üzerinde üç kitap var."],["Is there a bank here?","Burada banka var mı?"]],
- negative:"Tekil ve sayılamayan isimlerle çoğunlukla there is, çoğul isimlerle there are kullanılır.",
- question:"Is there a cinema? — Yes, there is. / Are there any shops? — No, there aren't.",
- mistakes:"Yanlış: There is two parks. → There are two parks."
-},
-can:{
- title:"Can / Can't",
- explain:"Yetenek, izin veya bir şeyin mümkün olup olmadığını anlatmak için kullanılır.",
- rules:[["Olumlu","Özne + can + fiilin yalın hâli"],["Olumsuz","Özne + can't/cannot + fiilin yalın hâli"],["Soru","Can + özne + fiilin yalın hâli?"]],
- examples:[["I can swim.","Yüzebilirim."],["She can't drive.","O araba kullanamaz."],["Can you help me?","Bana yardım edebilir misin?"]],
- negative:"Can'den sonra fiile -s veya -ing eklenmez: He can swim.",
- question:"Can you ride a bike? — Yes, I can. / No, I can't.",
- mistakes:"Yanlış: She can swims. → She can swim."
-},
-some:{
- title:"Some / Any",
- explain:"Some ve any miktarı kesin olmayan çoğul sayılabilen isimlerle ve sayılamayan isimlerle kullanılabilir.",
- rules:[["Some","Olumlu cümlelerde sık kullanılır."],["Any","Soru ve olumsuz cümlelerde sık kullanılır."],["Some...","Teklif ve rica sorularında da kullanılabilir."]],
- examples:[["There are some apples.","Birkaç elma var."],["There isn't any milk.","Hiç süt yok."],["Are there any eggs?","Hiç yumurta var mı?"],["Would you like some tea?","Biraz çay ister misin?"]],
- negative:"Milk, water ve cheese gibi kelimeler çoğunlukla sayılamaz; apples ve eggs sayılabilir.",
- question:"How much milk? — How many eggs? Much sayılamayan, many sayılabilen çoğul isimlerle kullanılır.",
- mistakes:"Yanlış: How many water? → How much water?"
-},
-past:{
- title:"Simple Past Tense",
- explain:"Geçmişte başlayıp bitmiş olayları anlatır. Yesterday, last week ve two days ago gibi ifadelerle kullanılabilir.",
- rules:[["Düzenli fiiller","play → played; visit → visited"],["Düzensiz fiiller","go → went; see → saw; buy → bought"],["Olumsuz","didn't + fiilin yalın hâli"],["Soru","Did + özne + fiilin yalın hâli?"]],
- examples:[["We visited a museum yesterday.","Dün bir müzeyi ziyaret ettik."],["She went to the fair.","O panayıra gitti."],["I didn't watch TV.","Televizyon izlemedim."],["Did you enjoy the trip?","Geziden keyif aldın mı?"]],
- negative:"Did/didn't kullanıldığında ana fiil yalın hâle döner: didn't go, did you see.",
- question:"Was/were, 'be' fiilinin geçmişidir: I/he/she/it was; you/we/they were.",
- mistakes:"Yanlış: Did you went? → Did you go? | Yanlış: I didn't saw it. → I didn't see it."
-},
-future:{
- title:"Future — Will / Be going to",
- explain:"Gelecekten söz ederken kullanılır. Will anlık kararlar ve tahminlerde; be going to önceden planlanan işler ve kanıta dayalı tahminlerde sık kullanılır.",
- rules:[["Will","Özne + will + fiilin yalın hâli"],["Going to","Özne + am/is/are + going to + fiil"],["Olumsuz","won't / isn't going to"],["Soru","Will you...? / Are you going to...?"]],
- examples:[["I will help you.","Sana yardım edeceğim."],["We are going to travel tomorrow.","Yarın seyahat edeceğiz."],["It will probably rain.","Muhtemelen yağmur yağacak."]],
- negative:"Will'den sonra fiil yalın hâlde kalır. Going to'dan önce am/is/are gerekir.",
- question:"Will you join us? — Yes, I will. / Are you going to study? — Yes, I am.",
- mistakes:"Yanlış: She will goes. → She will go. | Yanlış: I going to study. → I am going to study."
-},
-comparative:{
- title:"Comparatives & Superlatives",
- explain:"Comparative iki şeyi karşılaştırır. Superlative bir gruptaki en yüksek/düşük özelliği anlatır.",
- rules:[["Kısa sıfat","tall → taller → the tallest"],["-y ile biten","happy → happier → the happiest"],["Uzun sıfat","more interesting → the most interesting"],["Düzensiz","good → better → the best; bad → worse → the worst"]],
- examples:[["Mars is smaller than Earth.","Mars, Dünya'dan daha küçüktür."],["This is the most interesting book.","Bu en ilginç kitap."],["My bag is heavier than yours.","Çantam seninkinden daha ağır."]],
- negative:"Comparative çoğunlukla than ile kullanılır. Superlative öncesinde çoğunlukla the gelir.",
- question:"Bir karşılaştırmada iki şeyin özelliğini, superlative'de bir grubun en uç örneğini belirt.",
- mistakes:"Yanlış: more taller → taller. | Yanlış: the most tallest → the tallest."
-},
-must:{
- title:"Must / Mustn't / Should",
- explain:"Must güçlü bir zorunluluk; mustn't yasak; should ise tavsiye bildirir.",
- rules:[["must","yapmalısın / zorunluluk"],["mustn't","yapmamalısın / yasak"],["should","yapmalısın / tavsiye"],["shouldn't","yapmamalısın / tavsiye"]],
- examples:[["You must wear a seat belt.","Emniyet kemeri takmalısın."],["You mustn't litter.","Yere çöp atmamalısın."],["You should drink water.","Su içmelisin."],["You shouldn't stay up late.","Geç saatlere kadar uyanık kalmamalısın."]],
- negative:"Bu modal fiillerden sonra ana fiil yalın hâlde kullanılır.",
- question:"Must we leave now? — Do we have to leave now? İkisi zorunluluk sorabilir; kullanım bağlama göre değişebilir.",
- mistakes:"Yanlış: You must to go. → You must go."
-},
-count:{
- title:"Countable & Uncountable Nouns",
- explain:"Countable isimleri tek tek sayabiliriz. Uncountable isimler genellikle miktarla ifade edilir.",
- rules:[["Countable","one apple, two apples"],["Uncountable","water, rice, information"],["How many","sayılabilen çoğul isimler"],["How much","sayılamayan isimler"]],
- examples:[["How many eggs do we need?","Kaç yumurtaya ihtiyacımız var?"],["How much sugar do you want?","Ne kadar şeker istiyorsun?"],["A bottle of water","Bir şişe su"],["Two pieces of information","İki bilgi parçası"]],
- negative:"Information, advice ve furniture standart İngilizcede çoğunlukla sayılamayan isimlerdir.",
- question:"Sayılamayan isimleri ölçü birimleriyle sayabiliriz: a glass of water, a piece of bread.",
- mistakes:"Yanlış: an information → some information / a piece of information."
-},
-question:{
- title:"Question Words",
- explain:"Soru kelimeleri sorunun hangi bilgiyi istediğini belirler.",
- rules:[["Who","kim"],["What","ne"],["Where","nerede/nereye"],["When","ne zaman"],["Why","neden"],["Which","hangisi"],["Whose","kimin"],["How","nasıl"],["How often","ne sıklıkla"],["How much/many","ne kadar/kaç"]],
- examples:[["Where do you live?","Nerede yaşıyorsun?"],["Why are you sad?","Neden üzgünsün?"],["How often do you exercise?","Ne sıklıkla egzersiz yaparsın?"],["Whose bag is this?","Bu kimin çantası?"]],
- negative:"Simple Present sorularında çoğunlukla do/does kullanılır; be fiili varsa am/is/are kullanılabilir.",
- question:"Why are you late? — Because the bus was late. / When do you study? — In the evening.",
- mistakes:"Yanlış: Where you live? → Where do you live?"
-},
-prepositions:{
- title:"Prepositions of Place & Time",
- explain:"Yer edatları konumu; zaman edatları zaman ilişkisini anlatır.",
- rules:[["in","içinde; ay/yıl/mevsim: in the room, in June"],["on","üzerinde; gün/tarih: on the table, on Monday"],["at","belirli nokta/saat: at school, at seven"],["under / behind / between","altında / arkasında / arasında"]],
- examples:[["The cat is under the table.","Kedi masanın altında."],["My birthday is in March.","Doğum günüm mart ayında."],["The lesson starts at nine.","Ders saat dokuzda başlar."],["We have English on Friday.","Cuma günü İngilizce dersimiz var."]],
- negative:"Zaman için genel kullanım: in + ay/yıl, on + gün/tarih, at + saat. İstisnalar vardır.",
- question:"Where is the library? — It is next to the school. / When is the exam? — On Tuesday.",
- mistakes:"Yanlış: at Monday → on Monday. | Yanlış: in 7 o'clock → at 7 o'clock."
-},
-writing:{
- title:"İngilizce Yazım Kuralları",
- explain:"Doğru yazım, büyük harf, noktalama ve kelime ekleme kuralları anlamayı kolaylaştırır.",
- rules:[["Büyük harf","Cümle başı, I zamiri, kişi/ülke/şehir isimleri."],["Noktalama","Cümle sonunda . ; soruda ? ; ünlemde !"],["Çoğul","book → books; bus → buses; baby → babies"],["-ing","make → making; run → running"],["-ed","play → played; live → lived; study → studied"]],
- examples:[["I live in Türkiye.","I zamiri ve ülke adı büyük harfle."],["Where are you from?","Soru işareti kullanılır."],["She studies English.","He/she/it ile studies."],["They watched a film.","Geçmiş zaman fiili: watched."]],
- negative:"Gün ve ay adları İngilizcede büyük harfle başlar: Monday, October. Diller ve millet adları da büyük harfle yazılır: English, Turkish.",
- question:"Cümleni bitirmeden önce büyük harfleri, fiil zamanını, özne-fiil uyumunu ve noktalama işaretlerini kontrol et.",
- mistakes:"Yanlış: i like english → I like English. | Yanlış: two childs → two children."
-}
-};
-
-let saveData = {};
-try { saveData = JSON.parse(localStorage.getItem("levelEnglishSave") || "{}"); } catch(e) { saveData = {}; }
-saveData.xp = Number(saveData.xp)||0;
-saveData.tests = Number(saveData.tests)||0;
-saveData.correct = Number(saveData.correct)||0;
-saveData.answered = Number(saveData.answered)||0;
-saveData.streak = Number(saveData.streak)||0;
-saveData.lastDay = saveData.lastDay||"";
-saveData.completed = saveData.completed||[];
-saveData.taskDay = saveData.taskDay||"";
-saveData.tasks = saveData.tasks||[];
-saveData.lastWrong = saveData.lastWrong||[];
-saveData.bestSpeed = Number(saveData.bestSpeed)||0;
-
-let currentUnit = null;
-let activeTest = null;
-let gameState = null;
-let lgsState = null;
-let toastTimer = null;
-
-function persist(){
- try { localStorage.setItem("levelEnglishSave",JSON.stringify(saveData)); } catch(e) {}
- updateStats();
-}
-function updateStats(){
- document.getElementById("xp").textContent=saveData.xp;
- document.getElementById("level").textContent=Math.floor(saveData.xp/100)+1;
- document.getElementById("streak").textContent=saveData.streak;
- document.getElementById("statXP").textContent=saveData.xp;
- document.getElementById("statTests").textContent=saveData.tests;
- document.getElementById("statCorrect").textContent=saveData.answered?Math.round(saveData.correct/saveData.answered*100)+"%":"0%";
- renderDaily();
- renderBadges();
-}
-function addXP(amount,reason){
- saveData.xp+=amount;
- persist();
- if(reason) toast("+"+amount+" XP — "+reason);
-}
-function toast(msg){
- const el=document.getElementById("toast");
- el.textContent=msg;el.style.display="block";
- clearTimeout(toastTimer);
- toastTimer=setTimeout(()=>el.style.display="none",2400);
-}
-function goTo(id){showPage(id,document.querySelector('[data-page="'+id+'"]'))}
-function showPage(id,btn){
- document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));
- document.getElementById("page-"+id).classList.remove("hidden");
- document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
- const target=btn||document.querySelector('[data-page="'+id+'"]');
- if(target)target.classList.add("active");
- if(id==="progress")updateStats();
- if(id==="grammar")renderGrammar();
- window.scrollTo({top:document.getElementById("mainTabs").offsetTop-70,behavior:"smooth"});
-}
-function escapeHTML(s){
- return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-}
-function loadUnits(){
- const grade=Number(document.getElementById("gradeSelect").value);
- const select=document.getElementById("unitSelect");
- select.innerHTML=curriculum[grade].map((u,i)=>`<option value="${i}">Unit ${i+1}: ${escapeHTML(u[0])}</option>`).join("");
- openUnit();
-}
-function loadTestUnits(){
- const grade=Number(document.getElementById("testGrade").value);
- document.getElementById("testUnit").innerHTML=curriculum[grade].map((u,i)=>`<option value="${i}">Unit ${i+1}: ${escapeHTML(u[0])}</option>`).join("");
-}
-function openUnit(){
- const grade=Number(document.getElementById("gradeSelect").value);
- const idx=Number(document.getElementById("unitSelect").value||0);
- currentUnit={grade,index:idx,data:curriculum[grade][idx]};
- renderUnit();
-}
-function speak(text) {
-  if (!("speechSynthesis" in window) ||
-      typeof SpeechSynthesisUtterance === "undefined") {
-    toast("Sesli okuma bu tarayıcıda desteklenmiyor.");
-    return;
-  }
-
-  window.speechSynthesis.cancel();
-
-  const utterance = new SpeechSynthesisUtterance(String(text));
-  utterance.lang = "en-US";
-  utterance.rate = 0.85;
-  utterance.pitch = 1;
-
-  utterance.onerror = function () {
-    toast("Ses açılamadı. Tarayıcının ses ayarlarını kontrol et.");
-  };
-
-  window.speechSynthesis.speak(utterance);
-}
- if(!currentUnit)return;
- const [title,desc,grammarKey,words]=currentUnit.data;
- const completed=saveData.completed.includes(currentUnit.grade+"-"+currentUnit.index);
- const lesson=grammarLessons[grammarKey]||grammarLessons.present;
- document.getElementById("unitContent").innerHTML=`
- <div class="panel">
-  <div class="cardTop"><span class="tag">${currentUnit.grade}. SINIF · UNIT ${currentUnit.index+1}</span><span class="${completed?'good':'muted'}">${completed?'✓ Tamamlandı':'Çalışılmadı'}</span></div>
-  <h2 style="font-size:27px;margin:14px 0 5px">${escapeHTML(title)}</h2>
-  <p class="muted">${escapeHTML(desc)}</p>
-  <div class="grid" style="margin:18px 0">
-   <div class="miniStat"><strong>${words.length}</strong><span>Kelime ve ifade</span></div>
-   <div class="miniStat"><strong>3</strong><span>Öğrenme adımı</span></div>
-   <div class="miniStat"><strong>+20 XP</strong><span>Üniteyi bitirince</span></div>
-  </div>
-  <h3>1. Kelimeleri öğren</h3>
-  <p class="smallText">Hoparlör düğmesine basarak İngilizce kelimenin telaffuzunu dinleyebilirsin. Her kelimenin Türkçe karşılığını oku ve mümkünse kendi cümlende kullan.</p>
-  <div class="wordList">${words.map(w=>`<div class="word"><div><strong>${escapeHTML(w[0])}</strong><span>${escapeHTML(w[1])}</span></div><button onclick="speak(${JSON.stringify(w[0]).replace(/</g,"\\u003c")})" aria-label="${escapeHTML(w[0])} kelimesini dinle">🔊</button></div>`).join("")}</div>
-  <div class="lesson"><b>Kelime çalışma yöntemi:</b> Önce İngilizce kelimeyi oku, anlamını kapatıp hatırlamaya çalış, ardından kontrol et. Zorlandığın kelimeyi üç ayrı cümlede kullan.</div>
-  <h3 style="margin-top:28px">2. Konu anlatımı: ${escapeHTML(lesson.title)}</h3>
-  <p>${escapeHTML(lesson.explain)}</p>
-  <div class="lesson"><b>Temel kural:</b><br>${lesson.rules.map(r=>`<b>${escapeHTML(r[0])}:</b> ${escapeHTML(r[1])}`).join("<br>")}</div>
-  <h3>Örnekleri incele</h3>
-  ${lesson.examples.map(e=>`<div class="example"><b>${escapeHTML(e[0])}</b><br><span class="muted">${escapeHTML(e[1])}</span><button class="btn small" style="float:right" onclick="speak(${JSON.stringify(e[0]).replace(/</g,"\\u003c")})">🔊 Dinle</button><div style="clear:both"></div></div>`).join("")}
-  <div class="lesson"><b>Olumsuz cümle:</b><br>${escapeHTML(lesson.negative)}</div>
-  <div class="lesson"><b>Soru ve cevap:</b><br>${escapeHTML(lesson.question)}</div>
-  <div class="lesson"><b class="bad">Sık yapılan hatalar:</b><br>${escapeHTML(lesson.mistakes)}</div>
-  <h3 style="margin-top:28px">3. Kendini kontrol et</h3>
-  <p class="muted">Bu üniteye ait 5 soruluk mini testi çöz. Açıklamalarla yanlışlarını öğren.</p>
-  <button class="btn primary" onclick="startUnitQuiz()">Ünite mini testini başlat →</button>
-  <button class="btn ${completed?'':'green'}" onclick="completeUnit()">${completed?'Üniteyi tekrar tamamla':'Üniteyi tamamladım (+20 XP)'}</button>
-  <div id="unitQuiz"></div>
- </div>`;
-}
-function completeUnit(){
- const key=currentUnit.grade+"-"+currentUnit.index;
- if(saveData.completed.includes(key)){toast("Bu ünite zaten tamamlanmış.");return;}
- saveData.completed.push(key);addXP(20,"Ünite tamamlandı");renderUnit();
-}
-function renderGrammar(){
- const key=document.getElementById("grammarTopic").value;
- const l=grammarLessons[key];
- document.getElementById("grammarContent").innerHTML=`
- <h2 style="margin-bottom:6px">${escapeHTML(l.title)}</h2>
- <p>${escapeHTML(l.explain)}</p>
- <div class="lesson"><b>Kurallar</b><br>${l.rules.map(r=>`<b>${escapeHTML(r[0])}:</b> ${escapeHTML(r[1])}`).join("<br>")}</div>
- <h3>Örnek cümleler</h3>
- ${l.examples.map(e=>`<div class="example"><b>${escapeHTML(e[0])}</b><br><span class="muted">${escapeHTML(e[1])}</span><button class="btn small" style="float:right" onclick="speak(${JSON.stringify(e[0]).replace(/</g,"\\u003c")})">🔊</button><div style="clear:both"></div></div>`).join("")}
- <div class="lesson"><b>Olumsuz cümleler</b><br>${escapeHTML(l.negative)}</div>
- <div class="lesson"><b>Soru yapısı</b><br>${escapeHTML(l.question)}</div>
- <div class="lesson"><b class="bad">Yaygın hatalar</b><br>${escapeHTML(l.mistakes)}</div>
- <button class="btn primary" onclick="startGrammarQuiz('${key}')">Bu konudan 5 soru çöz</button>
- <div id="grammarQuiz"></div>`;
-}
-function buildVocabularyQuestions(grade,unitIndex,count){
- const unit=curriculum[grade][unitIndex];
- const words=unit[3];
- const questions=[];
- for(let i=0;i<count;i++){
-  const item=words[(i*3+Math.floor(Math.random()*words.length))%words.length];
-  const wrong=words.filter(w=>w[1]!==item[1]).sort(()=>Math.random()-.5).slice(0,3).map(w=>w[1]);
-  const options=[item[1],...wrong].sort(()=>Math.random()-.5);
-  questions.push({q:`“${item[0]}” ne demektir?`,options,answer:item[1],explain:`“${item[0]}” Türkçede “${item[1]}” anlamına gelir.`});
- }
- return questions;
-}
-const extraQuestions=[
-{q:"She ___ a student.",options:["am","is","are","be"],answer:"is",explain:"She ile is kullanılır."},
-{q:"They ___ football every Sunday.",options:["plays","playing","play","is play"],answer:"play",explain:"They ile Simple Present'ta fiilin yalın hâli kullanılır."},
-{q:"He ___ like coffee.",options:["don't","doesn't","isn't","aren't"],answer:"doesn't",explain:"He ile olumsuz Simple Present'ta doesn't + yalın fiil kullanılır."},
-{q:"I ___ doing my homework now.",options:["am","is","are","be"],answer:"am",explain:"I am + fiil-ing."},
-{q:"There ___ three books on the table.",options:["is","am","are","be"],answer:"are",explain:"Çoğul isimlerle there are kullanılır."},
-{q:"Yesterday, we ___ to the park.",options:["go","goes","went","going"],answer:"went",explain:"Go fiilinin geçmiş hâli went'tir."},
-{q:"You ___ throw rubbish into rivers.",options:["should","must","mustn't","can"],answer:"mustn't",explain:"Mustn't yasak veya yapılmaması gereken bir davranışı anlatır."},
-{q:"How ___ apples do you need?",options:["much","many","any","some"],answer:"many",explain:"Apples sayılabilen çoğul isimdir; how many kullanılır."},
-{q:"My bag is ___ than yours.",options:["heavy","heavier","heaviest","more heavy"],answer:"heavier",explain:"Heavy → heavier. Comparative ile than sık kullanılır."},
-{q:"___ you visit your grandma last week?",options:["Do","Are","Did","Does"],answer:"Did",explain:"Simple Past sorusu Did + özne + fiilin yalın hâli şeklindedir."},
-{q:"A person who treats sick animals is a ___.",options:["pilot","vet","chef","lawyer"],answer:"vet",explain:"Vet, veteriner demektir."},
-{q:"Which one is a renewable energy source?",options:["Coal","Oil","Solar power","Petrol"],answer:"Solar power",explain:"Güneş enerjisi yenilenebilir bir enerji kaynağıdır."},
-{q:"Would you like ___ tea?",options:["some","many","a","an"],answer:"some",explain:"Teklif sorularında some kullanılabilir."},
-{q:"You ___ wear a seat belt in a car.",options:["must","mustn't","shouldn't","can't"],answer:"must",explain:"Must zorunluluk belirtir."},
-{q:"The opposite of “dangerous” is ___.",options:["risky","safe","wild","difficult"],answer:"safe",explain:"Safe, güvenli demektir."},
-{q:"___ is your birthday?",options:["Who","Where","When","Why"],answer:"When",explain:"When, zaman sormak için kullanılır."},
-{q:"She can ___ the piano.",options:["plays","playing","play","to play"],answer:"play",explain:"Can'den sonra fiilin yalın hâli gelir."},
-{q:"We have English ___ Monday.",options:["at","in","on","from"],answer:"on",explain:"Günlerle on kullanılır."},
-{q:"The Internet is useful, but you must protect your ___.",options:["personal information","roller coaster","ingredient","habitat"],answer:"personal information",explain:"Kişisel bilgilerini çevrim içi ortamda korumalısın."},
-{q:"First, ___ the vegetables. Then add them to the pot.",options:["chop","hang up","vote","recycle"],answer:"chop",explain:"Chop, doğramak demektir."}
-];
-function shuffle(arr){return [...arr].sort(()=>Math.random()-.5)}
-function startUnitQuiz(){
- const q=buildVocabularyQuestions(currentUnit.grade,currentUnit.index,5);
- runQuiz(q,"unitQuiz","unit");
-}
-function startGrammarQuiz(key){
- const q=shuffle(extraQuestions).slice(0,5);
- runQuiz(q,"grammarQuiz","grammar");
-}
-function startTest(){
- const grade=Number(document.getElementById("testGrade").value);
- const unit=Number(document.getElementById("testUnit").value||0);
- const count=Number(document.getElementById("testCount").value);
- let q=buildVocabularyQuestions(grade,unit,Math.ceil(count*.65));
- q=q.concat(shuffle(extraQuestions).slice(0,count-q.length));
- runQuiz(shuffle(q).slice(0,count),"testArea","test");
-}
-function runQuiz(questions,targetId,kind){
- let index=0,score=0,finished=false;
- const area=document.getElementById(targetId);
- const wrongs=[];
- function draw(){
-  if(index>=questions.length){
-   finished=true;
-   const percent=Math.round(score/questions.length*100);
-   area.innerHTML=`<div class="panel"><h3>${percent>=80?"Harika çalışma!":percent>=60?"İyi gidiyorsun!":"Tekrar ederek güçlenebilirsin."}</h3><div class="miniStat"><strong>${score}/${questions.length}</strong><span>Doğru cevap · %${percent}</span></div><p>${percent>=80?"Konuyu büyük ölçüde anlamışsın. Biraz daha pratikle pekiştir.":"Yanlışlarını aşağıdaki açıklamalarla gözden geçir ve testi yeniden çöz."}</p><button class="btn primary" onclick="startAgain('${kind}','${targetId}')">Tekrar çöz</button><div>${wrongs.map(w=>`<div class="example"><b>${escapeHTML(w.q)}</b><br>Doğru cevap: <span class="good">${escapeHTML(w.answer)}</span><br><span class="muted">${escapeHTML(w.explain)}</span></div>`).join("")}</div></div>`;
-   saveData.tests++;saveData.lastWrong=wrongs;
-   if(kind==="lgs"){saveData.lastWrong=wrongs;}
-   persist();
-   if(percent>=60)addXP(Math.max(5,score*3),"Test tamamlandı");
-   return;
-  }
-  const q=questions[index];
-  area.innerHTML=`<div class="panel"><div class="cardTop"><span class="tag">SORU ${index+1}/${questions.length}</span><span class="muted">Doğru: ${score}</span></div><div class="progress"><span style="width:${index/questions.length*100}%"></span></div><h3 style="line-height:1.5">${escapeHTML(q.q)}</h3><div class="choiceList">${q.options.map((o,i)=>`<button class="choice" data-choice="${i}">${String.fromCharCode(65+i)}. ${escapeHTML(o)}</button>`).join("")}</div><div id="${targetId}Feedback"></div><button class="btn primary hidden" id="${targetId}Next">Sonraki soru →</button></div>`;
-  area.querySelectorAll("[data-choice]").forEach(btn=>btn.addEventListener("click",()=>{
-   if(btn.disabled)return;
-   area.querySelectorAll("[data-choice]").forEach(b=>b.disabled=true);
-   const selected=q.options[Number(btn.dataset.choice)];
-   saveData.answered++;
-   if(selected===q.answer){score++;saveData.correct++;btn.classList.add("correct");area.querySelector("#"+targetId+"Feedback").innerHTML=`<div class="answerFeedback" style="background:#173427"><b class="good">Doğru!</b><br>${escapeHTML(q.explain)}</div>`;}
-   else{btn.classList.add("wrong");wrongs.push({q:q.q,answer:q.answer,explain:q.explain});area.querySelectorAll("[data-choice]").forEach(b=>{if(q.options[Number(b.dataset.choice)]===q.answer)b.classList.add("correct")});area.querySelector("#"+targetId+"Feedback").innerHTML=`<div class="answerFeedback" style="background:#3a202d"><b class="bad">Henüz değil.</b><br>Doğru cevap: <b>${escapeHTML(q.answer)}</b><br>${escapeHTML(q.explain)}</div>`;}
-   persist();
-   const next=area.querySelector("#"+targetId+"Next");next.classList.remove("hidden");
-   next.onclick=()=>{index++;draw();};
-  }));
- }
- draw();
-}
-function startAgain(kind,targetId){
- if(kind==="unit")startUnitQuiz();
- else if(kind==="grammar")startGrammarQuiz(document.getElementById("grammarTopic").value);
- else if(kind==="test")startTest();
- else if(kind==="lgs")startLGS();
-}
-function startGame(type){
- const area=document.getElementById("gameArea");
- const grade=Number(document.getElementById("gradeSelect").value||5);
- const unitIndex=Number(document.getElementById("unitSelect").value||0);
- const words=curriculum[grade][unitIndex][3];
- gameState={type,score:0,streak:0,questions:0,deck:shuffle(words),index:0,seconds:60};
- if(type==="error"){
-  gameState.deck=shuffle([
-   {q:"She go to school every day.",a:"She goes to school every day.",why:"She ile Simple Present'ta fiil -s alır."},
-   {q:"I am play football now.",a:"I am playing football now.",why:"Present Continuous: am/is/are + fiil-ing."},
-   {q:"They doesn't like milk.",a:"They don't like milk.",why:"They ile don't kullanılır."},
-   {q:"Did you went home?",a:"Did you go home?",why:"Did'den sonra fiil yalın hâlde olur."},
-   {q:"He can swims fast.",a:"He can swim fast.",why:"Can'den sonra fiilin yalın hâli gelir."},
-   {q:"There is two parks.",a:"There are two parks.",why:"Çoğul isimlerle there are kullanılır."},
-   {q:"I have an book.",a:"I have a book.",why:"Book sessiz sesle başlar; a book."},
-   {q:"She doesn't likes tea.",a:"She doesn't like tea.",why:"Doesn't kullanıldığında fiil yalın hâle döner."}
-  ]);
-  drawErrorGame();
- }else if(type==="memory"){
-  drawMemoryGame();
- }else{
-  drawWordGame();
-  if(type==="speed")startSpeedTimer();
- }
- area.scrollIntoView({behavior:"smooth",block:"start"});
-}
-function drawWordGame(){
- const g=gameState;
- if(g.type!=="speed"&&g.index>=10){endGame();return;}
- if(g.type==="speed"&&g.seconds<=0){endGame();return;}
- const item=g.deck[g.index%g.deck.length];
- const options=shuffle([item,...shuffle(g.deck.filter(w=>w[1]!==item[1])).slice(0,3)]);
- const labels={blocks:"Word Blocks",arena:"Kelime Arenası",speed:"60 Saniye",boss:"Boss Challenge"};
- document.getElementById("gameArea").innerHTML=`<div class="panel"><div class="cardTop"><span class="tag">${labels[g.type]}</span><span class="muted">Puan: <b>${g.score}</b> · Seri: <b>${g.streak}</b></span></div>${g.type==="speed"?`<div class="timer" id="gameTimer">60 saniye</div>`:""}<h3 style="font-size:25px;margin-top:22px">${escapeHTML(item[0])}</h3><p class="muted">Doğru Türkçe anlamı seç.</p><div class="choiceList">${options.map((o,i)=>`<button class="choice" onclick="answerWordGame(${JSON.stringify(o[1])===JSON.stringify(item[1])},${JSON.stringify(item[0])},${JSON.stringify(item[1])})">${String.fromCharCode(65+i)}. ${escapeHTML(o[1])}</button>`).join("")}</div><div id="gameFeedback"></div><button class="btn" onclick="endGame()">Oyunu bitir</button></div>`;
-}
-function answerWordGame(correct,word,meaning){
- if(!gameState)return;
- const area=document.getElementById("gameArea");
- if(correct){gameState.score++;gameState.streak++;gameState.questions++;addXP(2);area.querySelector("#gameFeedback").innerHTML=`<div class="answerFeedback" style="background:#173427">✓ Doğru! <b>${escapeHTML(word)}</b> = ${escapeHTML(meaning)}</div>`;}
- else{gameState.streak=0;gameState.questions++;area.querySelector("#gameFeedback").innerHTML=`<div class="answerFeedback" style="background:#3a202d">Tekrar dene. <b>${escapeHTML(word)}</b> = ${escapeHTML(meaning)}. Bu kelimeyi bir kez sesli oku.</div>`;}
- area.querySelectorAll(".choice").forEach(b=>b.disabled=true);
- gameState.index++;
- setTimeout(()=>{if(gameState&&(gameState.type==="speed"?gameState.seconds>0:gameState.index<10))drawWordGame();else endGame();},850);
-}
-function startSpeedTimer(){
- const timer=setInterval
- 
-  if(!gameState||gameState.type!=="speed"){clearInterval(timer);return;}
-  gameState.seconds--;
-  const el=document.getElementById("gameTimer");
-  if(el)el.textContent=gameState.seconds+" saniye";
-  if(gameState.seconds<=0){clearInterval(timer);endGame();}
- },1000);
-}
-function drawErrorGame(){
- const g=gameState;
- if(g.index>=g.deck.length){endGame();return;}
- const item=g.deck[g.index];
- const opts=shuffle([item.a,...g.deck.filter(w=>w.a!==item.a).slice(0,3).map(w=>w.a)]);
- document.getElementById("gameArea").innerHTML=`<div class="panel"><span class="tag">HATA AVCISI</span><h3>Bu cümleyi doğru hâle getir.</h3><div class="example">${escapeHTML(item.q)}</div><div class="choiceList">${opts.map(o=>`<button class="choice" onclick="answerError(${JSON.stringify(o)===JSON.stringify(item.a)},${JSON.stringify(item.a)},${JSON.stringify(item.why)})">${escapeHTML(o)}</button>`).join("")}</div><div id="errorFeedback"></div><p class="muted">Puan: ${g.score}</p><button class="btn" onclick="endGame()">Oyunu bitir</button></div>`;
-}
-function answerError(correct,answer,why){
- const g=gameState
- 
- if(!g)return;
- if(correct){g.score++;g.streak++;addXP(3);}
- else g.streak=0;
- g.index++;
- document.getElementById("gameArea").innerHTML+=`<div class="answerFeedback"><b>${correct?"Doğru!":"Doğru cevap: "+escapeHTML(answer)}</b><br>${escapeHTML(why)}</div><button class="btn primary" onclick="drawErrorGame()">Devam et →</button>`;
-}
-function drawMemoryGame(){
- const g=gameState;
- const deck=g.deck.slice(0,12);
- document.getElementById("gameArea").innerHTML=`<div class="panel"><span class="tag">HAFIZA KARTLARI</span><h3>Kelimeleri hatırlıyor musun?</h3><p class="muted">Bir karta basarak anlamını gör. Hatırladıysan “Biliyordum”, yeni öğrendiysen “Yeni öğrendim” seç.</p><div class="grid">${deck.map((w,i)=>`<div class="card" id="mem${i}"><b>${escapeHTML(w[0])}</b><div id="memMeaning${i}" class="hidden" style="margin-top:10px;color:var(--cyan)">${escapeHTML(w[1])}</div><button class="btn small" onclick="document.getElementById('memMeaning${i}').classList.remove('hidden')">Kartı çevir</button><div style="display:flex;gap:5px;margin-top:8px"><button class="btn small" onclick="memoryScore(${i},true)">Biliyordum</button><button class="btn small" onclick="memoryScore(${i},false)">Yeni öğrendim</button></div></div>`).join("")}</div><p id="memoryScore" class="muted">İşaretlenen kart: 0/${deck.length}</p><button class="btn primary" onclick="endGame()">Tamamla</button></div>`;
- g.memoryDone=[];
-}
-function memoryScore(i,knew){
- const g=gameState;if(!g)return;
- if(g.memoryDone.includes(i))return;
- g.memoryDone.push(i);
- if(knew){g.score++;addXP(2,"Kelimeyi hatırladın");}
- else addXP(1,"Yeni kelime öğrendin");
- const el=document.getElementById("memoryScore");
- if(el)el.textContent=`İşaretlenen kart: ${g.memoryDone.length}/12`;
-}
-function endGame(){
- if(!gameState)return;
- const g=gameState;
- if(g.type==="speed"&&g.score>saveData.bestSpeed)saveData.bestSpeed=g.score;
- document.getElementById("gameArea").innerHTML=`<div class="panel"><h2>Tur tamamlandı!</h2><div class="grid"><div class="miniStat"><strong>${g.score}</strong><span>Puan</span></div><div class="miniStat"><strong>${g.questions||g.index||g.score}</strong><span>Deneme</span></div><div class="miniStat"><strong>${g.streak}</strong><span>Son seri</span></div></div><p>Gelişmenin en iyi yolu, yanlış yaptığın kelimeleri tekrar etmek ve onları cümle içinde kullanmaktır.</p><button class="btn primary" onclick="startGame('${g.type}')">Tekrar oyna</button></div>`;
- gameState=null;persist();
-}
-function startLGS(){
- const questions=shuffle(extraQuestions).slice(0,10);
- lgsState={start:Date.now(),seconds:300,questions};
- runLGSQuestions();
-}
-function runLGSQuestions(){
- const s=lgsState;
- if(!s)return;
- let index=0,score=0,wrong=[];
- const area=document.getElementById("lgsArea");
- function draw(){
-  if(index>=s.questions.length){
-   const elapsed=Math.floor((Date.now()-s.start)/1000);
-   area.innerHTML=`<div class="panel"><h3>Mini deneme tamamlandı</h3><div class="miniStat"><strong>${score}/${s.questions.length}</strong><span>Doğru cevap</span></div><p>Çözüm süresi: ${Math.floor(elapsed/60)} dakika ${elapsed%60} saniye</p><h3>Yanlış analizi</h3>${wrong.length?wrong.map(w=>`<div class="example"><b>${escapeHTML(w.q)}</b><br>Doğru cevap: <span class="good">${escapeHTML(w.answer)}</span><br>${escapeHTML(w.explain)}</div>`).join(""):"Yanlışın yok. Bu soruları doğru yanıtladın."}</div>`;
-   saveData.tests++;saveData.lastWrong=wrong;persist();addXP(score*3,"Deneme tamamlandı");return;
-  }
-  const q=s.questions[index];
-  area.innerHTML=`<div class="panel"><div class="cardTop"><span class="tag">LGS MİNİ DENEME · ${index+1}/10</span><span class="timer" id="lgsTimer">05:00</span></div><div class="progress"><span style="width:${index/10*100}%"></span></div><h3>${escapeHTML(q.q)}</h3><div class="choiceList">${q.options.map((o,i)=>`<button class="choice" onclick="lgsAnswer(${i})">${String.fromCharCode(65+i)}. ${escapeHTML(o)}</button>`).join("")}</div><div id="lgsFeedback"></div><button id="lgsNext" class="btn primary hidden" onclick="lgsNext()">Sonraki soru</button></div>`;
- }
- window.lgsAnswer=function(i){
-  const q=s.questions[index],buttons=area.querySelectorAll(".choice");
-  buttons.forEach(b=>b.disabled=true);
-  if(q.options[i]===q.answer){score++;buttons[i].classList.add("correct");area.querySelector("#lgsFeedback").innerHTML=`<div class="answerFeedback">${escapeHTML(q.explain)}</div>`;}
-  else{buttons[i].classList.add("wrong");wrong.push({q:q.q,answer:q.answer,explain:q.explain});buttons.forEach(b=>{if(b.textContent.slice(3)===q.answer)b.classList.add("correct")});area.querySelector("#lgsFeedback").innerHTML=`<div class="answerFeedback"><b class="bad">Yanlış cevap.</b><br>${escapeHTML(q.explain)}</div>`;}
-  area.querySelector("#lgsNext").classList.remove("hidden");
- };
- window.lgsNext=function(){index++;draw();};
- draw();
-}
-function showLGSReview(){
- const area=document.getElementById("lgsArea");
- area.innerHTML=`<div class="panel"><h3>Son denemenin yanlışları</h3>${saveData.lastWrong.length?saveData.lastWrong.map(w=>`<div class="example"><b>${escapeHTML(w.q)}</b><br>Doğru cevap: <span class="good">${escapeHTML(w.answer)}</span><br>${escapeHTML(w.explain)}</div>`).join(""):"Henüz yanlış analizi kaydı yok. Önce bir mini deneme çöz."}</div>`;
-}
-function showLGSAdvice(){
- document.getElementById("lgsArea").innerHTML=`<div class="panel"><h3>Sınav stratejileri</h3><ol><li>Soru kökünü dikkatle oku; ne istendiğini belirle.</li><li>Metindeki anahtar kelimeleri ve zaman ifadelerini bul.</li><li>Şıkları metindeki kanıta göre ele; yalnızca tanıdık kelime gördüğün için seçim yapma.</li><li>Bilmediğin soruda gereğinden fazla oyalanma; diğer sorulara geçip sonra geri dön.</li><li>Denemeden sonra sadece puana değil, her yanlışın nedenine bak.</li><li>Düzenli kelime tekrarı yap; ifadeleri tek kelime olarak değil, cümle içinde öğren.</li></ol><p class="smallText">Bu bölüm sınava hazırlık önerileri içerir; gerçek sınav sonucu garantisi vermez.</p></div>`;
-}
-function renderDaily(){
- const today=new Date().toISOString().slice(0,10);
- if(saveData.taskDay!==today){saveData.taskDay=today;saveData.tasks=[];}
- const tasks=[
- ["words","10 kelimeyi tekrar et",saveData.answered>=10],
- ["test","Bir test tamamla",saveData.tests>=1],
- ["xp","20 XP kazan",saveData.xp>=20]
- ];
- const completed=saveData.tasks;
- document.getElementById("dailyTasks").innerHTML=tasks.map(t=>`<div class="word"><div><strong>${completed.includes(t[0])||t[2]?"✓ ":"○ "}${t[1]}</strong><span>${completed.includes(t[0])||t[2]?"Tamamlandı":"Günlük hedef"}</span></div>${!completed.includes(t[0])&&!t[2]?`<button onclick="claimTask('${t[0]}')">Tamamla</button>`:""}</div>`).join("");
- const done=tasks.filter(t=>completed.includes(t[0])||t[2]).length;
- document.getElementById("dailyProgress").style.width=done/tasks.length*100+"%";
-}
-function claimTask(id){
- if(saveData.tasks.includes(id)){toast("Bu görev zaten tamamlandı.");return;}
- saveData.tasks.push(id);addXP(5,"Günlük görev");
-}
-function renderBadges(){
- const badges=[
- ["🌱","Başlangıç","İlk 10 XP",saveData.xp>=10],
- ["📚","Çalışkan","3 ünite tamamla",saveData.completed.length>=3],
- ["🎯","Test ustası","5 test tamamla",saveData.tests>=5],
- ["⚡","XP avcısı","100 XP kazan",saveData.xp>=100],
- ["🏆","Kelime şampiyonu","250 XP kazan",saveData.xp>=250],
- ["🧠","Düzenli öğrenci","10 ünite tamamla",saveData.completed.length>=10]
- ];
- document.getElementById("badges").innerHTML=badges.map(b=>`<div class="card"><div class="cardIcon">${b[0]}</div><h3>${b[1]}</h3><p>${b[2]}</p><span class="tag">${b[3]?"KAZANILDI":"KİLİTLİ"}</span></div>`).join("");
-}
-function resetProgress(){
- if(!confirm("Bütün XP, test ve ünite ilerlemen bu tarayıcıdan silinsin mi?"))return;
- localStorage.removeItem("levelEnglishSave");location.reload();
-}
-function init(){
- loadUnits();
- loadTestUnits();
- renderGrammar();
- updateStats();
-}
-init();
-</script>
-</body>
-</html>
