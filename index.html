@@ -328,7 +328,22 @@ function startQuiz(){
  let pool=questions.slice();
  if(unit!=="all"){
   const i=Number(unit),w=units[i].words;
-  pool=w.map(x=>({q:`“${x[0]}” ne demektir?`,a:[x[1],w[(w.indexOf(x)+1)%w.length][1],w[(w.indexOf(x)+2)%w.length][1],"Bilmiyorum"],c:0}));
+  
+pool=w.map((x,j)=>{
+ const correctIndex=[0,1,2,3][Math.floor(Math.random()*4)];
+ const wrongAnswers=w.filter(item=>item!==x)
+   .sort(()=>Math.random()-.5)
+   .slice(0,3)
+   .map(item=>item[1]);
+ const answers=wrongAnswers;
+ answers.splice(correctIndex,0,x[1]);
+ return {
+  q:`“${x[0]}” ne demektir?`,
+  a:answers,
+  c:correctIndex
+ };
+});
+
  }
  quizQuestions=pool.sort(()=>Math.random()-.5).slice(0,10);
  quizIndex=0;quizScore=0;showQuestion();
