@@ -323,31 +323,42 @@ const questions=[
  {q:"He ___ a bike.",a:["have","has","are","am"],c:1},
  {q:"“Environment” ne demektir?",a:["Çevre","Meslek","Tatlı","Tatiller"],c:0}
 ];
+
 function startQuiz(){
  const unit=$("quizUnit").value;
  let pool=questions.slice();
- if(unit!=="all"){
-  const i=Number(unit),w=units[i].words;
-  
-pool=w.map((x,j)=>{
- const correctIndex=[0,1,2,3][Math.floor(Math.random()*4)];
- const wrongAnswers=w.filter(item=>item!==x)
-   .sort(()=>Math.random()-.5)
-   .slice(0,3)
-   .map(item=>item[1]);
- const answers=wrongAnswers;
- answers.splice(correctIndex,0,x[1]);
- return {
-  q:`“${x[0]}” ne demektir?`,
-  a:answers,
-  c:correctIndex
- };
-});
 
+ if(unit!=="all"){
+  const i=Number(unit);
+  const w=units[i].words;
+
+  pool=w.map(x=>({
+   q:`“${x[0]}” ne demektir?`,
+   a:[x[1],w[(w.indexOf(x)+1)%w.length][1],
+      w[(w.indexOf(x)+2)%w.length][1],
+      w[(w.indexOf(x)+3)%w.length][1]],
+   c:0
+  }));
  }
+
+ // Doğru cevabı rastgele A, B, C veya D konumuna taşı.
+ pool=pool.map(q=>{
+  const correctAnswer=q.a[q.c];
+  const answers=q.a.filter((_,i)=>i!==q.c);
+  answers.sort(()=>Math.random()-.5);
+
+  const correctIndex=Math.floor(Math.random()*4);
+  answers.splice(correctIndex,0,correctAnswer);
+
+  return {...q,a:answers,c:correctIndex};
+ });
+
  quizQuestions=pool.sort(()=>Math.random()-.5).slice(0,10);
- quizIndex=0;quizScore=0;showQuestion();
+ quizIndex=0;
+ quizScore=0;
+ showQuestion();
 }
+
 function showQuestion(){
  if(quizIndex>=quizQuestions.length){
   $("quizArea").innerHTML=`<div class="panel result"><div class="big">${quizScore>=8?"🏆":quizScore>=5?"⭐":"📘"}</div><h2>Test tamamlandı!</h2><p>${quizQuestions.length} sorudan <b>${quizScore}</b> doğru yaptın.</p><p class="muted">${quizScore===quizQuestions.length?"Mükemmel! Tüm soruları doğru bildin.":"Biraz daha çalışıp tekrar deneyebilirsin."}</p><button class="btn" onclick="startQuiz()">Tekrar çöz</button></div>`;
