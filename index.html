@@ -3,7 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Level English | İngilizceni Geliştir</title>
+<title>6-H'den İngilizce | İngilizceni Geliştir</title
+.brandIcon.logo6h {
+  width: 52px;
+  height: 46px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, #61e3db, #70a5ff 55%, #ad91ff);
+  color: #0b1020;
+  font-size: 19px;
+  font-weight: 1000;
+  letter-spacing: -1px;
+  border: 2px solid #d8faff;
+  box-shadow: 0 0 18px #61e3db55;
+}
 <style>
 :root{
  --bg:#0b1020;--panel:#141c31;--panel2:#1a2540;--text:#edf3ff;
@@ -90,7 +102,10 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:28px 10px}
 <body>
 <header>
  <div class="topbar">
-  <div class="brand"><div class="brandIcon">✦</div><div>LEVEL ENGLISH<small>LEARN • PRACTISE • LEVEL UP</small></div></div>
+  <div class="brand">
+  <div class="brandIcon logo6h">6-H</div>
+  <div>6-H'DEN İNGİLİZCE<small>ÖĞREN • PRATİK YAP • GELİŞ</small></div>
+</div>
   <div class="stats">
    <div class="pill">⚡ XP <b id="xp">0</b></div>
    <div class="pill">🏆 Seviye <b id="level">1</b></div>
@@ -523,14 +538,26 @@ function openUnit(){
  currentUnit={grade,index:idx,data:curriculum[grade][idx]};
  renderUnit();
 }
-function speak(text){
- if(!("speechSynthesis" in window)){toast("Bu tarayıcı sesli okumayı desteklemiyor.");return;}
- speechSynthesis.cancel();
- const utterance=new SpeechSynthesisUtterance(text);
- utterance.lang="en-US";utterance.rate=.82;
- speechSynthesis.speak(utterance);
+function speak(text) {
+  if (!("speechSynthesis" in window) ||
+      typeof SpeechSynthesisUtterance === "undefined") {
+    toast("Sesli okuma bu tarayıcıda desteklenmiyor.");
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(String(text));
+  utterance.lang = "en-US";
+  utterance.rate = 0.85;
+  utterance.pitch = 1;
+
+  utterance.onerror = function () {
+    toast("Ses açılamadı. Tarayıcının ses ayarlarını kontrol et.");
+  };
+
+  window.speechSynthesis.speak(utterance);
 }
-function renderUnit(){
  if(!currentUnit)return;
  const [title,desc,grammarKey,words]=currentUnit.data;
  const completed=saveData.completed.includes(currentUnit.grade+"-"+currentUnit.index);
@@ -717,7 +744,8 @@ function answerWordGame(correct,word,meaning){
  setTimeout(()=>{if(gameState&&(gameState.type==="speed"?gameState.seconds>0:gameState.index<10))drawWordGame();else endGame();},850);
 }
 function startSpeedTimer(){
- const timer=setInterval(()=>{
+ const timer=setInterval
+ 
   if(!gameState||gameState.type!=="speed"){clearInterval(timer);return;}
   gameState.seconds--;
   const el=document.getElementById("gameTimer");
@@ -733,7 +761,8 @@ function drawErrorGame(){
  document.getElementById("gameArea").innerHTML=`<div class="panel"><span class="tag">HATA AVCISI</span><h3>Bu cümleyi doğru hâle getir.</h3><div class="example">${escapeHTML(item.q)}</div><div class="choiceList">${opts.map(o=>`<button class="choice" onclick="answerError(${JSON.stringify(o)===JSON.stringify(item.a)},${JSON.stringify(item.a)},${JSON.stringify(item.why)})">${escapeHTML(o)}</button>`).join("")}</div><div id="errorFeedback"></div><p class="muted">Puan: ${g.score}</p><button class="btn" onclick="endGame()">Oyunu bitir</button></div>`;
 }
 function answerError(correct,answer,why){
- const g=gameState;
+ const g=gameState
+ 
  if(!g)return;
  if(correct){g.score++;g.streak++;addXP(3);}
  else g.streak=0;
