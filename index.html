@@ -1,409 +1,1334 @@
-
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>6-H'den İngilizce | İngilizceni Geliştir</title>
-<style>
-:root{
-  --bg:#080e1d;--panel:#121d33;--panel2:#1a2945;
-  --line:#2b3c5c;--text:#f3f7ff;--muted:#a8b7d2;
-  --blue:#75a7ff;--cyan:#5ce5dd;--green:#69e5a6;
-  --yellow:#ffda78;--pink:#ff8fbe;--red:#ff7885;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
- margin:0;background:radial-gradient(ellipse at top,#1b3155 0,#080e1d 60%);
- color:var(--text);font-family:Inter,system-ui,Arial,sans-serif;min-height:100vh
-}
-button,input,select{font:inherit}
-button{cursor:pointer}
-button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
-.wrap{max-width:1200px;margin:auto;padding:20px}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;padding:10px 0 24px}
-.brand{display:flex;align-items:center;gap:13px;font-weight:900;letter-spacing:.5px}
-.logo{
- display:grid;place-items:center;width:58px;height:52px;flex-shrink:0;
- border:2px solid #d8ffff;border-radius:15px;
- background:linear-gradient(135deg,#5ce5dd,#75a7ff 58%,#b49aff);
- color:#081020;font-size:20px;font-weight:1000;letter-spacing:-1px;
- box-shadow:0 0 12px #5ce5dd77,0 0 32px #75a7ff33
-}
-.brand-name{font-size:1.05rem}
-.brand-sub{font-size:.7rem;color:var(--muted);font-weight:650;margin-top:4px;letter-spacing:1.2px}
-.stats{display:flex;gap:8px;flex-wrap:wrap}
-.stat{padding:9px 12px;background:#121d33;border:1px solid var(--line);border-radius:12px;color:var(--muted);font-size:.88rem}
-.stat strong{color:white}
-.hero{display:grid;grid-template-columns:1.45fr .75fr;gap:16px}
-.hero-main,.hero-side,.panel{
- background:linear-gradient(145deg,#182945,#10182a);
- border:1px solid var(--line);border-radius:22px;padding:24px;
- box-shadow:0 16px 40px #0002
-}
-.eyebrow{color:var(--cyan);font-weight:850;font-size:.75rem;letter-spacing:1.8px}
-h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.06;letter-spacing:-1.5px;margin:14px 0}
-h1 em{font-style:normal;color:var(--cyan)}
-p{line-height:1.65}
-.muted{color:var(--muted)}
-.hero p{color:var(--muted);max-width:620px}
-.hero-side{display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(145deg,#213b60,#14213a)}
-.hero-art{text-align:center;font-size:4.5rem;margin:10px}
-.progressbar{height:9px;border-radius:20px;background:#0a1222;overflow:hidden;margin:12px 0}
-.progressbar span{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));transition:width .3s}
-.btn{border:0;border-radius:11px;padding:11px 15px;font-weight:850;color:#071321;background:linear-gradient(135deg,var(--blue),var(--cyan));transition:.18s}
-.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
-.btn.secondary{background:#243653;border:1px solid #3a5075;color:white}
-.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--muted)}
-.btn.small{padding:8px 11px;font-size:.85rem}
-.nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
-.nav button{padding:11px 13px;border:1px solid var(--line);border-radius:11px;background:#121d33;color:var(--muted);font-weight:800}
-.nav button.active,.nav button:hover{background:#29456c;color:white;border-color:#668dc9}
-.section{display:none}
-.section.active{display:block}
-.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:24px 0 15px}
-.section-head h2{font-size:1.8rem;margin:5px 0}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
-.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
-.card{background:linear-gradient(150deg,#172641,#111a2d);border:1px solid var(--line);border-radius:17px;padding:17px;min-width:0}
-.card h3{margin:8px 0}
-.card p{color:var(--muted)}
-.card-icon{font-size:2rem}
-.pill{display:inline-flex;background:#243653;border:1px solid #354c70;color:#d6e5ff;padding:5px 9px;border-radius:30px;font-size:.77rem;font-weight:800}
-.row{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-.row.spread{justify-content:space-between}
-.field{width:100%;background:#0b1426;border:1px solid var(--line);color:white;padding:11px;border-radius:10px}
-.field option{background:#101a2d}
-.unit-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.unit-btn{display:flex;align-items:center;gap:12px;text-align:left;padding:13px;background:#101a2d;color:white;border:1px solid var(--line);border-radius:14px}
-.unit-btn:hover{border-color:var(--cyan);background:#1b2c48}
-.unit-num{display:grid;place-items:center;min-width:42px;height:42px;border-radius:12px;background:#263d60;color:var(--cyan);font-weight:950}
-.unit-btn small{display:block;color:var(--muted);margin-top:4px}
-.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:15px 0}
-.tab{padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:#111b2e;color:var(--muted);font-weight:800}
-.tab.active{background:#29456c;color:white;border-color:#668dc9}
-.lesson h3{margin-top:22px}
-.lesson li,.lesson p{line-height:1.75;color:#d6e0f3}
-.rule{padding:13px 15px;background:#0c1729;border:1px solid #304565;border-left:4px solid var(--cyan);border-radius:11px;margin:12px 0;line-height:1.7}
-.example{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
-.example div{padding:12px;background:#0c1729;border:1px solid var(--line);border-radius:11px}
-.example strong{display:block;margin-bottom:5px}
-.word-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
-.word{padding:12px;background:#0c1729;border:1px solid var(--line);border-radius:12px;min-width:0}
-.word strong{display:block;padding-right:28px}
-.word .tr{color:var(--cyan);margin-top:5px}
-.word .ex{font-size:.82rem;color:var(--muted);margin-top:7px}
-.word button{float:right;background:transparent;color:var(--yellow);border:0;padding:0 0 4px 8px;font-size:1.1rem}
-.question{background:#101a2d;border:1px solid var(--line);border-radius:15px;padding:17px;margin:12px 0}
-.question h3{margin:0 0 13px;font-size:1.05rem}
-.answers{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.answer{padding:11px;text-align:left;border:1px solid #354766;border-radius:10px;background:#192743;color:white}
-.answer:hover{border-color:var(--cyan)}
-.answer.correct{background:#164936;border-color:var(--green)}
-.answer.wrong{background:#572a3a;border-color:var(--red)}
-.feedback{margin-top:10px;color:var(--muted);line-height:1.5}
-.result{text-align:center;padding:24px}
-.result .big{font-size:3rem}
-.game-card{min-height:205px;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between}
-.game-icon{font-size:2.6rem}
-.game-arena{background:#0c1729;border:1px solid var(--line);border-radius:16px;padding:17px;margin-top:14px}
-.game-big{text-align:center;font-size:clamp(1.8rem,5vw,3rem);font-weight:950;padding:20px 0}
-.hide{display:none!important}
-.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#eff8ff;color:#0b1020;padding:12px 17px;border-radius:11px;font-weight:850;z-index:99;max-width:90%;text-align:center;box-shadow:0 8px 35px #0006}
-.footer{text-align:center;color:#7889a9;padding:32px 10px 20px;font-size:.84rem}
-@media(max-width:820px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.word-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){.wrap{padding:12px}.hero-main,.hero-side,.panel{padding:16px}.grid,.grid.two,.unit-list,.word-grid,.example,.answers{grid-template-columns:1fr}.nav button{flex:1}.stats{width:100%}.stat{flex:1;text-align:center}.section-head h2{font-size:1.5rem}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6-H’den İngilizce — Kapsamlı İngilizce Öğrenme Platformu</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['Fredoka', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#1e1b4b',
+            },
+            accent: {
+              pink: '#ec4899',
+              purple: '#a855f7',
+              cyan: '#06b6d4',
+              amber: '#f59e0b',
+              emerald: '#10b981'
+            }
+          },
+          animation: {
+            'bounce-short': 'bounce 0.8s ease-in-out 1',
+            'pulse-glow': 'pulseGlow 2s infinite',
+          },
+          keyframes: {
+            pulseGlow: {
+              '0%, 100%': { opacity: 1, filter: 'drop-shadow(0 0 15px rgba(99, 102, 241, 0.6))' },
+              '50%': { opacity: 0.8, filter: 'drop-shadow(0 0 5px rgba(99, 102, 241, 0.2))' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    h1, h2, h3, .font-heading { font-family: 'Fredoka', sans-serif; }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    .dark .glass-card {
+      background: rgba(30, 27, 75, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .flip-card {
+      perspective: 1000px;
+    }
+    .flip-card-inner {
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-card-front, .flip-card-back {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .flip-card-back {
+      transform: rotateY(180deg);
+    }
+  </style>
 </head>
-<body>
-<div class="wrap">
-<header class="topbar">
- <div class="brand">
-  <div class="logo">6-H</div>
-  <div><div class="brand-name">6-H'DEN İNGİLİZCE</div><div class="brand-sub">ÖĞREN • PRATİK YAP • GELİŞ</div></div>
- </div>
- <div class="stats">
-  <div class="stat">⚡ XP <strong id="xp">0</strong></div>
-  <div class="stat">🏅 Seviye <strong id="level">1</strong></div>
-  <div class="stat">🔥 Seri <strong id="streak">0</strong></div>
- </div>
-</header>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
 
-<section class="hero">
- <div class="hero-main">
-  <div class="eyebrow">İNGİLİZCENİ GELİŞTİR</div>
-  <h1>Bir ünite daha.<br><em>Bir seviye daha.</em></h1>
-  <p>Kelimeleri öğren, konuları kavra, testleri çöz ve mini oyunlarla İngilizceni geliştir. Kendi hızında ilerle!</p>
-  <div class="row">
-   <button class="btn" onclick="showSection('units')">🚀 Öğrenmeye başla</button>
-   <button class="btn secondary" onclick="showSection('quiz')">🧠 Test çöz</button>
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 glass-card shadow-md border-b border-indigo-100 dark:border-indigo-950/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- LOGO -->
+        <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('home')">
+          <div class="relative flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 text-white font-black text-2xl shadow-lg shadow-indigo-500/30 transform hover:scale-105 transition-transform">
+            <span>6H</span>
+            <div class="absolute -top-1 -right-1 w-4 h-4 bg-amber-400 rounded-full border-2 border-white flex items-center justify-center text-[8px] text-slate-900">
+              <i class="fa-solid fa-star"></i>
+            </div>
+          </div>
+          <div>
+            <div class="font-heading font-bold text-xl sm:text-2xl tracking-wide bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-transparent">
+              6-H’den İngilizce
+            </div>
+            <div class="text-[10px] sm:text-xs text-indigo-500 font-semibold uppercase tracking-wider">
+              Eğlenceli Öğrenme Platformu
+            </div>
+          </div>
+        </div>
+
+        <!-- DESKTOP MENU -->
+        <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+          <button onclick="navigateTo('home')" class="nav-btn px-3 py-2 rounded-xl font-semibold text-sm hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 transition flex items-center gap-2">
+            <i class="fa-solid fa-house text-indigo-500"></i> Ana Sayfa
+          </button>
+          <button onclick="navigateTo('classes')" class="nav-btn px-3 py-2 rounded-xl font-semibold text-sm hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 transition flex items-center gap-2">
+            <i class="fa-solid fa-layer-group text-purple-500"></i> Sınıflar & Üniteler
+          </button>
+          <button onclick="navigateTo('words')" class="nav-btn px-3 py-2 rounded-xl font-semibold text-sm hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 transition flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-pink-500"></i> Kelimeler
+          </button>
+          <button onclick="navigateTo('tests')" class="nav-btn px-3 py-2 rounded-xl font-semibold text-sm hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 transition flex items-center gap-2">
+            <i class="fa-solid fa-vial-circle-check text-emerald-500"></i> Testler
+          </button>
+          <button onclick="navigateTo('games')" class="nav-btn px-3 py-2 rounded-xl font-semibold text-sm hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 transition flex items-center gap-2">
+            <i class="fa-solid fa-gamepad text-amber-500"></i> Oyunlar
+          </button>
+          <button onclick="navigateTo('lgs')" class="nav-btn px-3 py-2 rounded-xl font-semibold text-sm hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 transition flex items-center gap-2">
+            <i class="fa-solid fa-graduation-cap text-cyan-500"></i> LGS Özel
+          </button>
+          <button onclick="navigateTo('profile')" class="nav-btn px-3 py-2 rounded-xl font-semibold text-sm hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 transition flex items-center gap-2">
+            <i class="fa-solid fa-user-astronaut text-indigo-500"></i> İlerlemem
+          </button>
+        </nav>
+
+        <!-- STATS & THEME TOGGLE -->
+        <div class="flex items-center gap-3">
+          <div class="hidden sm:flex items-center gap-2 bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 px-3 py-1.5 rounded-full font-bold text-xs border border-amber-300 dark:border-amber-800">
+            <i class="fa-solid fa-bolt text-amber-500 text-sm"></i>
+            <span id="nav-xp">0 XP</span>
+          </div>
+
+          <button id="theme-toggle" onclick="toggleTheme()" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-400 flex items-center justify-center hover:scale-105 transition shadow-sm">
+            <i class="fa-solid fa-moon dark:hidden"></i>
+            <i class="fa-solid fa-sun hidden dark:block"></i>
+          </button>
+
+          <!-- MOBILE MENU BUTTON -->
+          <button onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-200 flex items-center justify-center">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE MENU DROPDOWN -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-3 pb-6 space-y-2">
+      <button onclick="navigateTo('home')" class="w-full text-left px-4 py-2.5 rounded-xl font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/30 flex items-center gap-3">
+        <i class="fa-solid fa-house text-indigo-500 w-5"></i> Ana Sayfa
+      </button>
+      <button onclick="navigateTo('classes')" class="w-full text-left px-4 py-2.5 rounded-xl font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/30 flex items-center gap-3">
+        <i class="fa-solid fa-layer-group text-purple-500 w-5"></i> Sınıflar & Üniteler
+      </button>
+      <button onclick="navigateTo('words')" class="w-full text-left px-4 py-2.5 rounded-xl font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/30 flex items-center gap-3">
+        <i class="fa-solid fa-book-open text-pink-500 w-5"></i> Kelimeler
+      </button>
+      <button onclick="navigateTo('tests')" class="w-full text-left px-4 py-2.5 rounded-xl font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/30 flex items-center gap-3">
+        <i class="fa-solid fa-vial-circle-check text-emerald-500 w-5"></i> Testler
+      </button>
+      <button onclick="navigateTo('games')" class="w-full text-left px-4 py-2.5 rounded-xl font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/30 flex items-center gap-3">
+        <i class="fa-solid fa-gamepad text-amber-500 w-5"></i> Oyunlar
+      </button>
+      <button onclick="navigateTo('lgs')" class="w-full text-left px-4 py-2.5 rounded-xl font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/30 flex items-center gap-3">
+        <i class="fa-solid fa-graduation-cap text-cyan-500 w-5"></i> LGS Özel
+      </button>
+      <button onclick="navigateTo('profile')" class="w-full text-left px-4 py-2.5 rounded-xl font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/30 flex items-center gap-3">
+        <i class="fa-solid fa-user-astronaut text-indigo-500 w-5"></i> İlerlemem
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main id="main-content" class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- SECTIONS WILL BE DYNAMICALLY RENDERED HERE -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 py-8 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-sm">6H</div>
+        <span class="text-slate-200 font-semibold">6-H’den İngilizce Öğrenme Platformu</span>
+      </div>
+      <p class="text-xs text-slate-500 text-center md:text-right">
+        5, 6, 7 ve 8. Sınıf MEB Müfredatına Tam Uyumlu • Eğlenceli ve İnteraktif Eğitim
+      </p>
+    </div>
+  </footer>
+
+  <!-- GLOBAL NOTIFICATION TOAST -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-indigo-500/30 pointer-events-none">
+    <div id="toast-icon" class="text-xl text-emerald-400"><i class="fa-solid fa-circle-check"></i></div>
+    <div id="toast-msg" class="font-medium text-sm">İşlem başarılı!</div>
   </div>
- </div>
- <div class="hero-side">
-  <div><span class="pill">📈 İLERLEME MERKEZİ</span><div class="hero-art">🌍 📚</div><h3>Bugün ne öğreneceksin?</h3><p class="muted">Küçük adımlar, büyük gelişmeler.</p></div>
-  <div><div class="row spread"><span class="muted">Toplam ilerleme</span><strong id="progressText">0%</strong></div><div class="progressbar"><span id="progressFill"></span></div><small class="muted">Doğru cevapladığın sorularla ilerle.</small></div>
- </div>
-</section>
 
-<nav class="nav">
- <button class="active" data-section="home" onclick="showSection('home')">🏠 Ana sayfa</button>
- <button data-section="units" onclick="showSection('units')">📘 Üniteler</button>
- <button data-section="words" onclick="showSection('words')">🔤 Kelimeler</button>
- <button data-section="grammar" onclick="showSection('grammar')">✍️ Konular</button>
- <button data-section="quiz" onclick="showSection('quiz')">🧠 Testler</button>
- <button data-section="games" onclick="showSection('games')">🎮 Mini oyunlar</button>
-</nav>
+  <!-- JAVASCRIPT CODE -->
+  <script>
+    // ==========================================
+    // 1. DATA STRUCTURE (40 UNITS - MEB COMPATIBLE)
+    // ==========================================
+    const COURSE_DATA = {
+      5: Array.from({ length: 10 }, (_, i) => {
+        const titles = [
+          "Hello!", "My Town", "Games and Hobbies", "My Daily Routine", "Health",
+          "Movies", "Party Time", "Fitness", "The Animal Shelter", "Festivals"
+        ];
+        return {
+          id: `5-${i+1}`,
+          grade: 5,
+          unitNum: i + 1,
+          title: titles[i],
+          desc: `5. Sınıf ${i+1}. Ünite: ${titles[i]} konusu temel kelimeler ve günlük kaliplar.`,
+          words: [
+            { en: "Greeting", tr: "Selamlaşma", type: "Noun", sentence: "Friendly greeting is good.", sentenceTr: "Dostça selamlaşmak iyidir." },
+            { en: "Subject", tr: "Ders / Konu", type: "Noun", sentence: "English is my favorite subject.", sentenceTr: "İngilizce en sevdiğim derstir." },
+            { en: "Library", tr: "Kütüphane", type: "Noun", sentence: "I study at the library.", sentenceTr: "Kütüphanede ders çalışırım." },
+            { en: "Hobby", tr: "Hobi", type: "Noun", sentence: "Chess is a fun hobby.", sentenceTr: "Satranç eğlenceli bir hobidir." },
+            { en: "Routine", tr: "Rutin / Günlük İş", type: "Noun", sentence: "I have a morning routine.", sentenceTr: "Sabah rutinimi uygularım." }
+          ],
+          grammar: {
+            title: `${titles[i]} Gramer Yapısı`,
+            desc: "Bu ünitede temel kendimi ifade etme ve geniş zaman kalıpları öğretilir.",
+            rules: ["Özne + Fiil uyumuna dikkat edin.", "Soru sorarken 'Do / Does' kullanılır."],
+            examples: [
+              { en: "I like English.", tr: "İngilizceyi severim." },
+              { en: "She plays games.", tr: "O oyun oynar." }
+            ]
+          }
+        };
+      }),
+      6: Array.from({ length: 10 }, (_, i) => {
+        const titles = [
+          "Life", "Yummy Breakfast", "Downtown", "Weather and Emotions", "At the Fair",
+          "Occupations", "Holidays", "Bookworms", "Saving the Planet", "Democracy"
+        ];
+        return {
+          id: `6-${i+1}`,
+          grade: 6,
+          unitNum: i + 1,
+          title: titles[i],
+          desc: `6. Sınıf ${i+1}. Ünite: ${titles[i]} ile orta seviye kelime ve zamanlar.`,
+          words: [
+            { en: "Breakfast", tr: "Kahvaltı", type: "Noun", sentence: "I eat healthy breakfast.", sentenceTr: "Sağlıklı kahvaltı yaparım." },
+            { en: "Downtown", tr: "Şehir Merkezi", type: "Noun", sentence: "The museum is downtown.", sentenceTr: "Müze şehir merkezindedir." },
+            { en: "Emotion", tr: "Duygu", type: "Noun", sentence: "Happiness is a great emotion.", sentenceTr: "Mutluluk harika bir duygudur." },
+            { en: "Occupation", tr: "Meslek", type: "Noun", sentence: "Teaching is a noble occupation.", sentenceTr: "Öğretmenlik yüce bir meslektir." },
+            { en: "Environment", tr: "Çevre", type: "Noun", sentence: "Protect the environment.", sentenceTr: "Çevreyi koruyun." }
+          ],
+          grammar: {
+            title: `${titles[i]} Konu Anlatımı`,
+            desc: "Şimdiki zaman (Present Continuous) ve Karşılaştırma (Comparatives) kullanımı.",
+            rules: ["Sıfatlara '-er' ekleyerek karşılaştırma yapabilirsiniz.", "Şimdiki zamanda fiile '-ing' eklenir."],
+            examples: [
+              { en: "Istanbul is bigger than Hatay.", tr: "İstanbul Hatay'dan daha büyüktür." },
+              { en: "I am reading a book right now.", tr: "Şu anda kitap okuyorum." }
+            ]
+          }
+        };
+      }),
+      7: Array.from({ length: 10 }, (_, i) => {
+        const titles = [
+          "Appearance and Personality", "Sports", "Biographies", "Wild Animals", "Television",
+          "Parties", "Superstitions", "Public Buildings", "Environment", "Planets"
+        ];
+        return {
+          id: `7-${i+1}`,
+          grade: 7,
+          unitNum: i + 1,
+          title: titles[i],
+          desc: `7. Sınıf ${i+1}. Ünite: ${titles[i]} konuları ve detaylı dil yapıları.`,
+          words: [
+            { en: "Personality", tr: "Kişilik", type: "Noun", sentence: "She has a kind personality.", sentenceTr: "O nazik bir kişiliğe sahip." },
+            { en: "Biography", tr: "Biyografi", type: "Noun", sentence: "I read Atatürk's biography.", sentenceTr: "Atatürk'ün biyografisini okudum." },
+            { en: "Habitat", tr: "Doğal Yaşam Alanı", type: "Noun", sentence: "Lions live in savannas.", sentenceTr: "Aslanlar savanalarda yaşar." },
+            { en: "Superstition", tr: "Batıl İnanç", type: "Noun", sentence: "Black cats are superstitions.", sentenceTr: "Kara kediler batıl inanç konusudur." },
+            { en: "Planet", tr: "Gezegen", type: "Noun", sentence: "Mars is a cold planet.", sentenceTr: "Mars soğuk bir gezegendir." }
+          ],
+          grammar: {
+            title: `${titles[i]} Gramer Rehberi`,
+            desc: "Geçmiş Zaman (Simple Past Tense) ve 'Should/Shouldn't' tavsiye kalıpları.",
+            rules: ["Düzenli fiillere '-ed' takısı getirilir.", "Tavsiye verirken 'should' kullanılır."],
+            examples: [
+              { en: "He discovered gravity.", tr: "Yerçekimini keşfetti." },
+              { en: "You should protect nature.", tr: "Doğayı korumalısın." }
+            ]
+          }
+        };
+      }),
+      8: Array.from({ length: 10 }, (_, i) => {
+        const titles = [
+          "Friendship", "Teen Life", "In the Kitchen", "On the Phone", "The Internet",
+          "Adventures", "Tourism", "Chores", "Science", "Natural Forces"
+        ];
+        return {
+          id: `8-${i+1}`,
+          grade: 8,
+          unitNum: i + 1,
+          title: titles[i],
+          desc: `8. Sınıf (LGS) ${i+1}. Ünite: ${titles[i]} sınav odaklı soru tipleri ve diyaloglar.`,
+          words: [
+            { en: "Mate / Buddy", tr: "Yakın Arkadaş", type: "Noun", sentence: "He is my best buddy.", sentenceTr: "O benim en yakın arkadaşım." },
+            { en: "Ingredient", tr: "Malzeme / İçerik", type: "Noun", sentence: "Flour is a cake ingredient.", sentenceTr: "Un bir kek malzemesidir." },
+            { en: "Communication", tr: "İletişim", type: "Noun", sentence: "Phones ease communication.", sentenceTr: "Telefonlar iletişimi kolaylaştırır." },
+            { en: "Adventure", tr: "Macera", type: "Noun", sentence: "Rafting is an adventure.", sentenceTr: "Rafting bir maceradır." },
+            { en: "Experiment", tr: "Deney", type: "Noun", sentence: "We did a science experiment.", sentenceTr: "Bir bilim deneyi yaptık." }
+          ],
+          grammar: {
+            title: `${titles[i]} LGS Gramer Püf Noktaları`,
+            desc: "LGS İngilizce sorularında çıkan davet, teklif ve bağlaç kalıpları.",
+            rules: ["'Would you like to...?' kalıbından sonra fiil yalın gelir.", "'Because' sebep, 'So' sonuç bildirir."],
+            examples: [
+              { en: "Would you like to join our party?", tr: "Partimize katılmak ister misin?" },
+              { en: "I love science because it is intriguing.", tr: "Bilimi seviyorum çünkü ilgi çekici." }
+            ]
+          }
+        };
+      })
+    };
 
-<section id="home" class="section active">
- <div class="section-head"><div><div class="eyebrow">KONTROL PANELİ</div><h2>Bugün gelişmeye hazır mısın?</h2></div><span class="pill">6. SINIF İNGİLİZCE</span></div>
- <div class="grid">
-  <div class="card"><div class="card-icon">📘</div><h3>Üniteleri keşfet</h3><p>Ünite başlıklarına göz at, kelimeleri ve temel konuları çalış.</p><button class="btn small" onclick="showSection('units')">Üniteleri aç →</button></div>
-  <div class="card"><div class="card-icon">🔊</div><h3>Dinleyerek öğren</h3><p>İngilizce kelimelerin telaffuzlarını dinle ve tekrar et.</p><button class="btn small" onclick="showSection('words')">Kelime çalış →</button></div>
-  <div class="card"><div class="card-icon">🎯</div><h3>Kendini dene</h3><p>Karışık soruları cevapla, doğru cevaplarla XP kazan.</p><button class="btn small" onclick="showSection('quiz')">Teste başla →</button></div>
- </div>
- <div class="section-head"><div><div class="eyebrow">HIZLI ERİŞİM</div><h2>Çalışma alanların</h2></div></div>
- <div class="grid two">
-  <div class="card"><h3>📝 Konu anlatımı</h3><p>Günlük rutinler, saatler, geniş zaman ve daha fazlası.</p><button class="btn secondary small" onclick="showSection('grammar')">Konuları incele</button></div>
-  <div class="card"><h3>🎮 Oyun zamanı</h3><p>Kelime eşleştirme ve hızlı cevap oyunlarıyla pratik yap.</p><button class="btn secondary small" onclick="showSection('games')">Oyunları gör</button></div>
- </div>
-</section>
+    // ==========================================
+    // 2. USER PROGRESS & LOCALSTORAGE MANAGEMENT
+    // ==========================================
+    let userProgress = {
+      xp: 0,
+      level: 1,
+      learnedWords: [],
+      completedUnits: [],
+      testScores: {},
+      gameHighScores: { game1: 0, game2: 0, game3: 0 },
+      badges: []
+    };
 
-<section id="units" class="section">
- <div class="section-head"><div><div class="eyebrow">DERS PLANI</div><h2>6. sınıf üniteleri</h2><p class="muted">Bir ünite seçerek kelime ve konu çalışmalarına geç.</p></div></div>
- <div class="unit-list" id="unitList"></div>
- <div id="unitDetail" class="panel hide" style="margin-top:15px"></div>
-</section>
+    function loadProgress() {
+      const saved = localStorage.getItem("6h_english_user_data");
+      if (saved) {
+        try {
+          userProgress = { ...userProgress, ...JSON.parse(saved) };
+        } catch (e) {
+          console.error("Progress parsing error:", e);
+        }
+      }
+      updateUIStats();
+    }
 
-<section id="words" class="section">
- <div class="section-head"><div><div class="eyebrow">KELİME LABORATUVARI</div><h2>Kelimeler ve telaffuz</h2><p class="muted">🔊 simgesine basarak İngilizce telaffuzu dinle.</p></div></div>
- <div class="row">
-  <select id="wordUnit" class="field" style="max-width:300px" onchange="renderWords()"><option value="all">Tüm üniteler</option></select>
-  <input id="wordSearch" class="field" style="max-width:300px" placeholder="Kelime ara..." oninput="renderWords()">
- </div>
- <div class="row" style="margin:12px 0"><span class="pill" id="wordCount">0 kelime</span><button class="btn secondary small" onclick="speak('Hello! How are you?')">🔊 Ses denemesi</button></div>
- <div id="wordGrid" class="word-grid"></div>
-</section>
+    function saveProgress() {
+      localStorage.setItem("6h_english_user_data", JSON.stringify(userProgress));
+      updateUIStats();
+    }
 
-<section id="grammar" class="section">
- <div class="section-head"><div><div class="eyebrow">KONUYU ANLA</div><h2>Konu anlatımları</h2><p class="muted">Kısa açıklamalar ve örnek cümleler.</p></div></div>
- <div class="tabs" id="grammarTabs"></div>
- <div class="panel lesson" id="grammarContent"></div>
-</section>
+    function addXP(amount, reason = "") {
+      userProgress.xp += amount;
+      const newLevel = Math.floor(userProgress.xp / 100) + 1;
+      if (newLevel > userProgress.level) {
+        userProgress.level = newLevel;
+        showToast(`TEBRİKLER! Seviye ${newLevel} oldun! 🎉`, "success");
+      } else if (reason) {
+        showToast(`+${amount} XP Kazanıldı! (${reason})`, "success");
+      }
+      saveProgress();
+    }
 
-<section id="quiz" class="section">
- <div class="section-head"><div><div class="eyebrow">BİLGİNİ SINAYALIM</div><h2>İngilizce testleri</h2><p class="muted">Her doğru cevap XP kazandırır.</p></div><span class="pill">🎯 KENDİNİ DENE</span></div>
- <div class="row">
-  <select id="quizUnit" class="field" style="max-width:260px"><option value="all">Karışık üniteler</option></select>
-  <button class="btn" onclick="startQuiz()">Teste başla</button>
- </div>
- <div id="quizArea" style="margin-top:15px"><div class="card"><h3>Hazır olduğunda teste başlayabilirsin.</h3><p>Her soruda bir doğru cevap bulunur.</p></div></div>
-</section>
+    function updateUIStats() {
+      const xpEl = document.getElementById("nav-xp");
+      if (xpEl) xpEl.innerText = `${userProgress.xp} XP (Svy ${userProgress.level})`;
+    }
 
-<section id="games" class="section">
- <div class="section-head"><div><div class="eyebrow">ÖĞRENEREK EĞLEN</div><h2>Mini oyun merkezi</h2><p class="muted">Puan kazanmak için doğru cevaplar ver!</p></div></div>
- <div class="grid two">
-  <div class="card game-card"><div><div class="game-icon">⚡</div><h3>Hızlı Cevap</h3><p>İngilizce kelimenin Türkçe karşılığını olabildiğince hızlı seç.</p></div><button class="btn" onclick="startSpeedGame()">Oyuna başla →</button></div>
-  <div class="card game-card"><div><div class="game-icon">🧩</div><h3>Kelime Ustası</h3><p>Verilen Türkçe anlamın İngilizcesini bul.</p></div><button class="btn" onclick="startWordGame()">Oyuna başla →</button></div>
- </div>
- <div id="gameArea" class="game-arena hide"></div>
-</section>
+    // ==========================================
+    // 3. VOICE SPEECH SYSTEM (WEB SPEECH API)
+    // ==========================================
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) {
+        showToast("Tarayıcınız seslendirmeyi desteklemiyor.", "error");
+        return;
+      }
+      window.speechSynthesis.cancel(); // Stop current speech
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9; // Slightly slower for better learning
+      window.speechSynthesis.speak(utterance);
+    }
 
-<div id="toast" class="toast hide" role="status"></div>
-<footer class="footer">6-H'den İngilizce · Öğren • Pratik yap • Geliş</footer>
-</div>
+    // ==========================================
+    // 4. ROUTING & UI NAVIGATION
+    // ==========================================
+    let currentRoute = "home";
 
-<script>
-const units=[
- {name:"Life",tr:"Hayat",icon:"🌅",words:[
-  ["wake up","uyanmak","I wake up at seven."],["get dressed","giyinmek","I get dressed."],["have breakfast","kahvaltı yapmak","I have breakfast."],["go to school","okula gitmek","I go to school."],["have lunch","öğle yemeği yemek","I have lunch."],["do homework","ödev yapmak","I do my homework."],["play games","oyun oynamak","I play games."],["read a book","kitap okumak","I read a book."],["go to bed","yatağa gitmek","I go to bed."],["brush my teeth","dişlerimi fırçalamak","I brush my teeth."],["always","her zaman","I always study."],["usually","genellikle","I usually walk to school."]]},
- {name:"Yummy Breakfast",tr:"Lezzetli Kahvaltı",icon:"🍳",words:[
-  ["cheese","peynir","I like cheese."],["olives","zeytin","I eat olives."],["honey","bal","Honey is sweet."],["butter","tereyağı","I like butter."],["jam","reçel","I eat jam."],["egg","yumurta","I have an egg."],["bread","ekmek","I eat bread."],["milk","süt","I drink milk."],["tea","çay","My mother drinks tea."],["cereal","kahvaltılık gevrek","I eat cereal."],["sausage","sosis","I like sausage."],["pancake","krep","I eat pancakes."]]},
- {name:"Downtown",tr:"Şehir Merkezi",icon:"🏙️",words:[
-  ["bank","banka","The bank is near."],["hospital","hastane","The hospital is big."],["library","kütüphane","I go to the library."],["museum","müze","The museum is old."],["pharmacy","eczane","The pharmacy is open."],["bookshop","kitapçı","I visit the bookshop."],["cinema","sinema","Let's go to the cinema."],["turn left","sola dön","Turn left at the corner."],["turn right","sağa dön","Turn right here."],["go straight","dümdüz git","Go straight ahead."],["behind","arkasında","The park is behind the school."],["opposite","karşısında","The bank is opposite the park."]]},
- {name:"Weather and Emotions",tr:"Hava Durumu ve Duygular",icon:"🌦️",words:[
-  ["sunny","güneşli","It is sunny today."],["rainy","yağmurlu","It is rainy."],["cloudy","bulutlu","It is cloudy today."],["snowy","karlı","It is snowy."],["windy","rüzgârlı","It is windy."],["hot","sıcak","It is hot today."],["cold","soğuk","It is cold outside."],["happy","mutlu","I am happy."],["sad","üzgün","She is sad."],["angry","kızgın","He is angry."],["scared","korkmuş","I am scared."],["excited","heyecanlı","We are excited."]]},
- {name:"At the Fair",tr:"Panayırda",icon:"🎡",words:[
-  ["ferris wheel","dönme dolap","The ferris wheel is high."],["bumper cars","çarpışan arabalar","I like bumper cars."],["roller coaster","hız treni","The roller coaster is exciting."],["carousel","atlıkarınca","The carousel is colourful."],["ticket","bilet","I have a ticket."],["fun","eğlence","The fair is fun."],["boring","sıkıcı","This ride is boring."],["exciting","heyecan verici","It is exciting."],["amazing","harika","The show is amazing."],["ride","eğlence aracı","Let's try this ride."]]},
- {name:"Occupations",tr:"Meslekler",icon:"👩‍🚒",words:[
-  ["doctor","doktor","A doctor helps people."],["teacher","öğretmen","My teacher is kind."],["engineer","mühendis","An engineer designs things."],["dentist","diş hekimi","The dentist checks my teeth."],["nurse","hemşire","A nurse helps patients."],["police officer","polis","A police officer helps people."],["firefighter","itfaiyeci","A firefighter puts out fires."],["farmer","çiftçi","A farmer grows vegetables."],["pilot","pilot","A pilot flies a plane."],["cook","aşçı","A cook prepares food."],["vet","veteriner","A vet helps animals."],["artist","sanatçı","An artist paints pictures."]]},
- {name:"Holidays",tr:"Tatiller",icon:"🏖️",words:[
-  ["beach","plaj","I go to the beach."],["mountain","dağ","The mountain is high."],["camp","kamp yapmak","We camp in summer."],["tent","çadır","This is our tent."],["旅行","seyahat","I love travelling."],["hotel","otel","We stay at a hotel."],["swim","yüzmek","I can swim."],["visit","ziyaret etmek","I visit my grandparents."],["camera","fotoğraf makinesi","I have a camera."],["souvenir","hatıra eşyası","I buy a souvenir."]]},
- {name:"Bookworms",tr:"Kitap Kurtları",icon:"📚",words:[
-  ["novel","roman","I read a novel."],["story","hikâye","The story is interesting."],["poem","şiir","I write a poem."],["author","yazar","Who is the author?"],["library","kütüphane","The library is quiet."],["read","okumak","I read every day."],["interesting","ilginç","This book is interesting."],["favourite","en sevilen","It is my favourite book."],["character","karakter","My favourite character is brave."],["page","sayfa","Read page ten."]]},
- {name:"Saving the Planet",tr:"Gezegenimizi Koruyalım",icon:"🌍",words:[
-  ["recycle","geri dönüştürmek","We recycle paper."],["environment","çevre","Protect the environment."],["pollution","kirlilik","Pollution is harmful."],["save water","su tasarrufu yapmak","We should save water."],["plant a tree","ağaç dikmek","Let's plant a tree."],["reuse","yeniden kullanmak","Reuse your bags."],["waste","israf etmek","Don't waste water."],["clean","temizlemek","We clean the park."],["earth","Dünya","Let's protect the Earth."],["plastic","plastik","Use less plastic."]]},
- {name:"Democracy",tr:"Demokrasi",icon:"🗳️",words:[
-  ["vote","oy vermek","We vote at school."],["election","seçim","The election is today."],["president","başkan","The president speaks."],["fair","adil","The game is fair."],["equal","eşit","Everyone is equal."],["decision","karar","We make a decision."],["choose","seçmek","Choose your answer."],["rule","kural","Follow the rules."],["respect","saygı duymak","We respect each other."],["freedom","özgürlük","Freedom is important."]]}
-];
+    function navigateTo(route, param = null) {
+      currentRoute = route;
+      const main = document.getElementById("main-content");
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
-let xp=0,streak=0,answered=0,correctTotal=0;
-let quizQuestions=[],quizIndex=0,quizScore=0;
-let gameTimer=null,gameScore=0,gameRound=0;
-const $=id=>document.getElementById(id);
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function toast(msg){
- const t=$("toast");t.textContent=msg;t.classList.remove("hide");
- clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.add("hide"),2300);
-}
-function showSection(id){
- document.querySelectorAll(".section").forEach(s=>s.classList.toggle("active",s.id===id));
- document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.section===id));
- window.scrollTo({top:0,behavior:"smooth"});
-}
-function addXP(n){
- xp+=n;answered++;correctTotal++;
- $("xp").textContent=xp;
- $("level").textContent=1+Math.floor(xp/100);
- $("streak").textContent=++streak;
- $("progressText").textContent=Math.min(100,Math.round(xp/5))+"%";
- $("progressFill").style.width=Math.min(100,xp/5)+"%";
-}
-function speak(text){
- if(!("speechSynthesis" in window)||typeof SpeechSynthesisUtterance==="undefined"){
-  toast("Sesli okuma desteklenmiyor. Chrome veya Edge deneyebilirsin.");return;
- }
- window.speechSynthesis.cancel();
- const utterance=new SpeechSynthesisUtterance(String(text));
- utterance.lang="en-US";utterance.rate=.85;utterance.pitch=1;
- utterance.onerror=()=>toast("Ses açılamadı. Tarayıcı ses ayarlarını kontrol et.");
- window.speechSynthesis.speak(utterance);
-}
-function allWords(){return units.flatMap((u,i)=>u.words.map(w=>({en:w[0],tr:w[1],ex:w[2],unit:i})))}
-function renderUnits(){
- $("unitList").innerHTML=units.map((u,i)=>`<button class="unit-btn" onclick="openUnit(${i})"><span class="unit-num">${String(i+1).padStart(2,"0")}</span><span><strong>${esc(u.name)}</strong><small>${esc(u.tr)} · ${u.words.length} kelime</small></span><span style="margin-left:auto">${u.icon}</span></button>`).join("");
- [ $("wordUnit"),$("quizUnit") ].forEach(sel=>units.forEach((u,i)=>sel.add(new Option((i+1)+". "+u.name,i))));
-}
-function openUnit(i){
- const u=units[i];showSection("units");
- $("unitDetail").classList.remove("hide");
- $("unitDetail").innerHTML=`<span class="pill">ÜNİTE ${i+1}</span><h2>${u.icon} ${esc(u.name)} — ${esc(u.tr)}</h2><p class="muted">Bu ünitedeki kelimeleri çalışabilir, telaffuzlarını dinleyebilirsin.</p><div class="word-grid">${u.words.map(w=>`<div class="word"><button title="İngilizceyi dinle" onclick="speak('${w[0].replace(/'/g,"\\'")}')">🔊</button><strong>${esc(w[0])}</strong><div class="tr">${esc(w[1])}</div><div class="ex">${esc(w[2])}</div></div>`).join("")}</div><div class="row" style="margin-top:15px"><button class="btn" onclick="showSection('quiz');$('quizUnit').value='${i}';startQuiz()">Bu üniteden test çöz</button><button class="btn secondary" onclick="showSection('words');$('wordUnit').value='${i}';renderWords()">Kelimeleri çalış</button></div>`;
-}
-function renderWords(){
- const filter=$("wordUnit").value,search=$("wordSearch").value.trim().toLocaleLowerCase("tr");
- const list=allWords().filter(w=>(filter==="all"||w.unit===Number(filter))&&(`${w.en} ${w.tr} ${w.ex}`).toLocaleLowerCase("tr").includes(search));
- $("wordCount").textContent=list.length+" kelime";
- $("wordGrid").innerHTML=list.length?list.map(w=>`<div class="word"><button title="Dinle" onclick="speak('${w.en.replace(/'/g,"\\'")}')">🔊</button><strong>${esc(w.en)}</strong><div class="tr">${esc(w.tr)}</div><div class="ex">${esc(w.ex)}</div></div>`).join(""):'<p class="muted">Bu aramayla eşleşen kelime bulunamadı.</p>';
-}
-const grammar=[
- {name:"Am / Is / Are",html:`<h3>“To be” fiili</h3><p>İnsanları, nesneleri ve durumları anlatırken am, is ve are kullanılır.</p><div class="rule"><b>I am</b> · <b>He / She / It is</b> · <b>You / We / They are</b></div><div class="example"><div><strong>I am happy.</strong>Ben mutluyum.</div><div><strong>She is a student.</strong>O bir öğrenci.</div><div><strong>They are friends.</strong>Onlar arkadaş.</div><div><strong>Are you ready?</strong>Hazır mısın?</div></div>`},
- {name:"Simple Present",html:`<h3>Geniş zaman</h3><p>Alışkanlıklar ve düzenli yapılan işler için kullanılır.</p><div class="rule">I / You / We / They + fiil<br>He / She / It + fiil-s</div><div class="example"><div><strong>I play games.</strong>Oyun oynarım.</div><div><strong>He plays football.</strong>O futbol oynar.</div><div><strong>I don't drink tea.</strong>Çay içmem.</div><div><strong>Does she read?</strong>O okur mu?</div></div><p><b>Always:</b> her zaman · <b>Usually:</b> genellikle · <b>Sometimes:</b> bazen · <b>Never:</b> asla</p>`},
- {name:"Have / Has",html:`<h3>Sahip olmak</h3><div class="rule">I / You / We / They <b>have</b><br>He / She / It <b>has</b></div><div class="example"><div><strong>I have a book.</strong>Bir kitabım var.</div><div><strong>She has a cat.</strong>Onun bir kedisi var.</div></div>`},
- {name:"Can / Can't",html:`<h3>Yetenek ve izin</h3><p>Can, yapabilmek anlamına gelir. Can't, yapamamak demektir.</p><div class="example"><div><strong>I can swim.</strong>Yüzebilirim.</div><div><strong>He can't fly.</strong>O uçamaz.</div><div><strong>Can you dance?</strong>Dans edebilir misin?</div><div><strong>Yes, I can.</strong>Evet, edebilirim.</div></div>`},
- {name:"There is / There are",html:`<h3>Bir yerde bir şey olduğunu anlatmak</h3><div class="rule"><b>There is</b> = tekil · <b>There are</b> = çoğul</div><div class="example"><div><strong>There is a bank.</strong>Bir banka var.</div><div><strong>There are two parks.</strong>İki park var.</div></div>`},
- {name:"Should / Shouldn't",html:`<h3>Tavsiye vermek</h3><p>Should tavsiye, shouldn't ise yapılmaması gereken şeyler için kullanılır.</p><div class="example"><div><strong>You should recycle.</strong>Geri dönüşüm yapmalısın.</div><div><strong>You shouldn't waste water.</strong>Suyu israf etmemelisin.</div></div>`}
-];
-function renderGrammar(){
- $("grammarTabs").innerHTML=grammar.map((g,i)=>`<button class="tab ${i===0?"active":""}" onclick="selectGrammar(${i})">${g.name}</button>`).join("");
- selectGrammar(0);
-}
-function selectGrammar(i){
- document.querySelectorAll("#grammarTabs .tab").forEach((b,j)=>b.classList.toggle("active",i===j));
- $("grammarContent").innerHTML=grammar[i].html;
-}
-const questions=[
- {q:"What does “wake up” mean?",a:["Uyumak","Uyanmak","Yemek yemek","Koşmak"],c:1},
- {q:"Which one is a breakfast food?",a:["Cheese","Hospital","Library","Mountain"],c:0},
- {q:"“Turn left” ne demektir?",a:["Sağa dön","Dümdüz git","Sola dön","Geri dön"],c:2},
- {q:"It is snowy. Hava nasıldır?",a:["Güneşli","Karlı","Sıcak","Rüzgârlı"],c:1},
- {q:"Which one is a job?",a:["Pancake","Cloudy","Dentist","Behind"],c:2},
- {q:"“Kütüphane” İngilizce hangisidir?",a:["Library","Bakery","Hospital","Cinema"],c:0},
- {q:"She ___ a student.",a:["am","are","is","be"],c:2},
- {q:"He ___ football every day.",a:["play","plays","playing","are play"],c:1},
- {q:"“Geri dönüştürmek” hangisidir?",a:["Recycle","Pollution","Waste","Weather"],c:0},
- {q:"A pilot flies a ___.",a:["book","plane","tent","tree"],c:1},
- {q:"“I am happy” ne demektir?",a:["Üzgünüm","Kızgınım","Mutluyum","Korkuyorum"],c:2},
- {q:"There ___ two parks.",a:["is","am","are","be"],c:2},
- {q:"“You should save water” ne demektir?",a:["Su içemezsin","Su tasarrufu yapmalısın","Su satmalısın","Su kirli"],c:1},
- {q:"Which word means “yazar”?",a:["Author","Character","Page","Novel"],c:0},
- {q:"I ___ swim. (Yüzebilirim.)",a:["can","has","does","am"],c:0},
- {q:"“Vote” kelimesinin anlamı nedir?",a:["Çizmek","Koşmak","Oy vermek","Okumak"],c:2},
- {q:"“Go straight” ne demektir?",a:["Sola dön","Dümdüz git","Sağa dön","Dur"],c:1},
- {q:"Which one describes a feeling?",a:["Hospital","Engineer","Excited","Bread"],c:2},
- {q:"He ___ a bike.",a:["have","has","are","am"],c:1},
- {q:"“Environment” ne demektir?",a:["Çevre","Meslek","Tatlı","Tatiller"],c:0}
-];
+      // Close mobile menu
+      document.getElementById("mobile-menu").classList.add("hidden");
 
-function startQuiz(){
- const unit=$("quizUnit").value;
- let pool=questions.slice();
+      switch(route) {
+        case 'home':
+          renderHome(main);
+          break;
+        case 'classes':
+          renderClasses(main);
+          break;
+        case 'unit-detail':
+          renderUnitDetail(main, param);
+          break;
+        case 'words':
+          renderWordsPage(main);
+          break;
+        case 'tests':
+          renderTestsPage(main, param);
+          break;
+        case 'games':
+          renderGamesPage(main);
+          break;
+        case 'lgs':
+          renderLGSPage(main);
+          break;
+        case 'profile':
+          renderProfilePage(main);
+          break;
+        default:
+          renderHome(main);
+      }
+    }
 
- if(unit!=="all"){
-  const i=Number(unit);
-  const w=units[i].words;
+    // ==========================================
+    // 5. RENDER FUNCTIONS FOR PAGES
+    // ==========================================
 
-  pool=w.map(x=>({
-   q:`“${x[0]}” ne demektir?`,
-   a:[x[1],w[(w.indexOf(x)+1)%w.length][1],
-      w[(w.indexOf(x)+2)%w.length][1],
-      w[(w.indexOf(x)+3)%w.length][1]],
-   c:0
-  }));
- }
+    // --- HOME PAGE ---
+    function renderHome(container) {
+      container.innerHTML = `
+        <!-- HERO SECTION -->
+        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 text-white p-8 sm:p-12 shadow-2xl mb-12">
+          <div class="relative z-10 max-w-2xl">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold uppercase tracking-wider mb-4 border border-white/30">
+              ⚡ Okul Müfredatına Tam Uyumlu
+            </span>
+            <h1 class="text-3xl sm:text-5xl font-black mb-4 leading-tight">
+              İngilizceni Geliştir, Seviyeni Yükselt!
+            </h1>
+            <p class="text-indigo-100 text-base sm:text-lg mb-8 leading-relaxed">
+              5, 6, 7 ve 8. Sınıf kelimelerini öğren, eğlenceli testleri çöz, mini oyunlar oyna ve XP toplayarak şampiyon ol!
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <button onclick="navigateTo('classes')" class="bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold px-6 py-3.5 rounded-2xl shadow-lg transform hover:-translate-y-1 transition flex items-center gap-2">
+                <i class="fa-solid fa-rocket"></i> Öğrenmeye Başla
+              </button>
+              <button onclick="navigateTo('games')" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 font-bold px-6 py-3.5 rounded-2xl transition flex items-center gap-2">
+                <i class="fa-solid fa-gamepad"></i> Oyun Alanı
+              </button>
+            </div>
+          </div>
+          <div class="absolute -right-10 -bottom-10 opacity-20 lg:opacity-40 pointer-events-none text-9xl">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+        </div>
 
- // Doğru cevabı rastgele A, B, C veya D konumuna taşı.
- pool=pool.map(q=>{
-  const correctAnswer=q.a[q.c];
-  const answers=q.a.filter((_,i)=>i!==q.c);
-  answers.sort(()=>Math.random()-.5);
+        <!-- QUICK ACTION CARDS -->
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+          <i class="fa-solid fa-compass text-indigo-500"></i> Platform Haritası
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          
+          <div onclick="navigateTo('words')" class="glass-card p-6 rounded-3xl shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 cursor-pointer border-t-4 border-pink-500">
+            <div class="w-12 h-12 rounded-2xl bg-pink-100 dark:bg-pink-950 text-pink-500 flex items-center justify-center text-2xl mb-4 font-bold">
+              <i class="fa-solid fa-book-open"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">1. Kelime Öğren</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Sesli okunuşlar, Türkçe anlamlar ve örnek cümleler ile kelimeleri ezberle.</p>
+          </div>
 
-  const correctIndex=Math.floor(Math.random()*4);
-  answers.splice(correctIndex,0,correctAnswer);
+          <div onclick="navigateTo('classes')" class="glass-card p-6 rounded-3xl shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 cursor-pointer border-t-4 border-purple-500">
+            <div class="w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-950 text-purple-500 flex items-center justify-center text-2xl mb-4 font-bold">
+              <i class="fa-solid fa-spell-check"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">2. Dil Bilgisi (Gramer)</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Karmaşık gramer kurallarını basit, eğlenceli ve anlaşılır tablolarla öğren.</p>
+          </div>
 
-  return {...q,a:answers,c:correctIndex};
- });
+          <div onclick="navigateTo('tests')" class="glass-card p-6 rounded-3xl shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 cursor-pointer border-t-4 border-emerald-500">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-500 flex items-center justify-center text-2xl mb-4 font-bold">
+              <i class="fa-solid fa-vial-circle-check"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">3. İngilizce Testleri</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Şıkları karıştırılmış dinamik testlerle kendini sına ve XP kazan.</p>
+          </div>
 
- quizQuestions=pool.sort(()=>Math.random()-.5).slice(0,10);
- quizIndex=0;
- quizScore=0;
- showQuestion();
-}
+          <div onclick="navigateTo('games')" class="glass-card p-6 rounded-3xl shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 cursor-pointer border-t-4 border-amber-500">
+            <div class="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-950 text-amber-500 flex items-center justify-center text-2xl mb-4 font-bold">
+              <i class="fa-solid fa-gamepad"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">4. Oyun Merkezi</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Eşleştirme, harf karıştırma ve süreye karşı yarış oyunları ile pratik yap.</p>
+          </div>
 
-function showQuestion(){
- if(quizIndex>=quizQuestions.length){
-  $("quizArea").innerHTML=`<div class="panel result"><div class="big">${quizScore>=8?"🏆":quizScore>=5?"⭐":"📘"}</div><h2>Test tamamlandı!</h2><p>${quizQuestions.length} sorudan <b>${quizScore}</b> doğru yaptın.</p><p class="muted">${quizScore===quizQuestions.length?"Mükemmel! Tüm soruları doğru bildin.":"Biraz daha çalışıp tekrar deneyebilirsin."}</p><button class="btn" onclick="startQuiz()">Tekrar çöz</button></div>`;
-  return;
- }
- const q=quizQuestions[quizIndex];
- $("quizArea").innerHTML=`<div class="row spread"><span class="pill">SORU ${quizIndex+1}/${quizQuestions.length}</span><span class="muted">Puan: ${quizScore}</span></div><div class="progressbar"><span style="width:${quizIndex/quizQuestions.length*100}%"></span></div><div class="question"><h3>${esc(q.q)}</h3><div class="answers">${q.a.map((a,i)=>`<button class="answer" onclick="answerQuestion(${i})">${String.fromCharCode(65+i)}. ${esc(a)}</button>`).join("")}</div><div id="qFeedback" class="feedback"></div></div>`;
-}
-function answerQuestion(i){
- const q=quizQuestions[quizIndex],buttons=document.querySelectorAll("#quizArea .answer");
- buttons.forEach(b=>b.disabled=true);
- buttons[q.c].classList.add("correct");
- if(i===q.c){quizScore++;addXP(10);$("qFeedback").textContent="Doğru cevap! +10 XP";}
- else{buttons[i].classList.add("wrong");streak=0;$("streak").textContent=0;$("qFeedback").textContent="Doğru cevap: "+q.a[q.c];}
- const next=document.createElement("button");next.className="btn";next.style.marginTop="12px";next.textContent=quizIndex===quizQuestions.length-1?"Sonucu gör":"Sonraki soru →";next.onclick=()=>{quizIndex++;showQuestion()};$("qFeedback").appendChild(document.createElement("br"));$("qFeedback").appendChild(next);
-}
-function startSpeedGame(){startGame("speed")}
-function startWordGame(){startGame("word")}
-function startGame(type){
- clearInterval(gameTimer);gameScore=0;gameRound=0;
- $("gameArea").classList.remove("hide");
- $("gameArea").dataset.type=type;
- $("gameArea").innerHTML=`<div class="row spread"><span class="pill">${type==="speed"?"⚡ HIZLI CEVAP":"🧩 KELİME USTASI"}</span><button class="btn ghost small" onclick="stopGame()">Oyunu kapat</button></div><p class="muted">10 soru boyunca doğru cevapları bul.</p><div id="gameQuestion"></div>`;
- nextGameQuestion();
-}
-function nextGameQuestion(){
- if(gameRound>=10){
-  $("gameQuestion").innerHTML=`<div class="result"><div class="big">🎉</div><h2>Oyun bitti!</h2><p>10 soruda ${gameScore} doğru cevap.</p><button class="btn" onclick="startGame($('gameArea').dataset.type)">Tekrar oyna</button></div>`;return;
- }
- const words=allWords(),w=words[Math.floor(Math.random()*words.length)],type=$("gameArea").dataset.type;
- const correct=type==="speed"?w.tr:w.en;
- const opts=[correct];
- while(opts.length<4){const x=words[Math.floor(Math.random()*words.length)];const val=type==="speed"?x.tr:x.en;if(!opts.includes(val))opts.push(val)}
- opts.sort(()=>Math.random()-.5);
- $("gameQuestion").innerHTML=`<div class="game-big">${esc(type==="speed"?w.en:w.tr)}</div><div class="answers">${opts.map(o=>`<button class="answer" onclick="gameAnswer(this,'${o.replace(/\\/g,"\\\\").replace(/'/g,"\\'")}','${correct.replace(/\\/g,"\\\\").replace(/'/g,"\\'")}')">${esc(o)}</button>`).join("")}</div><p class="muted">Soru ${gameRound+1}/10 · Puan: ${gameScore}</p>`;
-}
-function gameAnswer(btn,choice,correct){
- document.querySelectorAll("#gameQuestion .answer").forEach(b=>b.disabled=true);
- if(choice===correct){btn.classList.add("correct");gameScore++;addXP(5);toast("+5 XP! Doğru cevap.");}
- else{btn.classList.add("wrong");toast("Doğru cevap: "+correct);}
- gameRound++;setTimeout(nextGameQuestion,650);
-}
-function stopGame(){$("gameArea").classList.add("hide");}
-renderUnits();renderWords();renderGrammar();
-</script>
+          <div onclick="navigateTo('lgs')" class="glass-card p-6 rounded-3xl shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 cursor-pointer border-t-4 border-cyan-500">
+            <div class="w-12 h-12 rounded-2xl bg-cyan-100 dark:bg-cyan-950 text-cyan-500 flex items-center justify-center text-2xl mb-4 font-bold">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">5. LGS Hazırlık</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400">8. Sınıf öğrencilerine özel LGS soru kalıpları ve diyalog alıştırmaları.</p>
+          </div>
+
+          <div onclick="navigateTo('profile')" class="glass-card p-6 rounded-3xl shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 cursor-pointer border-t-4 border-indigo-500">
+            <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 text-indigo-500 flex items-center justify-center text-2xl mb-4 font-bold">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">6. İlerlemem & Rozetler</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Kazandığın rozetleri, seviyeni ve genel başarı istatistiklerini incele.</p>
+          </div>
+
+        </div>
+      `;
+    }
+
+    // --- CLASSES & UNITS PAGE ---
+    function renderClasses(container) {
+      container.innerHTML = `
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold mb-2">Sınıflar & Üniteler</h1>
+          <p class="text-slate-500 dark:text-slate-400">Öğrenmek istediğin sınıf seviyesini seç ve ünitelere göz at.</p>
+        </div>
+
+        <!-- GRADE TABS -->
+        <div class="flex flex-wrap gap-3 mb-8">
+          ${[5, 6, 7, 8].map(g => `
+            <button onclick="filterGradeUnits(${g})" id="grade-tab-${g}" class="grade-tab-btn px-6 py-3 rounded-2xl font-bold text-sm transition-all shadow-sm border border-slate-200 dark:border-slate-800 flex items-center gap-2">
+              <i class="fa-solid fa-graduation-cap"></i> ${g}. Sınıf (10 Ünite)
+            </button>
+          `).join('')}
+        </div>
+
+        <!-- UNITS CONTAINER -->
+        <div id="units-list-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Dynamically populated -->
+        </div>
+      `;
+      filterGradeUnits(5); // Default load grade 5
+    }
+
+    function filterGradeUnits(grade) {
+      document.querySelectorAll('.grade-tab-btn').forEach(b => {
+        b.classList.remove('bg-indigo-600', 'text-white', 'shadow-indigo-500/30');
+        b.classList.add('bg-white', 'dark:bg-slate-900', 'text-slate-700', 'dark:text-slate-300');
+      });
+      const activeBtn = document.getElementById(`grade-tab-${grade}`);
+      if(activeBtn) {
+        activeBtn.classList.remove('bg-white', 'dark:bg-slate-900', 'text-slate-700', 'dark:text-slate-300');
+        activeBtn.classList.add('bg-indigo-600', 'text-white', 'shadow-indigo-500/30');
+      }
+
+      const grid = document.getElementById("units-list-grid");
+      const units = COURSE_DATA[grade] || [];
+
+      grid.innerHTML = units.map(u => {
+        const isDone = userProgress.completedUnits.includes(u.id);
+        return `
+          <div onclick="navigateTo('unit-detail', '${u.id}')" class="glass-card rounded-3xl p-6 shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 cursor-pointer relative overflow-hidden flex flex-col justify-between border border-slate-200 dark:border-slate-800">
+            ${isDone ? `<span class="absolute top-4 right-4 bg-emerald-500 text-white text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1"><i class="fa-solid fa-check"></i> Tamamlandı</span>` : ''}
+            <div>
+              <span class="text-xs font-bold text-indigo-500 uppercase tracking-wider mb-1 block">${u.grade}. Sınıf • Ünite ${u.unitNum}</span>
+              <h3 class="text-xl font-bold mb-2">${u.title}</h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">${u.desc}</p>
+            </div>
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-400 border-t border-slate-100 dark:border-slate-800/80 pt-4">
+              <span><i class="fa-solid fa-book-open text-pink-500"></i> ${u.words.length} Kelime</span>
+              <span class="text-indigo-600 dark:text-indigo-400 font-bold hover:underline">İncele & Çalış &rarr;</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // --- UNIT DETAIL PAGE ---
+    function renderUnitDetail(container, unitId) {
+      let foundUnit = null;
+      Object.values(COURSE_DATA).forEach(list => {
+        const u = list.find(x => x.id === unitId);
+        if (u) foundUnit = u;
+      });
+
+      if (!foundUnit) {
+        container.innerHTML = `<div class="p-8 text-center">Ünite bulunamadı. <button onclick="navigateTo('classes')" class="text-indigo-600 font-bold">Geri dön</button></div>`;
+        return;
+      }
+
+      const isCompleted = userProgress.completedUnits.includes(foundUnit.id);
+
+      container.innerHTML = `
+        <!-- BACK BUTTON & HEADER -->
+        <div class="mb-8 flex items-center justify-between">
+          <button onclick="navigateTo('classes')" class="text-sm font-bold text-indigo-600 dark:text-indigo-400 flex items-center gap-2 hover:underline">
+            &larr; Tüm Ünitelere Dön
+          </button>
+          <button onclick="toggleCompleteUnit('${foundUnit.id}')" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 ${isCompleted ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}">
+            <i class="fa-solid fa-circle-check text-base"></i> ${isCompleted ? 'Tamamlandı Olarak İşaretli' : 'Tamamlandı Olarak İşaretle'}
+          </button>
+        </div>
+
+        <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-3xl p-8 mb-8 shadow-lg">
+          <span class="text-xs font-bold uppercase tracking-widest text-indigo-200">${foundUnit.grade}. Sınıf • Ünite ${foundUnit.unitNum}</span>
+          <h1 class="text-3xl sm:text-4xl font-black mt-1 mb-3">${foundUnit.title}</h1>
+          <p class="text-indigo-100 text-sm sm:text-base">${foundUnit.desc}</p>
+        </div>
+
+        <!-- TABS FOR WORDS / GRAMMAR / TEST -->
+        <div class="space-y-12">
+          
+          <!-- WORDS SECTION -->
+          <div>
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+              <i class="fa-solid fa-book-open text-pink-500"></i> Ünite Kelimeleri (${foundUnit.words.length})
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              ${foundUnit.words.map(w => renderWordCardHTML(w)).join('')}
+            </div>
+          </div>
+
+          <!-- GRAMMAR SECTION -->
+          <div class="glass-card rounded-3xl p-8 shadow-sm border border-slate-200 dark:border-slate-800">
+            <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-purple-600 dark:text-purple-400">
+              <i class="fa-solid fa-graduation-cap"></i> ${foundUnit.grammar.title}
+            </h2>
+            <p class="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">${foundUnit.grammar.desc}</p>
+            
+            <div class="bg-indigo-50 dark:bg-indigo-950/40 rounded-2xl p-6 mb-6">
+              <h3 class="font-bold text-sm text-indigo-900 dark:text-indigo-200 uppercase tracking-wider mb-3">📌 Önemli Kurallar:</h3>
+              <ul class="list-disc list-inside space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                ${foundUnit.grammar.rules.map(r => `<li>${r}</li>`).join('')}
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="font-bold text-sm text-slate-500 uppercase tracking-wider mb-3">💬 Örnek Cümleler:</h3>
+              <div class="space-y-3">
+                ${foundUnit.grammar.examples.map(ex => `
+                  <div class="flex items-center justify-between bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+                    <div>
+                      <div class="font-bold text-indigo-600 dark:text-indigo-400">${ex.en}</div>
+                      <div class="text-xs text-slate-500">${ex.tr}</div>
+                    </div>
+                    <button onclick="speakText('${ex.en.replace(/'/g, "\\'")}')" class="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center hover:scale-105 transition">
+                      <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+
+          <!-- TEST QUICK CTA -->
+          <div class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white p-8 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+            <div>
+              <h3 class="text-2xl font-bold mb-2">Hazır mısın? Ünite Testini Çöz!</h3>
+              <p class="text-emerald-100 text-sm">Bu ünitedeki bilgini test et, XP puanları kazan ve seviyeni yükselt.</p>
+            </div>
+            <button onclick="navigateTo('tests', '${foundUnit.id}')" class="bg-white text-emerald-800 font-bold px-6 py-3.5 rounded-2xl shadow-lg hover:bg-emerald-50 transition whitespace-nowrap">
+              <i class="fa-solid fa-play"></i> Teste Başla
+            </button>
+          </div>
+
+        </div>
+      `;
+    }
+
+    function toggleCompleteUnit(unitId) {
+      if (userProgress.completedUnits.includes(unitId)) {
+        userProgress.completedUnits = userProgress.completedUnits.filter(id => id !== unitId);
+        showToast("Ünite tamamlanmadı olarak güncellendi.", "info");
+      } else {
+        userProgress.completedUnits.push(unitId);
+        addXP(50, "Ünite Tamamlama");
+      }
+      saveProgress();
+      renderUnitDetail(document.getElementById("main-content"), unitId);
+    }
+
+    // --- WORD CARD HTML GENERATOR ---
+    function renderWordCardHTML(w) {
+      const isLearned = userProgress.learnedWords.includes(w.en);
+      return `
+        <div class="flip-card h-64 w-full cursor-pointer group" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner relative w-full h-full text-center shadow-sm hover:shadow-xl rounded-3xl transition-all duration-500">
+            
+            <!-- FRONT CARD -->
+            <div class="flip-card-front glass-card absolute inset-0 w-full h-full rounded-3xl p-6 flex flex-col justify-between border border-slate-200 dark:border-slate-800">
+              <div class="flex items-center justify-between text-xs text-slate-400">
+                <span class="font-bold uppercase tracking-wider bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-full">${w.type || 'Word'}</span>
+                <span class="text-indigo-500 font-semibold">Tıkla ve Anlamını Gör 🔄</span>
+              </div>
+              <div>
+                <h3 class="text-2xl font-black text-slate-800 dark:text-white mb-1">${w.en}</h3>
+              </div>
+              <div class="flex items-center justify-between pt-2">
+                <button onclick="event.stopPropagation(); speakText('${w.en.replace(/'/g, "\\'")}')" class="w-10 h-10 rounded-2xl bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center hover:scale-110 transition shadow-sm">
+                  <i class="fa-solid fa-volume-high text-lg"></i>
+                </button>
+                <button onclick="event.stopPropagation(); toggleLearnWord('${w.en.replace(/'/g, "\\'")}')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition ${isLearned ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}">
+                  <i class="fa-solid fa-check"></i> ${isLearned ? 'Öğrenildi' : 'Öğren'}
+                </button>
+              </div>
+            </div>
+
+            <!-- BACK CARD -->
+            <div class="flip-card-back bg-gradient-to-tr from-indigo-900 to-purple-900 text-white absolute inset-0 w-full h-full rounded-3xl p-6 flex flex-col justify-between text-left">
+              <div>
+                <span class="text-[10px] uppercase font-bold text-indigo-300 tracking-wider">Türkçe Anlamı</span>
+                <h3 class="text-2xl font-bold text-amber-300 mb-3">${w.tr}</h3>
+                <span class="text-[10px] uppercase font-bold text-indigo-300 tracking-wider block mb-1">Örnek Cümle</span>
+                <p class="text-xs text-indigo-100 italic mb-1">"${w.sentence}"</p>
+                <p class="text-xs text-indigo-300">${w.sentenceTr}</p>
+              </div>
+              <div class="text-right">
+                <button onclick="event.stopPropagation(); speakText('${w.sentence.replace(/'/g, "\\'")}')" class="text-xs text-indigo-300 hover:text-white flex items-center gap-1 ml-auto">
+                  <i class="fa-solid fa-volume-high"></i> Cümleyi Dinle
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      `;
+    }
+
+    function toggleLearnWord(wordEn) {
+      if (userProgress.learnedWords.includes(wordEn)) {
+        userProgress.learnedWords = userProgress.learnedWords.filter(w => w !== wordEn);
+        showToast("Kelime öğrenilenlerden çıkarıldı.", "info");
+      } else {
+        userProgress.learnedWords.push(wordEn);
+        addXP(10, "Kelime Öğrenildi");
+      }
+      saveProgress();
+      if (currentRoute === 'words') renderWordsPage(document.getElementById("main-content"));
+    }
+
+    // --- WORDS GLOBAL PAGE ---
+    function renderWordsPage(container) {
+      let allWords = [];
+      Object.values(COURSE_DATA).forEach(list => {
+        list.forEach(u => {
+          u.words.forEach(w => allWords.push({ ...w, unitTitle: u.title, grade: u.grade }));
+        });
+      });
+
+      container.innerHTML = `
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold mb-2">Kelime Kütüphanesi</h1>
+          <p class="text-slate-500 dark:text-slate-400">Tüm sınıfların kelimelerini arat, filtrele ve pratik yap.</p>
+        </div>
+
+        <!-- SEARCH & FILTER BAR -->
+        <div class="glass-card p-4 rounded-3xl mb-8 flex flex-col sm:flex-row gap-4 border border-slate-200 dark:border-slate-800">
+          <div class="relative flex-grow">
+            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+            <input type="text" id="word-search-input" oninput="filterWordsList()" placeholder="Kelime veya Türkçe anlam ara..." class="w-full pl-11 pr-4 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:border-indigo-500">
+          </div>
+          <select id="word-grade-filter" onchange="filterWordsList()" class="px-4 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm font-semibold focus:outline-none">
+            <option value="all">Tüm Sınıflar</option>
+            <option value="5">5. Sınıf</option>
+            <option value="6">6. Sınıf</option>
+            <option value="7">7. Sınıf</option>
+            <option value="8">8. Sınıf</option>
+          </select>
+        </div>
+
+        <div id="words-grid-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Dynamically filtered -->
+        </div>
+      `;
+      filterWordsList();
+    }
+
+    function filterWordsList() {
+      const query = document.getElementById("word-search-input")?.value.toLowerCase() || "";
+      const grade = document.getElementById("word-grade-filter")?.value || "all";
+      const container = document.getElementById("words-grid-container");
+
+      let allWords = [];
+      Object.values(COURSE_DATA).forEach(list => {
+        list.forEach(u => {
+          u.words.forEach(w => allWords.push({ ...w, unitTitle: u.title, grade: u.grade }));
+        });
+      });
+
+      const filtered = allWords.filter(w => {
+        const matchesQuery = w.en.toLowerCase().includes(query) || w.tr.toLowerCase().includes(query);
+        const matchesGrade = grade === "all" || w.grade.toString() === grade;
+        return matchesQuery && matchesGrade;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400">Eşleşen kelime bulunamadı.</div>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(w => renderWordCardHTML(w)).join('');
+    }
+
+    // ==========================================
+    // 6. DYNAMIC TEST SYSTEM WITH SHUFFLED OPTIONS
+    // ==========================================
+    let currentTestQuestions = [];
+    let currentQuestionIndex = 0;
+    let testUserAnswers = [];
+
+    function renderTestsPage(container, targetUnitId = null) {
+      container.innerHTML = `
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold mb-2">İngilizce Test Merkezi</h1>
+          <p class="text-slate-500 dark:text-slate-400">Ünite veya sınıf bazlı testleri çözerek bilgini kanıtla!</p>
+        </div>
+
+        <div id="test-runner-area">
+          <div class="glass-card rounded-3xl p-8 border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto text-center">
+            <div class="w-16 h-16 rounded-3xl bg-indigo-100 dark:bg-indigo-950 text-indigo-600 flex items-center justify-center text-3xl mx-auto mb-4 font-bold">
+              <i class="fa-solid fa-vial-circle-check"></i>
+            </div>
+            <h2 class="text-2xl font-bold mb-4">Hangi Testi Çözmek İstersin?</h2>
+            
+            <div class="space-y-4 max-w-md mx-auto text-left mb-6">
+              <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Sınıf Seç:</label>
+                <select id="test-select-grade" class="w-full p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm font-semibold">
+                  <option value="5">5. Sınıf Testleri</option>
+                  <option value="6">6. Sınıf Testleri</option>
+                  <option value="7">7. Sınıf Testleri</option>
+                  <option value="8">8. Sınıf Testleri (LGS)</option>
+                </select>
+              </div>
+            </div>
+
+            <button onclick="startGeneratedTest()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-8 py-3.5 rounded-2xl shadow-lg shadow-indigo-500/30 transition">
+              <i class="fa-solid fa-play"></i> Testi Başlat (10 Soru)
+            </button>
+          </div>
+        </div>
+      `;
+
+      if (targetUnitId) {
+        startUnitSpecificTest(targetUnitId);
+      }
+    }
+
+    function startGeneratedTest() {
+      const grade = document.getElementById("test-select-grade").value;
+      const units = COURSE_DATA[grade] || [];
+      
+      // Generate 5 questions from words
+      let questions = [];
+      units.forEach(u => {
+        u.words.forEach(w => {
+          // Generate 3 wrong options
+          const wrongAnswers = ["Elma", "Koşmak", "Kitap", "Araba", "Mavi", "Okul", "Güneş"]
+            .filter(x => x !== w.tr)
+            .sort(() => 0.5 - Math.random())
+            .slice(0, 3);
+          
+          const rawOptions = [w.tr, ...wrongAnswers];
+          // Shuffle options
+          const shuffledOptions = rawOptions.sort(() => 0.5 - Math.random());
+          const correctIdx = shuffledOptions.indexOf(w.tr);
+
+          questions.push({
+            question: `"${w.en}" kelimesinin Türkçe anlamı nedir?`,
+            options: shuffledOptions,
+            correct: correctIdx,
+            explain: `"${w.en}" kelimesinin doğru karşılığı "${w.tr}" ifadesidir.`
+          });
+        });
+      });
+
+      questions = questions.sort(() => 0.5 - Math.random()).slice(0, 10);
+      runQuestionLoop(questions);
+    }
+
+    function startUnitSpecificTest(unitId) {
+      let unit = null;
+      Object.values(COURSE_DATA).forEach(list => {
+        const u = list.find(x => x.id === unitId);
+        if(u) unit = u;
+      });
+      if(!unit) return;
+
+      let questions = unit.words.map(w => {
+        const wrong = ["Masa", "Kalem", "Büyük", "Hızlı", "Mutlu", "Yavaş"]
+          .filter(x => x !== w.tr)
+          .sort(() => 0.5 - Math.random())
+          .slice(0, 3);
+        const raw = [w.tr, ...wrong];
+        const shuffled = raw.sort(() => 0.5 - Math.random());
+        return {
+          question: `"${w.en}" ifadesinin anlamı aşağıdakilerden hangisidir?`,
+          options: shuffled,
+          correct: shuffled.indexOf(w.tr),
+          explain: `Doğru cevap: ${w.tr}`
+        };
+      });
+
+      runQuestionLoop(questions);
+    }
+
+    function runQuestionLoop(questions) {
+      currentTestQuestions = questions;
+      currentQuestionIndex = 0;
+      testUserAnswers = [];
+      renderCurrentQuestion();
+    }
+
+    function renderCurrentQuestion() {
+      const container = document.getElementById("test-runner-area");
+      const q = currentTestQuestions[currentQuestionIndex];
+      const total = currentTestQuestions.length;
+
+      if (currentQuestionIndex >= total) {
+        finishTest();
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="glass-card rounded-3xl p-8 border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto shadow-xl">
+          <!-- PROGRESS BAR -->
+          <div class="flex items-center justify-between text-xs font-bold text-slate-400 mb-4">
+            <span>Soru ${currentQuestionIndex + 1} / ${total}</span>
+            <span>%${Math.round(((currentQuestionIndex) / total) * 100)} Tamamlandı</span>
+          </div>
+          <div class="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-2 mb-8">
+            <div class="bg-indigo-600 h-2 rounded-full transition-all duration-300" style="width: ${((currentQuestionIndex) / total) * 100}%"></div>
+          </div>
+
+          <h3 class="text-xl font-bold mb-6 text-slate-800 dark:text-white">${q.question}</h3>
+
+          <div class="space-y-3 mb-8">
+            ${q.options.map((opt, idx) => `
+              <button onclick="selectAnswer(${idx})" class="option-btn w-full text-left p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-semibold text-sm hover:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 transition flex items-center justify-between">
+                <span><b class="mr-2">${['A', 'B', 'C', 'D'][idx]})</b> ${opt}</span>
+                <i class="fa-regular fa-circle text-slate-300"></i>
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function selectAnswer(selectedIdx) {
+      const q = currentTestQuestions[currentQuestionIndex];
+      const isCorrect = selectedIdx === q.correct;
+      testUserAnswers.push({ selected: selectedIdx, isCorrect });
+
+      const buttons = document.querySelectorAll('.option-btn');
+      buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === q.correct) {
+          btn.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-800', 'dark:bg-emerald-950', 'dark:text-emerald-300');
+        } else if (idx === selectedIdx && !isCorrect) {
+          btn.classList.add('bg-pink-100', 'border-pink-500', 'text-pink-800', 'dark:bg-pink-950', 'dark:text-pink-300');
+        }
+      });
+
+      setTimeout(() => {
+        currentQuestionIndex++;
+        renderCurrentQuestion();
+      }, 1200);
+    }
+
+    function finishTest() {
+      const container = document.getElementById("test-runner-area");
+      const correctCount = testUserAnswers.filter(a => a.isCorrect).length;
+      const total = currentTestQuestions.length;
+      const score = Math.round((correctCount / total) * 100);
+      const earnedXP = correctCount * 10;
+
+      addXP(earnedXP, "Test Başarısı");
+
+      container.innerHTML = `
+        <div class="glass-card rounded-3xl p-8 border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto text-center shadow-xl">
+          <div class="w-20 h-20 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-500 flex items-center justify-center text-4xl mx-auto mb-4 font-bold shadow-inner">
+            🏆
+          </div>
+          <h2 class="text-3xl font-black mb-2">Test Tamamlandı!</h2>
+          <p class="text-slate-500 mb-6">Tebrikler, test sonuçların hazır.</p>
+
+          <div class="grid grid-cols-3 gap-4 mb-8">
+            <div class="bg-slate-100 dark:bg-slate-900 p-4 rounded-2xl">
+              <div class="text-xs text-slate-400 font-bold uppercase">Doğru</div>
+              <div class="text-2xl font-black text-emerald-500">${correctCount}</div>
+            </div>
+            <div class="bg-slate-100 dark:bg-slate-900 p-4 rounded-2xl">
+              <div class="text-xs text-slate-400 font-bold uppercase">Başarı</div>
+              <div class="text-2xl font-black text-indigo-500">%${score}</div>
+            </div>
+            <div class="bg-slate-100 dark:bg-slate-900 p-4 rounded-2xl">
+              <div class="text-xs text-slate-400 font-bold uppercase">Kazanılan XP</div>
+              <div class="text-2xl font-black text-amber-500">+${earnedXP}</div>
+            </div>
+          </div>
+
+          <button onclick="navigateTo('tests')" class="bg-indigo-600 text-white font-bold px-8 py-3.5 rounded-2xl shadow-lg hover:bg-indigo-500 transition">
+            Başka Test Çöz
+          </button>
+        </div>
+      `;
+    }
+
+    // ==========================================
+    // 7. GAME CENTER & FIXED GAME 3
+    // ==========================================
+    function renderGamesPage(container) {
+      container.innerHTML = `
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold mb-2">Oyun Merkezi</h1>
+          <p class="text-slate-500 dark:text-slate-400">Eğlenirken kelime dağarcığını geliştir!</p>
+        </div>
+
+        <div id="game-canvas-area">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            
+            <div onclick="startMatchGame()" class="glass-card p-6 rounded-3xl text-center cursor-pointer hover:shadow-xl transition border border-slate-200 dark:border-slate-800">
+              <div class="w-16 h-16 rounded-2xl bg-amber-100 text-amber-500 flex items-center justify-center text-3xl mx-auto mb-4">🧩</div>
+              <h3 class="text-xl font-bold mb-2">1. Kelime Eşleştirme</h3>
+              <p class="text-xs text-slate-500 mb-4">İngilizce ve Türkçe kelime kartlarını eşleştir.</p>
+              <span class="bg-amber-500 text-white text-xs px-4 py-2 rounded-xl font-bold inline-block">Oyna</span>
+            </div>
+
+            <div onclick="startScrambleGame()" class="glass-card p-6 rounded-3xl text-center cursor-pointer hover:shadow-xl transition border border-slate-200 dark:border-slate-800">
+              <div class="w-16 h-16 rounded-2xl bg-purple-100 text-purple-500 flex items-center justify-center text-3xl mx-auto mb-4">🔤</div>
+              <h3 class="text-xl font-bold mb-2">2. Harf Karıştırma</h3>
+              <p class="text-xs text-slate-500 mb-4">Karışık verilen harflerden doğru kelimeyi yaz.</p>
+              <span class="bg-purple-500 text-white text-xs px-4 py-2 rounded-xl font-bold inline-block">Oyna</span>
+            </div>
+
+            <div onclick="startTimeRaceGame()" class="glass-card p-6 rounded-3xl text-center cursor-pointer hover:shadow-xl transition border border-slate-200 dark:border-slate-800">
+              <div class="w-16 h-16 rounded-2xl bg-pink-100 text-pink-500 flex items-center justify-center text-3xl mx-auto mb-4">⚡</div>
+              <h3 class="text-xl font-bold mb-2">3. Süreye Karşı Yarış</h3>
+              <p class="text-xs text-slate-500 mb-4">30 saniye içinde en çok doğru cevabı ver!</p>
+              <span class="bg-pink-500 text-white text-xs px-4 py-2 rounded-xl font-bold inline-block">Oyna</span>
+            </div>
+
+          </div>
+        </div>
+      `;
+    }
+
+    // GAME 1: MATCHING GAME
+    function startMatchGame() {
+      const area = document.getElementById("game-canvas-area");
+      const pairs = [
+        { en: "Apple", tr: "Elma" },
+        { en: "School", tr: "Okul" },
+        { en: "Book", tr: "Kitap" },
+        { en: "Friend", tr: "Arkadaş" }
+      ];
+
+      let cards = [];
+      pairs.forEach(p => {
+        cards.push({ text: p.en, match: p.tr, type: 'en' });
+        cards.push({ text: p.tr, match: p.en, type: 'tr' });
+      });
+      cards.sort(() => 0.5 - Math.random());
+
+      area.innerHTML = `
+        <div class="glass-card p-8 rounded-3xl max-w-2xl mx-auto text-center">
+          <h2 class="text-2xl font-bold mb-6">Kelime Eşleştirme Oyunu</h2>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6" id="match-grid">
+            ${cards.map((c, i) => `
+              <button onclick="handleMatchSelect(this, '${c.text}', '${c.match}')" class="match-btn h-24 rounded-2xl bg-indigo-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-bold text-sm hover:border-indigo-500 transition">
+                ${c.text}
+              </button>
+            `).join('')}
+          </div>
+          <button onclick="renderGamesPage(document.getElementById('main-content'))" class="text-xs text-slate-400 font-bold">Çıkış Yap</button>
+        </div>
+      `;
+    }
+
+    let selectedMatchCard = null;
+    function handleMatchSelect(btn, text, match) {
+      if (btn.disabled) return;
+
+      if (!selectedMatchCard) {
+        selectedMatchCard = { btn, text, match };
+        btn.classList.add('border-amber-500', 'bg-amber-50');
+      } else {
+        if (selectedMatchCard.btn === btn) return;
+
+        if (selectedMatchCard.match === text) {
+          // CORRECT MATCH
+          btn.classList.add('bg-emerald-500', 'text-white');
+          selectedMatchCard.btn.classList.add('bg-emerald-500', 'text-white');
+          btn.disabled = true;
+          selectedMatchCard.btn.disabled = true;
+          addXP(15, "Doğru Eşleştirme");
+        } else {
+          // WRONG MATCH
+          selectedMatchCard.btn.classList.remove('border-amber-500', 'bg-amber-50');
+        }
+        selectedMatchCard = null;
+      }
+    }
+
+    // GAME 2: WORD SCRAMBLE
+    function startScrambleGame() {
+      const area = document.getElementById("game-canvas-area");
+      const word = { en: "TEACHER", tr: "Öğretmen" };
+      const scrambled = word.en.split('').sort(() => 0.5 - Math.random()).join(' ');
+
+      area.innerHTML = `
+        <div class="glass-card p-8 rounded-3xl max-w-xl mx-auto text-center">
+          <h2 class="text-2xl font-bold mb-2">Harf Karıştırma</h2>
+          <p class="text-slate-400 text-sm mb-6">İpucu: ${word.tr}</p>
+          <div class="text-3xl font-black text-purple-500 tracking-widest mb-6">${scrambled}</div>
+          <input type="text" id="scramble-input" placeholder="Cevabı buraya yaz..." class="w-full text-center py-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 font-bold mb-4 uppercase">
+          <button onclick="checkScramble('${word.en}')" class="w-full bg-purple-600 text-white py-3 rounded-2xl font-bold">Kontrol Et</button>
+        </div>
+      `;
+    }
+
+    function checkScramble(correct) {
+      const val = document.getElementById("scramble-input").value.trim().toUpperCase();
+      if (val === correct) {
+        addXP(20, "Harf Karıştırma Başarısı");
+        showToast("Tebrikler! Doğru Kelime!", "success");
+        renderGamesPage(document.getElementById('main-content'));
+      } else {
+        showToast("Yanlış cevap, tekrar dene!", "error");
+      }
+    }
+
+    // GAME 3: TIME RACE (FIXED TIMER & FLOW)
+    let timeRaceTimer = null;
+    let timeRaceScore = 0;
+    let timeRaceTimeLeft = 30;
+    let timeRaceCurrentQ = null;
+
+    function startTimeRaceGame() {
+      timeRaceScore = 0;
+      timeRaceTimeLeft = 30;
+      const area = document.getElementById("game-canvas-area");
+
+      area.innerHTML = `
+        <div class="glass-card p-8 rounded-3xl max-w-xl mx-auto text-center">
+          <div class="flex items-center justify-between mb-6">
+            <span class="text-sm font-bold text-pink-500">Süre: <b id="timer-val">30</b>s</span>
+            <span class="text-sm font-bold text-indigo-500">Skor: <b id="score-val">0</b></span>
+          </div>
+
+          <div id="race-question-box">
+            <!-- Dynamically populated question -->
+          </div>
+        </div>
+      `;
+
+      nextTimeRaceQuestion();
+
+      clearInterval(timeRaceTimer);
+      timeRaceTimer = setInterval(() => {
+        timeRaceTimeLeft--;
+        const timerEl = document.getElementById("timer-val");
+        if (timerEl) timerEl.innerText = timeRaceTimeLeft;
+
+        if (timeRaceTimeLeft <= 0) {
+          clearInterval(timeRaceTimer);
+          finishTimeRaceGame();
+        }
+      }, 1000);
+    }
+
+    function nextTimeRaceQuestion() {
+      const box = document.getElementById("race-question-box");
+      if (!box) return;
+
+      const sampleWords = [
+        { en: "Sun", tr: "Güneş" },
+        { en: "Water", tr: "Su" },
+        { en: "Computer", tr: "Bilgisayar" },
+        { en: "Pencil", tr: "Kalem" },
+        { en: "Car", tr: "Araba" }
+      ];
+      timeRaceCurrentQ = sampleWords[Math.floor(Math.random() * sampleWords.length)];
+
+      const wrong = ["Ağaç", "Telefon", "Köpek", "Ev"].filter(x => x !== timeRaceCurrentQ.tr).slice(0, 1)[0];
+      const opts = [timeRaceCurrentQ.tr, wrong].sort(() => 0.5 - Math.random());
+
+      box.innerHTML = `
+        <h3 class="text-2xl font-black mb-6">"${timeRaceCurrentQ.en}" ne demek?</h3>
+        <div class="grid grid-cols-2 gap-4">
+          ${opts.map(o => `
+            <button onclick="handleRaceAnswer('${o}', '${timeRaceCurrentQ.tr}')" class="p-4 rounded-2xl bg-indigo-50 dark:bg-slate-900 font-bold border border-slate-200 hover:bg-indigo-600 hover:text-white transition">
+              ${o}
+            </button>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function handleRaceAnswer(selected, correct) {
+      if (selected === correct) {
+        timeRaceScore += 10;
+        const scoreEl = document.getElementById("score-val");
+        if (scoreEl) scoreEl.innerText = timeRaceScore;
+      }
+      nextTimeRaceQuestion();
+    }
+
+    function finishTimeRaceGame() {
+      addXP(timeRaceScore, "Süreye Karşı Yarış");
+      const area = document.getElementById("game-canvas-area");
+      area.innerHTML = `
+        <div class="glass-card p-8 rounded-3xl max-w-xl mx-auto text-center">
+          <h2 class="text-3xl font-black mb-2">Süre Bitti! ⏰</h2>
+          <p class="text-slate-400 mb-6">Toplam kazandığın skor: <b class="text-amber-500">${timeRaceScore} Puan</b></p>
+          <button onclick="renderGamesPage(document.getElementById('main-content'))" class="bg-indigo-600 text-white font-bold px-8 py-3 rounded-2xl">
+            Oyunlara Dön
+          </button>
+        </div>
+      `;
+    }
+
+    // --- LGS SPECIAL PAGE ---
+    function renderLGSPage(container) {
+      container.innerHTML = `
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold mb-2">8. Sınıf LGS Özel Alanı</h1>
+          <p class="text-slate-500 dark:text-slate-400">LGS İngilizce sınav kalıpları, diyaloglar ve soru tipleri.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div class="glass-card p-6 rounded-3xl border border-slate-200 dark:border-slate-800">
+            <h3 class="text-xl font-bold mb-4 text-cyan-500">💬 Sık Çıkan Diyalog Kalıpları</h3>
+            <ul class="space-y-3 text-sm">
+              <li class="p-3 bg-slate-50 dark:bg-slate-900 rounded-xl"><b>"Would you like to...?"</b> &rarr; İster misin? (Teklif)</li>
+              <li class="p-3 bg-slate-50 dark:bg-slate-900 rounded-xl"><b>"I'm sorry, but I can't."</b> &rarr; Üzgünüm ama yapamam. (Reddetme)</li>
+              <li class="p-3 bg-slate-50 dark:bg-slate-900 rounded-xl"><b>"That sounds awesome!"</b> &rarr; Kulağa harika geliyor! (Kabul)</li>
+            </ul>
+          </div>
+
+          <div class="glass-card p-6 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl font-bold mb-2 text-indigo-500">🎯 LGS Deneme Testi</h3>
+              <p class="text-xs text-slate-400 mb-6">LGS tarzı çeldiricili sorularla sınav provası yap.</p>
+            </div>
+            <button onclick="startGeneratedTest()" class="w-full bg-cyan-600 text-white font-bold py-3.5 rounded-2xl shadow-lg">
+              LGS Denemesini Başlat
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    // --- PROFILE / PROGRESS PAGE ---
+    function renderProfilePage(container) {
+      container.innerHTML = `
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold mb-2">İlerleme Profilim</h1>
+          <p class="text-slate-500 dark:text-slate-400">Başarı istatistiklerin ve rozetlerin burada saklanır.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+          <div class="glass-card p-6 rounded-3xl text-center border border-slate-200 dark:border-slate-800">
+            <div class="text-xs text-slate-400 font-bold uppercase mb-1">Toplam XP</div>
+            <div class="text-4xl font-black text-amber-500">${userProgress.xp}</div>
+          </div>
+          <div class="glass-card p-6 rounded-3xl text-center border border-slate-200 dark:border-slate-800">
+            <div class="text-xs text-slate-400 font-bold uppercase mb-1">Mevcut Seviye</div>
+            <div class="text-4xl font-black text-indigo-500">Seviye ${userProgress.level}</div>
+          </div>
+          <div class="glass-card p-6 rounded-3xl text-center border border-slate-200 dark:border-slate-800">
+            <div class="text-xs text-slate-400 font-bold uppercase mb-1">Öğrenilen Kelimeler</div>
+            <div class="text-4xl font-black text-pink-500">${userProgress.learnedWords.length}</div>
+          </div>
+        </div>
+
+        <div class="glass-card p-8 rounded-3xl border border-slate-200 dark:border-slate-800">
+          <h3 class="text-xl font-bold mb-4">Tamamlanan Üniteler</h3>
+          <div class="flex flex-wrap gap-2">
+            ${userProgress.completedUnits.length > 0 
+              ? userProgress.completedUnits.map(id => `<span class="bg-emerald-100 text-emerald-800 text-xs px-3 py-1 rounded-full font-bold">Ünite ${id}</span>`).join('')
+              : '<p class="text-slate-400 text-sm">Henüz tamamlanan ünite yok.</p>'}
+          </div>
+        </div>
+      `;
+    }
+
+    // ==========================================
+    // 8. UTILITIES & INITIALIZATION
+    // ==========================================
+    function showToast(msg, type = "success") {
+      const toast = document.getElementById("toast");
+      const msgEl = document.getElementById("toast-msg");
+      if (!toast || !msgEl) return;
+
+      msgEl.innerText = msg;
+      toast.classList.remove("translate-y-20", "opacity-0");
+      toast.classList.add("translate-y-0", "opacity-100");
+
+      setTimeout(() => {
+        toast.classList.remove("translate-y-0", "opacity-100");
+        toast.classList.add("translate-y-20", "opacity-0");
+      }, 2500);
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+    }
+
+    function toggleMobileMenu() {
+      document.getElementById("mobile-menu").classList.toggle("hidden");
+    }
+
+    // ON LOAD INIT
+    window.addEventListener("DOMContentLoaded", () => {
+      loadProgress();
+      navigateTo('home');
+    });
+  </script>
 </body>
 </html>
-
