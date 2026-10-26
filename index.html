@@ -1,248 +1,39 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TenseMatrix 12 Zaman - TÜBİTAK Projesi</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f2f5;
-            margin: 0;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        h1 { font-size: 20px; color: #1e293b; text-align: center; margin: 5px 0; }
-        .level-badge { background: #3b82f6; color: white; padding: 4px 10px; border-radius: 12px; font-size: 12px; margin-bottom: 10px; }
-        
-        #introScreen {
-            background: white; padding: 20px; border-radius: 12px; max-width: 400px; text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-top: 20px;
-        }
-        #gameScreen { display: none; width: 100%; max-width: 400px; flex-direction: column; align-items: center; }
-
-        .formula-box {
-            background: #fff; color: #0284c7; padding: 10px; border-radius: 8px; border: 1px solid #bae6fd;
-            font-style: italic; margin-bottom: 15px; text-align: center; font-size: 13px; width: 100%; box-sizing: border-box;
-        }
-        .target-area {
-            background: #e2e8f0; width: 100%; min-height: 65px; border: 2px dashed #94a3b8; border-radius: 8px;
-            display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 5px; padding: 8px; margin-bottom: 15px; box-sizing: border-box;
-        }
-        .blocks-area {
-            display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; margin-bottom: 15px;
-        }
-        .block, .selected-block {
-            background: white; padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1;
-            cursor: pointer; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); user-select: none;
-        }
-        .selected-block { background: #2563eb; color: white; }
-        .btn {
-            background: #22c55e; color: white; border: none; padding: 10px 20px; font-size: 15px;
-            font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; margin-top: 5px;
-        }
-        .tts-btn { background: #8b5cf6; }
-        .message { font-weight: bold; margin-top: 10px; font-size: 14px; text-align: center; }
-    </style>
-</head>
-<body>
-
-    <div id="introScreen">
-        <h2>TenseMatrix: 12 Zaman Matrisi</h2>
-        <p style="font-size: 14px; color: #475569; line-height: 1.5;">
-            İngilizcedeki tüm 12 zamanı matematiksel formüllerle birleştirmeye hazır mısın? Kuralları ezberlemek yerine yapboz gibi çöz!
-        </p>
-        <button class="btn tts-btn" onclick="readIntro()">🔊 Bilgilendirmeyi Sesli Dinle</button>
-        <button class="btn" onclick="startGame()" style="margin-top: 10px;">Matrise Giriş Yap</button>
-    </div>
-
-    <div id="gameScreen">
-        <h1>TenseMatrix</h1>
-        <div class="level-badge" id="levelBadge">Zaman Matrisi</div>
-        <div class="formula-box" id="formulaText">Formül yükleniyor...</div>
-
-        <div class="target-area" id="targetArea">
-            <span style="color: #64748b; font-size: 13px;">Parçalara dokunarak buraya diz...</span>
-        </div>
-
-        <div class="blocks-area" id="blocksArea"></div>
-
-        <button class="btn" onclick="checkAnswer()">KONTROL ET</button>
-        <div class="message" id="messageText"></div>
-    </div>
-
-    <script>
-        const levels = [
-            {
-                category: "Seviye 1: Kolay (Simple Tenses)",
-                formula: "1. Present Simple: Özne + V1 (He/She/It -s)",
-                blocks: ["football", "She", "plays", "every Sunday"],
-                correct: ["She", "plays", "football", "every Sunday"]
-            },
-            {
-                category: "Seviye 1: Kolay (Simple Tenses)",
-                formula: "2. Past Simple: Özne + V2 + Nesne",
-                blocks: ["yesterday", "watched", "We", "a movie"],
-                correct: ["We", "watched", "a movie", "yesterday"]
-            },
-            {
-                category: "Seviye 1: Kolay (Simple Tenses)",
-                formula: "3. Future Simple: Özne + will + V1",
-                blocks: ["to London", "They", "next year", "will go"],
-                correct: ["They", "will go", "to London", "next year"]
-            },
-            {
-                category: "Seviye 2: Orta (Continuous Tenses)",
-                formula: "4. Present Continuous: Özne + am/is/are + V-ing",
-                blocks: ["right now", "studying", "I am", "for the exam"],
-                correct: ["I am", "studying", "for the exam", "right now"]
-            },
-            {
-                category: "Seviye 2: Orta (Continuous Tenses)",
-                formula: "5. Past Continuous: Özne + was/were + V-ing",
-                blocks: ["when you called", "She", "was sleeping"],
-                correct: ["She", "was sleeping", "when you called"]
-            },
-            {
-                category: "Seviye 2: Orta (Continuous Tenses)",
-                formula: "6. Future Continuous: Özne + will be + V-ing",
-                blocks: ["at 5 PM tomorrow", "will be working", "He"],
-                correct: ["He", "will be working", "at 5 PM tomorrow"]
-            },
-            {
-                category: "Seviye 2: Orta (Perfect Tenses)",
-                formula: "7. Present Perfect: Özne + have/has + V3",
-                blocks: ["already", "finished", "He has", "his project"],
-                correct: ["He has", "finished", "already", "his project"]
-            },
-            {
-                category: "Seviye 2: Orta (Perfect Tenses)",
-                formula: "8. Past Perfect: Özne + had + V3",
-                blocks: ["the train", "left", "had", "already"],
-                correct: ["the train", "had", "already", "left"]
-            },
-            {
-                category: "Seviye 2: Orta (Perfect Tenses)",
-                formula: "9. Future Perfect: Özne + will have + V3",
-                blocks: ["by next year", "will have built", "They", "the house"],
-                correct: ["They", "will have built", "the house", "by next year"]
-            },
-            {
-                category: "Seviye 3: Zor (Perfect Continuous)",
-                formula: "10. Present Perfect Cont.: Özne + have/has been + V-ing",
-                blocks: ["for 3 hours", "have been waiting", "We"],
-                correct: ["We", "have been waiting", "for 3 hours"]
-            },
-            {
-                category: "Seviye 3: Zor (Perfect Continuous)",
-                formula: "11. Past Perfect Cont.: Özne + had been + V-ing",
-                blocks: ["had been raining", "All day,", "it"],
-                correct: ["It", "had been raining", "all day"]
-            },
-            {
-                category: "Seviye 3: Zor (Perfect Continuous)",
-                formula: "12. Future Perfect Cont.: Özne + will have been + V-ing",
-                blocks: ["for 5 years", "will have been living", "here", "They"],
-                correct: ["They", "will have been living", "here", "for 5 years"]
-            }
-        ];
-
-        let currentLevel = 0;
-        let selectedBlocks = [];
-        let availableBlocks = [];
-
-        function readIntro() {
-            if ('speechSynthesis' in window) {
-                let text = "Hoş geldin! İngilizcedeki tüm 12 zamanı matematiksel formüllerle birleştirmeye hazır mısın? Kuralları ezberlemek yerine yapboz gibi çöz!";
-                let utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'tr-TR';
-                window.speechSynthesis.speak(utterance);
-            } else {
-                alert("Tarayıcınız ses sentezini desteklemiyor.");
-            }
-        }
-
-        function startGame() {
-            document.getElementById("introScreen").style.display = "none";
-            document.getElementById("gameScreen").style.display = "flex";
-            loadLevel();
-        }
-
-        function loadLevel() {
-            selectedBlocks = [];
-            let data = levels[currentLevel];
-            availableBlocks = [...data.blocks];
-            availableBlocks.sort(() => Math.random() - 0.5);
-
-            document.getElementById("levelBadge").innerText = data.category + ` (Aşama ${currentLevel + 1}/12)`;
-            document.getElementById("formulaText").innerText = "Formül İpucu: " + data.formula;
-            document.getElementById("messageText").innerText = "";
-            render();
-        }
-
-        function render() {
-            let targetArea = document.getElementById("targetArea");
-            targetArea.innerHTML = "";
-            if (selectedBlocks.length === 0) {
-                targetArea.innerHTML = '<span style="color: #64748b; font-size: 13px;">Parçalara dokunarak buraya diz...</span>';
-            } else {
-                selectedBlocks.forEach((item, index) => {
-                    let div = document.createElement("div");
-                    div.className = "selected-block";
-                    div.innerText = item;
-                    div.onclick = () => removeFromSelected(index);
-                    targetArea.appendChild(div);
-                });
-            }
-
-            let blocksArea = document.getElementById("blocksArea");
-            blocksArea.innerHTML = "";
-            availableBlocks.forEach((item, index) => {
-                let div = document.createElement("div");
-                div.className = "block";
-                div.innerText = item;
-                div.onclick = () => moveToSelected(index);
-                blocksArea.appendChild(div);
-            });
-        }
-
-        function moveToSelected(index) {
-            let item = availableBlocks.splice(index, 1)[0];
-            selectedBlocks.push(item);
-            render();
-        }
-
-        function removeFromSelected(index) {
-            let item = selectedBlocks.splice(index, 1)[0];
-            availableBlocks.push(item);
-            render();
-        }
-
-        function checkAnswer() {
-            let data = levels[currentLevel];
-            let msg = document.getElementById("messageText");
-
-            let isCorrect = selectedBlocks.length === data.correct.length &&
-                            selectedBlocks.every((val, i) => val === data.correct[i]);
-
-            if (isCorrect) {
-                msg.style.color = "#22c55e";
-                msg.innerText = "Tebrikler! Doğru Matris.";
-                currentLevel++;
-                setTimeout(() => {
-                    if (currentLevel < levels.length) {
-                        loadLevel();
-                    } else {
-                        document.getElementById("gameScreen").innerHTML = "<h2 style='text-align:center; color:#22c55e; margin-top:50px;'>Tebrikler! Tüm 12 Zamanı Tamamladın. TÜBİTAK Jürisinin Karşısına Çıkmaya Hazırsın!</h2>";
-                    }
-                }, 1500);
-            } else {
-                msg.style.color = "#ef4444";
-                msg.innerText = "Yanlış sıralama! Formülü tekrar kontrol et.";
-            }
-        }
-    </script>
-</body>
-</html>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TenseMatrix — 12 İngilizce Zaman</title>
+<style>
+:root{--bg:#07101f;--panel:#101d33;--text:#eef5ff;--muted:#a9bbd6;--blue:#4de1ff;--green:#61f2b0;--red:#ff6685}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#14284a,var(--bg) 55%);color:var(--text);font-family:system-ui,Arial,sans-serif;min-height:100vh}header{padding:24px 16px 12px;text-align:center}h1{font-size:clamp(2rem,8vw,3.6rem);margin:0;color:var(--blue);letter-spacing:.06em;text-shadow:0 0 24px #2fcfff66}header p{color:var(--muted)}.wrap{max-width:980px;margin:auto;padding:12px 14px 36px}.stats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:12px 0 18px}.pill{background:#132440;border:1px solid #29466c;border-radius:999px;padding:8px 14px;color:var(--muted)}.pill b{color:var(--text)}.card{background:linear-gradient(145deg,#142542,#0d182b);border:1px solid #29466c;border-radius:18px;padding:18px;margin:12px 0;box-shadow:0 12px 35px #0003}.section-title{margin:0 0 12px;font-size:1.15rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}button,select,textarea{font:inherit}button{border:1px solid #36577e;background:#192e4e;color:var(--text);border-radius:12px;padding:11px 14px;cursor:pointer}.primary{background:linear-gradient(90deg,#087ca7,#4e56d8);border:0;font-weight:700}.tense-btn{text-align:left;min-height:75px}.tense-btn strong{display:block;color:var(--blue)}.tense-btn span,.small{color:var(--muted);font-size:.9rem}.tense-btn.active{border-color:var(--blue);box-shadow:0 0 0 2px #4de1ff22}.example{font-size:1.08rem;line-height:1.55}.formula{display:inline-block;background:#071426;border:1px solid #29466c;border-radius:8px;padding:6px 9px;margin:3px 0;color:#9feaff;font-family:ui-monospace,monospace}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row select{background:#071426;color:var(--text);border:1px solid #36577e;border-radius:10px;padding:10px;max-width:100%}.question{font-size:1.2rem;font-weight:650;margin:10px 0}.choices{display:grid;gap:8px}.choices button{text-align:left}.choices button.correct{border-color:var(--green);background:#103a35}.choices button.wrong{border-color:var(--red);background:#421e31}.feedback{min-height:28px;margin-top:10px;font-weight:650}.good{color:var(--green)}.bad{color:#ff9fb2}.footer{text-align:center;color:var(--muted);font-size:.85rem;padding:12px}
+</style></head><body>
+<header><h1>TENSEMATRIX</h1><p>12 İngilizce zaman • Türkçe açıklamalar • Sesli metin • Mini test</p></header>
+<main class="wrap">
+<div class="stats"><div class="pill">⭐ Puan: <b id="score">0</b></div><div class="pill">📘 Öğrenilen zaman: <b id="learned">0/12</b></div><div class="pill">🔊 Ses: <b id="voiceStatus">Hazır</b></div></div>
+<section class="card"><h2 class="section-title">📚 12 zamanı keşfet</h2><p class="small">Bir zamana dokun; açıklamasını oku veya sesli dinle.</p><div class="grid" id="tenseGrid"></div></section>
+<section class="card"><h2 class="section-title" id="lessonTitle">Bir zaman seç</h2><p class="small" id="lessonUse"></p><div class="formula" id="lessonFormula"></div><p class="example" id="lessonExample"></p><p class="small" id="lessonTranslation"></p><div class="row"><button class="primary" id="speakLesson">🔊 Açıklamayı sesli oku</button><button id="stopVoice">⏹ Sesi durdur</button></div></section>
+<section class="card"><h2 class="section-title">🧠 Mini test</h2><p class="small">Doğru cevabı seç. Her doğru cevap 10 puan kazandırır.</p><div class="row"><label for="quizTense">Zaman:</label><select id="quizTense"></select><button class="primary" id="newQuestion">Yeni soru</button></div><p class="question" id="question">Yeni soru düğmesine bas.</p><div class="choices" id="choices"></div><div class="feedback" id="feedback" aria-live="polite"></div></section>
+<section class="card"><h2 class="section-title">🗣️ Metni sesli dinle</h2><p class="small">İngilizce veya Türkçe bir cümle yaz.</p><textarea id="customText" rows="3" style="width:100%;background:#071426;color:var(--text);border:1px solid #36577e;border-radius:12px;padding:12px" placeholder="Örn. I have been studying English."></textarea><div class="row" style="margin-top:10px"><button class="primary" id="speakCustom">🔊 İngilizce oku</button><button id="speakTurkish">🇹🇷 Türkçe oku</button><button id="clearText">Temizle</button></div><p class="small">Ses özelliği tarayıcıya ve cihazdaki seslere bağlıdır.</p></section><div class="footer">TenseMatrix • Tek HTML dosyası • Sesli okuma cihaz desteğine bağlıdır</div>
+</main><script>
+const tenses=[
+{id:"ps",name:"Present Simple",tr:"Geniş zaman",use:"Alışkanlıklar, rutinler ve genel gerçekler için kullanılır.",formula:"Özne + V1 (he/she/it: V-s)",ex:"She plays tennis every Sunday.",translation:"O her pazar tenis oynar."},
+{id:"pc",name:"Present Continuous",tr:"Şimdiki zaman",use:"Şu anda devam eden işler için kullanılır.",formula:"Özne + am/is/are + V-ing",ex:"I am reading a book now.",translation:"Şu anda kitap okuyorum."},
+{id:"pp",name:"Present Perfect",tr:"Present perfect",use:"Zamanı kesin belirtilmeyen deneyimler ve bugüne etkisi olan olaylar için kullanılır.",formula:"Özne + have/has + V3",ex:"She has finished her homework.",translation:"Ödevini bitirdi."},
+{id:"pcp",name:"Present Perfect Continuous",tr:"Geçmişte başlayıp süren eylem",use:"Geçmişte başlayıp şimdiye kadar devam eden veya etkisi süren eylemleri anlatır.",formula:"Özne + have/has been + V-ing",ex:"I have been learning English for two years.",translation:"İki yıldır İngilizce öğreniyorum."},
+{id:"past",name:"Past Simple",tr:"Geçmiş zaman",use:"Geçmişte başlayıp bitmiş olaylar için kullanılır.",formula:"Özne + V2",ex:"We watched a film yesterday.",translation:"Dün bir film izledik."},
+{id:"pastc",name:"Past Continuous",tr:"Geçmişte devam eden zaman",use:"Geçmişte belirli bir anda devam etmekte olan eylemler için kullanılır.",formula:"Özne + was/were + V-ing",ex:"I was sleeping at ten o’clock.",translation:"Saat onda uyuyordum."},
+{id:"pastp",name:"Past Perfect",tr:"Geçmişin geçmişi",use:"Geçmişteki başka bir olaydan daha önce tamamlanmış eylemi anlatır.",formula:"Özne + had + V3",ex:"They had left before I arrived.",translation:"Ben varmadan önce ayrılmışlardı."},
+{id:"pastpc",name:"Past Perfect Continuous",tr:"Geçmişte bir ana kadar sürmüş eylem",use:"Geçmişteki bir ana kadar ne kadar süredir devam eden eylemi vurgular.",formula:"Özne + had been + V-ing",ex:"He had been waiting for an hour when the bus came.",translation:"Otobüs geldiğinde bir saattir bekliyordu."},
+{id:"fut",name:"Future Simple",tr:"Gelecek zaman",use:"Geleceğe yönelik tahminler, sözler ve anlık kararlar için kullanılır.",formula:"Özne + will + V1",ex:"I will call you tomorrow.",translation:"Seni yarın arayacağım."},
+{id:"futc",name:"Future Continuous",tr:"Gelecekte devam eden eylem",use:"Gelecekte belirli bir anda devam ediyor olacak eylemleri anlatır.",formula:"Özne + will be + V-ing",ex:"This time tomorrow, I will be flying to Ankara.",translation:"Yarın bu saatlerde Ankara’ya uçuyor olacağım."},
+{id:"futp",name:"Future Perfect",tr:"Gelecekte tamamlanmış eylem",use:"Gelecekte belirli bir zamana kadar bitmiş olacak eylemler için kullanılır.",formula:"Özne + will have + V3",ex:"By Friday, I will have finished the project.",translation:"Cumaya kadar projeyi bitirmiş olacağım."},
+{id:"futpc",name:"Future Perfect Continuous",tr:"Gelecekte bir ana kadar sürüyor olma",use:"Gelecekteki bir ana gelindiğinde eylemin ne kadar süredir devam ediyor olacağını anlatır.",formula:"Özne + will have been + V-ing",ex:"By June, she will have been working here for five years.",translation:"Hazirana gelindiğinde burada beş yıldır çalışıyor olacak."}
+];
+const $=id=>document.getElementById(id);let selected=tenses[0],score=0,learned=new Set(),answered=false;
+function speak(text,lang="en-US"){if(!("speechSynthesis"in window)){alert("Bu tarayıcı sesli okumayı desteklemiyor.");return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=lang;u.rate=.88;u.onstart=()=>$("voiceStatus").textContent="Konuşuyor…";u.onend=()=>$("voiceStatus").textContent="Hazır";u.onerror=()=>$("voiceStatus").textContent="Ses kullanılamıyor";speechSynthesis.speak(u)}
+function renderGrid(){const g=$("tenseGrid");g.innerHTML="";tenses.forEach(t=>{const b=document.createElement("button");b.className="tense-btn"+(t.id===selected.id?" active":"");const strong=document.createElement("strong"),span=document.createElement("span");strong.textContent=t.name;span.textContent=t.tr;b.append(strong,span);b.onclick=()=>selectTense(t);g.appendChild(b)})}
+function selectTense(t){selected=t;learned.add(t.id);$("learned").textContent=learned.size+"/12";$("lessonTitle").textContent=t.name+" — "+t.tr;$("lessonUse").textContent=t.use;$("lessonFormula").textContent=t.formula;$("lessonExample").textContent="Örnek: "+t.ex;$("lessonTranslation").textContent="Türkçesi: "+t.translation;renderGrid();$("quizTense").value=t.id}
+function shuffle(a){return a.sort(()=>Math.random()-.5)}
+function makeQuestion(){const t=tenses.find(x=>x.id===$("quizTense").value)||selected;answered=false;$("question").textContent="“"+t.ex+"” cümlesinde hangi zaman kullanılmıştır?";const c=$("choices");c.innerHTML="";$("feedback").textContent="";$("feedback").className="feedback";shuffle([t,...shuffle(tenses.filter(x=>x.id!==t.id)).slice(0,3)]).forEach(o=>{const b=document.createElement("button");b.textContent=o.name;b.onclick=()=>{if(answered)return;answered=true;if(o.id===t.id){score+=10;$("score").textContent=score;$("feedback").textContent="Doğru! +10 puan 🎉";$("feedback").className="feedback good";b.classList.add("correct")}else{$("feedback").textContent="Bu kez olmadı. Doğru cevap: "+t.name;$("feedback").className="feedback bad";b.classList.add("wrong");[...c.children].forEach(btn=>{if(btn.textContent===t.name)btn.classList.add("correct")})}};c.appendChild(b)})}
+tenses.forEach(t=>{const o=document.createElement("option");o.value=t.id;o.textContent=t.name;$("quizTense").appendChild(o)});renderGrid();selectTense(tenses[0]);$("speakLesson").onclick=()=>speak(selected.name+". "+selected.use+". Formula: "+selected.formula+". Example: "+selected.ex+".","en-US");$("stopVoice").onclick=()=>{if("speechSynthesis"in window)speechSynthesis.cancel();$("voiceStatus").textContent="Durduruldu"};$("newQuestion").onclick=makeQuestion;$("speakCustom").onclick=()=>speak($("customText").value.trim()||selected.ex,"en-US");$("speakTurkish").onclick=()=>speak($("customText").value.trim()||selected.translation,"tr-TR");$("clearText").onclick=()=>{$("customText").value=""};
+</script></body></html>
